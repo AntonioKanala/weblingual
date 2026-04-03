@@ -67,7 +67,7 @@ export default function TestimoniosPage() {
               <FadeIn key={t.id} delay={(i % 3) * 0.1}>
                 <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
                   <VideoPlayer
-                    type={t.type === "video" ? "youtube" : (t.type as any || "youtube")}
+                    type={t.type === "video" ? "youtube" : ((t.type as "youtube" | "native" | "instagram") || "youtube")}
                     src={t.videoUrl!}
                     title={`Testimonio de ${t.name}`}
                     className="rounded-none bg-[#f5f3f0]"

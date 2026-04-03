@@ -97,7 +97,7 @@ export const GoogleReviews = () => {
                 </div>
                 
                 <p className="mt-4 text-sm leading-relaxed text-text-muted flex-grow">
-                  "{review.text}"
+                  &ldquo;{review.text}&rdquo;
                 </p>
               </div>
             </FadeIn>
