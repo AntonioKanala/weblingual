@@ -13,7 +13,7 @@ export const Footer = () => {
         <div className="grid gap-12 lg:grid-cols-4">
           {/* Logo & Description */}
           <div className="space-y-6 lg:col-span-1">
-            <div className="relative h-12 w-36">
+            <div className="relative h-16 w-48">
               <Image
                 src={ASSETS.logo}
                 alt="Clínica Lingual"
