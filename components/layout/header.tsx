@@ -58,19 +58,21 @@ export const Header = () => {
 
             {/* Dropdown Menu */}
             {isClinicaDropdownOpen && (
-              <div className="absolute left-0 top-full mt-3 min-w-[200px] rounded-xl border border-white/10 bg-background-dark/95 p-2 shadow-2xl backdrop-blur-xl">
-                <Link
-                  href={URLS.tratamiento}
-                  className="block rounded-lg px-4 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
-                >
-                  El Tratamiento
-                </Link>
-                <Link
-                  href={URLS.equipo}
-                  className="block rounded-lg px-4 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
-                >
-                  Nuestro Equipo
-                </Link>
+              <div className="absolute left-0 top-full pt-3">
+                <div className="min-w-[200px] rounded-xl border border-white/10 bg-background-dark/95 p-2 shadow-2xl backdrop-blur-xl">
+                  <Link
+                    href={URLS.tratamiento}
+                    className="block rounded-lg px-4 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    El Tratamiento
+                  </Link>
+                  <Link
+                    href={URLS.equipo}
+                    className="block rounded-lg px-4 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    Nuestro Equipo
+                  </Link>
+                </div>
               </div>
             )}
           </div>

@@ -79,19 +79,19 @@ const comparisonData: ComparisonRow[] = [
 const StatusIcon = ({ status }: { status: "yes" | "partial" | "no" }) => {
   if (status === "yes")
     return (
-      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-gold/15">
-        <Check className="h-4 w-4 text-accent-gold" />
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-gold/20">
+        <Check className="h-5 w-5 text-accent-gold" />
       </div>
     );
   if (status === "partial")
     return (
-      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-text-muted/10">
-        <Minus className="h-4 w-4 text-text-muted" />
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-text-muted/10">
+        <Minus className="h-5 w-5 text-text-muted" />
       </div>
     );
   return (
-    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-red-500/10">
-      <X className="h-4 w-4 text-red-400" />
+    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-red-500/10">
+      <X className="h-5 w-5 text-red-400" />
     </div>
   );
 };
@@ -152,7 +152,7 @@ export const ComparisonTable = () => {
                   <tr
                     key={row.feature}
                     className={cn(
-                      "border-b border-text-light/5 transition-colors hover:bg-accent-gold/[0.02]",
+                      "group border-b border-text-light/5 transition-all duration-300 hover:bg-white hover:shadow-md",
                       i === comparisonData.length - 1 && "border-b-0"
                     )}
                   >

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export interface VideoPlayerProps {
-  type: "youtube" | "native";
+  type: "youtube" | "native" | "instagram";
   src: string; // YouTube video ID or mp4 URL
   poster?: string; // Thumbnail image
   title?: string;
@@ -29,6 +29,23 @@ export const VideoPlayer = ({
   playsInline = true,
 }: VideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay);
+
+  if (type === "instagram") {
+    // Extract ID from full URL or just use ID, assume src is the shortcode like "C8H3V10Rxlm"
+    const embedUrl = `https://www.instagram.com/p/${src}/embed`;
+    return (
+      <div className={cn("relative overflow-hidden rounded-2xl bg-white shadow-sm flex justify-center", className)}>
+        <iframe
+          src={embedUrl}
+          className="w-full h-[600px]"
+          frameBorder="0"
+          scrolling="no"
+          allowTransparency={true}
+          allowFullScreen={true}
+        />
+      </div>
+    );
+  }
 
   if (type === "youtube") {
     const thumbnailUrl =

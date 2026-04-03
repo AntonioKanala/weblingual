@@ -14,19 +14,19 @@ const checklistItems = [
 
 const gridImages = [
   {
-    src: "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/66dd4ecfab806ec7a53a9ada.webp",
+    src: "/images/upload/Fotos Stock/sala de espera v2.webp",
     alt: "Paciente sonriendo con ortodoncia lingual",
   },
   {
-    src: "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb5ef66cf904b5ac0d8c4.webp",
+    src: "/images/upload/Fotos Stock/Modelo lingual mano.webp",
     alt: "Consulta de ortodoncia lingual",
   },
   {
-    src: "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb493350bac47a8e031e2.webp",
+    src: "/images/upload/Fotos Stock/Modelo lingual close up.webp",
     alt: "Tratamiento de ortodoncia lingual",
   },
   {
-    src: "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/66dd4ecf766f9862f1350235.webp",
+    src: "/images/upload/Fotos Stock/dentista revisando casos.webp",
     alt: "Resultado de ortodoncia lingual",
   },
 ];

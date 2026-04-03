@@ -6,6 +6,7 @@ import { videoTestimonials } from "@/content/testimonials";
 import { URLS } from "@/lib/constants";
 import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const VideoTestimonials = () => {
   return (
@@ -40,25 +41,32 @@ export const VideoTestimonials = () => {
 
           {/* Right: Video cards in row — AG1 style portrait thumbnails */}
           <div className="grid gap-5 sm:grid-cols-3">
-            {videoTestimonials.map((testimonial, index) => (
+            {videoTestimonials.filter(t => t.type !== "instagram").slice(0, 3).map((testimonial, index) => (
               <FadeIn key={testimonial.id} delay={index * 0.1} direction="up">
                 <div className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                   {/* Video */}
                   <VideoPlayer
-                    type="youtube"
+                    type={testimonial.type === "video" ? "youtube" : (testimonial.type as any || "youtube")}
                     src={testimonial.videoUrl!}
                     title={`Testimonio de ${testimonial.name}`}
                     className="rounded-none"
                   />
 
                   {/* Content */}
-                  <div className="p-5">
-                    <p className="font-display text-base font-semibold text-text-light">
+                  <div className="flex flex-col p-5">
+                    <p className="font-display text-base italic text-text-light mb-4 text-balance">
                       &ldquo;{testimonial.quote}&rdquo;
                     </p>
-                    <p className="mt-2 text-xs font-medium text-text-muted">
-                      {testimonial.name}
-                    </p>
+                    <div className="mt-auto flex items-center gap-3">
+                      {testimonial.image && (
+                        <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-2 ring-accent-gold/20">
+                          <Image src={testimonial.image} alt={testimonial.name} fill className="object-cover" />
+                        </div>
+                      )}
+                      <p className="text-sm font-bold text-text-muted">
+                        {testimonial.name}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </FadeIn>

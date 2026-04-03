@@ -11,22 +11,67 @@ export const metadata: Metadata = {
     "Conoce al equipo de ortodoncistas especialistas en ortodoncia lingual de Clínica Lingual. Miembros de la ESLO, Las Condes, Santiago.",
 };
 
-const teamMembers = [
+type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  credentials: string[];
+};
+
+type Department = {
+  name: string;
+  description: string;
+  members: TeamMember[];
+};
+
+const PLACEHOLDER_IMAGE = "/images/team/placeholder.png";
+
+const defaultBio =
+  "[Reemplazar con la descripción del doctor. Ejemplo: Especialista dedicado con amplia experiencia clínica. Graduado de la universidad X, enfocado en brindar una atención de excelencia a sus pacientes.]";
+
+const departments: Department[] = [
   {
-    name: "Dr. Especialista Principal",
-    role: "Director Clínico — Ortodoncista",
-    bio: "Especialista en ortodoncia lingual con más de 5,000 tratamientos finalizados. Miembro activo de la ESLO (European Society of Lingual Orthodontics).",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb5ef66cf904b5ac0d8c4.webp",
-    credentials: ["Miembro ESLO", "Ortodoncia Lingual", "+5,000 tratamientos"],
+    name: "Ortodoncia",
+    description: "Nuestros especialistas en cambiar sonrisas mediante ortodoncia lingual y técnicas avanzadas.",
+    members: [
+      { name: "Dra. Loreto Díaz", role: "Ortodoncista", bio: defaultBio, image: "/images/upload/Loreto Diaz.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dr. José Kun", role: "Ortodoncista", bio: defaultBio, image: "/images/upload/Jose Kuhn.png", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Camila Delgado", role: "Ortodoncista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
+    ],
   },
   {
-    name: "Dra. Especialista",
-    role: "Ortodoncista",
-    bio: "Especialista en ortodoncia con formación en técnica lingual. Enfocada en tratamientos estéticos y casos complejos de maloclusión.",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb6de8edd42cfa5a448d6.webp",
-    credentials: ["Ortodoncia", "Casos complejos", "Estética dental"],
+    name: "Especialistas",
+    description: "Expertos en periodoncia, endodoncia, cirugía y otras especialidades complementarias.",
+    members: [
+      { name: "Dr. Victor Olivos", role: "Especialista", bio: defaultBio, image: "/images/upload/Victor Olivos.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Javiera Gutiérrez", role: "Especialista", bio: defaultBio, image: "/images/upload/Javiera Gutierrez.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dr. Cristian Carrillo", role: "Especialista", bio: defaultBio, image: "/images/upload/Cristian Carrillo.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Francisca Venegas", role: "Especialista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dr. Cristian Darrigrandi", role: "Especialista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dr. Marcelo Beltrán", role: "Especialista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
+    ],
+  },
+  {
+    name: "Odontología General",
+    description: "El equipo encargado de la salud y prevención bucal integral de nuestros pacientes.",
+    members: [
+      { name: "Dra. Bárbara Sepúlveda", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/Bárbara Sepúlveda.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dr. Javier Poblete", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/Javier Poblete.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Valentina Pinkas", role: "Cirujano Dentista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dr. Pablo Bórquez", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/Pablo Borquez.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. María Paz Teutsch", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/María Paz Teutsch.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dr. Vicente Martínez", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/Vicente Martinez.webp", credentials: ["Registro Seremi: Pendiente"] },
+    ],
+  },
+  {
+    name: "Estética",
+    description: "Enfocados en la estética facial y dental para complementar la armonía de tu sonrisa.",
+    members: [
+      { name: "Dra. Valentina Pinkas", role: "Especialista en Estética", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Bárbara Sepúlveda", role: "Especialista en Estética", bio: defaultBio, image: "/images/upload/Bárbara Sepúlveda.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Camila Figueroa", role: "Especialista en Estética", bio: defaultBio, image: "/images/upload/Camila Figueroa.webp", credentials: ["Registro Seremi: Pendiente"] },
+    ],
   },
 ];
 
@@ -64,13 +109,13 @@ export default function EquipoPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <h1 className="mt-4 max-w-3xl font-display text-[clamp(2.5rem,5vw,5rem)] font-bold leading-[1.05] text-white">
-              Especialistas en ortodoncia lingual
+              Conoce a nuestros especialistas
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="mt-6 max-w-xl text-lg text-white/60">
               Más de 5,000 tratamientos finalizados. Miembros de la ESLO.
-              Formación exclusiva en la técnica lingual.
+              Formación exclusiva en las mejores universidades y en la técnica lingual.
             </p>
           </FadeIn>
         </div>
@@ -90,14 +135,13 @@ export default function EquipoPage() {
               />
               <div>
                 <h2 className="font-display text-2xl font-bold text-text-light">
-                  Miembros de la ESLO
+                  Respaldo ESLO
                 </h2>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
                   La European Society of Lingual Orthodontics (ESLO) es la
-                  sociedad científica que agrupa a los ortodoncistas linguales
-                  más capacitados del mundo. Ser miembro garantiza que nuestros
-                  profesionales cumplen los más altos estándares de formación y
-                  práctica clínica en ortodoncia lingual.
+                  sociedad de ortodoncia lingual más antigua del mundo. Esto
+                  garantiza estándares de calidad, formación y práctica en
+                  ortodoncia lingual.
                 </p>
               </div>
             </div>
@@ -105,59 +149,66 @@ export default function EquipoPage() {
         </div>
       </section>
 
-      {/* Team Members */}
+      {/* Team Members by Department */}
       <section className="bg-background-light py-20 lg:py-28">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
-          <FadeIn>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold">
-              El equipo
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-bold text-text-light md:text-4xl">
-              Quiénes somos
-            </h2>
-            <p className="mt-3 text-sm text-text-muted">
-              Actualiza con las fotos y datos reales de tu equipo.
-            </p>
-          </FadeIn>
-
-          <div className="mt-14 grid gap-10 md:grid-cols-2">
-            {teamMembers.map((member, i) => (
-              <FadeIn key={member.name} delay={i * 0.15}>
-                <div className="group overflow-hidden rounded-2xl bg-white shadow-sm">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-                  <div className="p-6 lg:p-8">
-                    <h3 className="font-display text-2xl font-bold text-text-light">
-                      {member.name}
-                    </h3>
-                    <p className="mt-1 text-sm font-medium text-accent-gold">
-                      {member.role}
-                    </p>
-                    <p className="mt-4 text-sm leading-relaxed text-text-muted">
-                      {member.bio}
-                    </p>
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {member.credentials.map((c) => (
-                        <span
-                          key={c}
-                          className="rounded-full bg-accent-gold/10 px-3 py-1 text-[10px] font-semibold text-accent-gold"
-                        >
-                          {c}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+          {departments.map((dept, deptIndex) => (
+            <div
+              key={dept.name}
+              className={deptIndex > 0 ? "mt-24 border-t border-text-light/10 pt-24" : ""}
+            >
+              <FadeIn>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold">
+                  Categoría
+                </p>
+                <h2 className="mt-3 font-display text-3xl font-bold text-text-light md:text-4xl">
+                  {dept.name}
+                </h2>
+                <p className="mt-3 text-sm text-text-muted">
+                  {dept.description}
+                </p>
               </FadeIn>
-            ))}
-          </div>
+
+              <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                {dept.members.map((member, i) => (
+                  <FadeIn key={member.name} delay={i * 0.1}>
+                    <div className="group h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+                      <div className="relative aspect-[4/5] overflow-hidden bg-[#f5f3f0]">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+                      <div className="flex flex-col p-6 lg:p-8">
+                        <h3 className="font-display text-2xl font-bold text-text-light">
+                          {member.name}
+                        </h3>
+                        <p className="mt-1 text-sm font-medium text-accent-gold">
+                          {member.role}
+                        </p>
+                        <p className="mt-4 text-sm leading-relaxed text-text-muted">
+                          {member.bio}
+                        </p>
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {member.credentials.map((c) => (
+                            <span
+                              key={c}
+                              className="rounded-full bg-accent-gold/10 px-3 py-1 text-[10px] font-semibold text-accent-gold"
+                            >
+                              {c}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

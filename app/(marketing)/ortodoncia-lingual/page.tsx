@@ -50,36 +50,31 @@ const benefitTabs = [
     title: "100% Invisible",
     description:
       "Al estar en la cara interna de los dientes, los brackets linguales son completamente invisibles desde el exterior. Es la única técnica de ortodoncia verdaderamente invisible — sin ataches, sin férulas, sin nada que se vea.",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/66dd4ecfab806ec7a53a9ada.webp",
+    image: "/images/upload/Fotos Stock/Modelo lingual close up.webp",
   },
   {
     title: "Casos complejos",
     description:
       "A diferencia de los alineadores (41-50% de precisión en anteriores), la ortodoncia lingual alcanza hasta 95% de precisión. Resuelve mordidas cruzadas, apiñamientos severos, casos de extracciones y maloclusiones esqueléticas Clase II y III.",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb5ef66cf904b5ac0d8c4.webp",
+    image: "/images/upload/Fotos Stock/atención al paciente.webp",
   },
   {
     title: "Personalizados 3D",
     description:
       "Cada bracket se fabrica a medida para la anatomía de tus dientes usando tecnología de escaneo y diseño 3D. Esto asegura un ajuste perfecto, máxima comodidad y movimientos dentales precisos desde el primer día.",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb6de8edd42cfa5a448d6.webp",
+    image: "/images/upload/Fotos Stock/Modelo lingual mano.webp",
   },
   {
     title: "Protege el esmalte",
     description:
       "Los brackets tradicionales pueden dejar marcas en el esmalte frontal visible. La ortodoncia lingual protege la cara visible de tus dientes, y la superficie interna tiene mayor grosor de esmalte y mejor irrigación salival.",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb7ef22549f5498daded8.webp",
+    image: "/images/upload/Fotos Stock/brackets linguales en boca.webp",
   },
   {
     title: "Trabaja 24/7",
     description:
       "Sin depender de tu disciplina. Los alineadores exigen 22 horas diarias de uso y dependen de tu memoria. Los brackets linguales trabajan continuamente, las 24 horas del día, los 7 días de la semana, sin interrupciones.",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb493350bac47a8e031e2.webp",
+    image: "/images/upload/Fotos Stock/sala de espera v1.webp",
   },
 ];
 

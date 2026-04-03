@@ -13,9 +13,10 @@ export interface Testimonial {
   id: string;
   name: string;
   quote: string;
-  videoUrl?: string;
+  videoUrl?: string; // YouTube ID or Instagram shortcode
+  image?: string; // Patient headshot
   date?: string;
-  type?: "video" | "text";
+  type?: "video" | "text" | "instagram";
 }
 
 export interface JourneyStep {

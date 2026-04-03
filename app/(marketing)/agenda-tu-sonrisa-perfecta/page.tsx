@@ -2,24 +2,33 @@
 
 import { FadeIn } from "@/components/animations/fade-in";
 import { ArrowRight, MessageCircle, Sparkles, Gift } from "lucide-react";
+import Script from "next/script";
 
 export default function AgendaPage() {
   return (
-    <div className="bg-background-light pt-24 pb-12 lg:pt-32 lg:pb-24">
-      <div className="mx-auto max-w-4xl px-6 sm:px-10">
-        <FadeIn>
-          <div className="text-center">
-            <h1 className="font-display text-4xl font-bold tracking-tight text-text-light sm:text-5xl lg:text-6xl">
-              Agenda.
-            </h1>
-            <p className="mt-4 text-xl font-medium text-text-light sm:text-2xl">
-              Cambia tu sonrisa sin que nadie se entere
-            </p>
-            <p className="mt-2 text-sm font-semibold uppercase tracking-widest text-accent-gold">
-              Expertos en Ortodoncia Invisible en Las Condes
-            </p>
-          </div>
-        </FadeIn>
+    <>
+      {/* Hero Section */}
+      <section className="bg-background-dark pb-20 pt-36 lg:pb-28 lg:pt-44">
+        <div className="mx-auto max-w-4xl px-6 sm:px-10">
+          <FadeIn>
+            <div className="text-center">
+              <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Agenda.
+              </h1>
+              <p className="mt-4 text-xl font-medium text-white/80 sm:text-2xl">
+                Cambia tu sonrisa sin que nadie se entere
+              </p>
+              <p className="mt-2 text-sm font-semibold uppercase tracking-widest text-accent-gold">
+                Expertos en Ortodoncia Invisible en Las Condes
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="bg-background-light py-12 lg:py-24">
+        <div className="mx-auto max-w-4xl px-6 sm:px-10">
 
         <FadeIn delay={0.1}>
           <div className="mx-auto mt-8 max-w-lg text-center">
@@ -57,18 +66,17 @@ export default function AgendaPage() {
             <h3 className="mb-6 text-center font-display text-2xl font-bold text-text-light sm:text-3xl">
               Agenda Nuevos Pacientes
             </h3>
-            <div className="overflow-hidden rounded-2xl border border-text-light/10 bg-white shadow-xl">
+            <div className="overflow-hidden rounded-2xl border border-text-light/10 bg-white shadow-xl min-h-[750px]">
               <iframe
                 src="https://link.canala-studio.com/widget/booking/5m1hsxhm7R3E5aEH5C97"
-                style={{
-                  width: "100%",
-                  border: "none",
-                  overflow: "hidden",
-                  minHeight: "750px",
-                }}
+                style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "750px" }}
                 scrolling="no"
-                id="5m1hsxhm7R3E5aEH5C97_1714076757138"
+                id="OCEdH6prfEDBCI7unTk7_1774641824086"
                 title="Agenda tu evaluación inicial"
+              />
+              <Script 
+                src="https://link.canala-studio.com/js/form_embed.js" 
+                strategy="lazyOnload"
               />
             </div>
           </div>
@@ -130,6 +138,7 @@ export default function AgendaPage() {
           </div>
         </FadeIn>
       </div>
-    </div>
+    </section>
+    </>
   );
 }
