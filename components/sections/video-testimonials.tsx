@@ -41,7 +41,7 @@ export const VideoTestimonials = () => {
 
           {/* Right: Video cards in row — AG1 style portrait thumbnails */}
           <div className="grid gap-5 sm:grid-cols-3">
-            {videoTestimonials.filter(t => t.type !== "instagram").slice(0, 3).map((testimonial, index) => (
+            {videoTestimonials.slice(0, 3).map((testimonial, index) => (
               <FadeIn key={testimonial.id} delay={index * 0.1} direction="up">
                 <div className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                   {/* Video */}
