@@ -49,7 +49,7 @@ export const VideoPlayer = ({
 
   if (type === "youtube") {
     const thumbnailUrl =
-      poster || `https://img.youtube.com/vi/${src}/maxresdefault.jpg`;
+      poster || `https://img.youtube.com/vi/${src}/hqdefault.jpg`;
 
     return (
       <div className={cn("group relative overflow-hidden rounded-2xl", className)}>
