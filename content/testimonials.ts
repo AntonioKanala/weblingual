@@ -53,4 +53,11 @@ export const videoTestimonials: Testimonial[] = [
     videoUrl: "buS-Eh7xkbE",
     type: "video",
   },
+  {
+    id: "testimonio-6",
+    name: "Paciente",
+    quote: "Mi transformación con ortodoncia lingual",
+    videoUrl: "32nJKwemTmM",
+    type: "video",
+  },
 ];
