@@ -13,41 +13,51 @@ const researchTabs = [
     id: "biomecanica",
     label: "Biomecánica",
     headline:
-      "Los brackets linguales aplican fuerza más cerca del centro de resistencia del diente, permitiendo traslación pura.",
+      "Los brackets linguales ofrecen un control biomecánico superior al estar más cerca del centro de resistencia del diente.",
     description:
-      "AL SITUARSE EN LA CARA INTERNA DEL DIENTE, LOS BRACKETS ESTÁN MUCHO MÁS CERCA DEL CENTRO DE RESISTENCIA. ESTO MINIMIZA LOS MOMENTOS DE FUERZA INDESEADOS, PERMITIENDO MOVIMIENTOS EN CUERPO QUE LOS ALINEADORES NO PUEDEN IGUALAR.",
+      "AL SITUARSE EN LA CARA INTERNA DEL DIENTE, LOS BRACKETS LINGUALES ESTÁN SIGNIFICATIVAMENTE MÁS CERCA DEL CENTRO DE RESISTENCIA. ESTO PERMITE UN CONTROL MÁS PRECISO DE LOS MOVIMIENTOS DENTALES, REDUCIENDO EFECTOS INDESEADOS QUE LOS ALINEADORES NO PUEDEN EVITAR.",
     cta: { label: "Conocer el tratamiento", href: "/ortodoncia-lingual" },
     image: "/images/biomecanica.png",
+  },
+  {
+    id: "mordida",
+    label: "Corrección de mordida",
+    headline:
+      "En maloclusiones inestables de gran magnitud, los brackets logran compensaciones que los alineadores no pueden alcanzar.",
+    description:
+      "LAS MALOCLUSIONES COMPLEJAS E INESTABLES REQUIEREN UN CONTROL TRIDIMENSIONAL PRECISO QUE SOLO LOS BRACKETS PUEDEN OFRECER. LOS ALINEADORES CARECEN DE LA CAPACIDAD MECÁNICA PARA GENERAR LAS FUERZAS SOSTENIDAS NECESARIAS EN ESTOS CASOS, LIMITÁNDOSE A CORRECCIONES LEVES O MODERADAS.",
+    cta: { label: "Conocer el tratamiento", href: "/ortodoncia-lingual" },
+    image: "/images/correccion-mordida.png",
   },
   {
     id: "predictibilidad",
     label: "Predictibilidad",
     headline:
-      "Los alineadores solo alcanzan entre 41% y 50% de precisión en dientes anteriores.",
+      "Los alineadores requieren más férulas de las que calcula el software, mientras que en lingual basta con ajustar algunos brackets.",
     description:
-      "EN UN ANÁLISIS COMPARATIVO, LA ORTODONCIA LINGUAL ALCANZA HASTA UN 95% DE PRECISIÓN EN MOVIMIENTOS ANTERIORES. LOS ALINEADORES SUFREN DE RELAJACIÓN DEL ESTRÉS Y CARECEN DE AGARRE MECÁNICO FIRME, LO QUE PROVOCA QUE RESBALEN EN DIENTES CILÍNDRICOS.",
-    cta: { label: "Ver estudios", href: "/ortodoncia-lingual" },
-    image: "/images/precision-barras.png",
-  },
-  {
-    id: "refinamientos",
-    label: "Refinamientos",
-    headline:
-      "70-80% de los casos con alineadores requieren series adicionales no planificadas.",
-    description:
-      "LA MAYORÍA DE LOS TRATAMIENTOS CON ALINEADORES NECESITAN FÉRULAS ADICIONALES O INCLUSO BRACKETS TRADICIONALES PARA FINALIZAR CORRECTAMENTE EL CASO. CON ORTODONCIA LINGUAL, EL PLAN DE TRATAMIENTO SE EJECUTA CON PRECISIÓN DESDE EL INICIO.",
+      "EN LA PRÁCTICA CLÍNICA, LOS TRATAMIENTOS CON ALINEADORES SUELEN NECESITAR MÁS FÉRULAS DE LAS PLANIFICADAS INICIALMENTE POR EL SOFTWARE. CON ORTODONCIA LINGUAL, LOS AJUSTES SE REALIZAN CAMBIANDO BRACKETS ESPECÍFICOS, SIN NECESIDAD DE REINICIAR LA PLANIFICACIÓN COMPLETA.",
     cta: { label: "Agendar evaluación", href: "/agenda-tu-sonrisa-perfecta" },
-    image: "/images/refinamientos.png",
+    image: "/images/predictibilidad.png",
   },
   {
     id: "cierre",
     label: "Cierre de espacios",
     headline:
-      "En casos de extracciones, los alineadores provocan tipping coronario en lugar de traslación radicular.",
+      "En casos de extracciones, los alineadores necesitan aditamentos adicionales que comprometen la estética.",
     description:
-      "EL 'EFECTO MONTAÑA RUSA': LAS CORONAS SE INCLINAN HACIA EL ESPACIO DE EXTRACCIÓN MIENTRAS LAS RAÍCES PERMANECEN EN SU LUGAR, TRAUMATIZANDO EL PERIODONTO. LA ORTODONCIA LINGUAL MUEVE EL DIENTE COMPLETO EN BLOQUE.",
+      "PARA CERRAR ESPACIOS DE EXTRACCIÓN, LOS ALINEADORES REQUIEREN APARATOLOGÍA COMPLEMENTARIA COMO MINITORNILLOS O ADITAMENTOS ADICIONALES. LA ORTODONCIA LINGUAL REALIZA ESTOS MOVIMIENTOS DE FORMA AUTÓNOMA, CONTROLANDO LA INCLINACIÓN RADICULAR SIN NECESIDAD DE ELEMENTOS EXTRA VISIBLES.",
     cta: { label: "Conocer más", href: "/ortodoncia-lingual" },
     image: "/images/cierre-espacios.png",
+  },
+  {
+    id: "torque",
+    label: "Control radicular",
+    headline:
+      "Con brackets linguales se puede controlar la inclinación de las raíces en todos los sentidos del espacio.",
+    description:
+      "EL CONTROL TRIDIMENSIONAL DE LAS RAÍCES ES UNA DE LAS MAYORES VENTAJAS DE LA ORTODONCIA LINGUAL. MIENTRAS LOS ALINEADORES TIENEN UN CONTROL PARCIAL Y LOS BRACKETS VESTIBULARES UN ALCANCE LIMITADO, LOS BRACKETS LINGUALES PERMITEN MÁXIMO CONTROL DE TORQUE EN TODAS LAS DIRECCIONES.",
+    cta: { label: "Agendar evaluación", href: "/agenda-tu-sonrisa-perfecta" },
+    image: "/images/control-radicular.png",
   },
   {
     id: "independencia",
