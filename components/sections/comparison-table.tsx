@@ -189,18 +189,18 @@ export const ComparisonTable = () => {
           <div className="mt-12 sm:hidden">
             {/* Sticky column legend */}
             <div className="sticky top-[72px] z-10 -mx-6 border-b border-text-light/10 bg-background-light/95 px-6 py-3 backdrop-blur-md">
-              <div className="grid grid-cols-3 gap-2 pl-0">
-                <div className="flex items-center justify-center">
+              <div className="grid grid-cols-[1fr_1fr_1fr] gap-1">
+                <div className="flex flex-col items-center">
                   <span className="rounded-full bg-accent-gold/10 px-3 py-1 text-[11px] font-bold text-accent-gold">
                     Lingual
                   </span>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex flex-col items-center">
                   <span className="rounded-full bg-text-muted/10 px-3 py-1 text-[11px] font-medium text-text-muted">
                     Alineadores
                   </span>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex flex-col items-center">
                   <span className="rounded-full bg-text-muted/10 px-3 py-1 text-[11px] font-medium text-text-muted">
                     Tradicional
                   </span>
@@ -212,10 +212,10 @@ export const ComparisonTable = () => {
             <div className="divide-y divide-text-light/5">
               {comparisonData.map((row) => (
                 <div key={row.feature} className="py-5">
-                  <p className="mb-3 text-sm font-semibold text-text-light">
+                  <p className="mb-4 text-center text-[13px] font-bold text-text-light">
                     {row.feature}
                   </p>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-[1fr_1fr_1fr] gap-1">
                     <StatusCell status={row.lingual} note={row.lingualNote} isGold />
                     <StatusCell status={row.alineadores} note={row.alineadoresNote} />
                     <StatusCell status={row.tradicional} note={row.tradicionalNote} />
