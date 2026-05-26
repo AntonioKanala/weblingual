@@ -55,17 +55,18 @@ const departments: Department[] = [
     members: [
       { name: "Dra. Bárbara Sepúlveda", role: "Cirujana Dentista", image: "/images/upload/Bárbara Sepúlveda.webp", credentials: ["Registro N° 435023"], registroPdf: "/registros/barbara-sepulveda.pdf" },
       { name: "Dr. Javier Poblete", role: "Cirujano Dentista", image: "/images/upload/Javier Poblete.webp", credentials: ["Registro N° 687841"], registroPdf: "/registros/javier-poblete.pdf" },
-      { name: "Dra. Valentina Pinkas", role: "Cirujana Dentista", image: PLACEHOLDER_IMAGE, credentials: ["Registro N° 819970"], registroPdf: "/registros/valentina-pinkas.pdf" },
+      { name: "Dra. Valentina Pinkas", role: "Cirujana Dentista", image: "/images/upload/Valentina Pinkas.webp", credentials: ["Registro N° 819970"], registroPdf: "/registros/valentina-pinkas.pdf" },
       { name: "Dr. Pablo Bórquez", role: "Cirujano Dentista", image: "/images/upload/Pablo Borquez.webp", credentials: ["Registro N° 477222"], registroPdf: "/registros/pablo-borquez.pdf" },
       { name: "Dra. María Paz Teutsch", role: "Cirujana Dentista", image: "/images/upload/María Paz Teutsch.webp", credentials: ["Registro N° 677533"], registroPdf: "/registros/maria-paz-teutsch.pdf" },
       { name: "Dr. Vicente Martínez", role: "Cirujano Dentista", image: "/images/upload/Vicente Martinez.webp", credentials: ["Registro N° 612851"], registroPdf: "/registros/vicente-martinez.pdf" },
+      { name: "Dr. Luis Francisco N.", role: "Cirujano Dentista", image: "/images/upload/Luis Francisco.webp", credentials: [] },
     ],
   },
   {
     name: "Estética",
     description: "Enfocados en la estética facial y dental para complementar la armonía de tu sonrisa.",
     members: [
-      { name: "Dra. Valentina Pinkas", role: "Cirujana Dentista", image: PLACEHOLDER_IMAGE, credentials: ["Registro N° 819970"], registroPdf: "/registros/valentina-pinkas.pdf" },
+      { name: "Dra. Valentina Pinkas", role: "Cirujana Dentista", image: "/images/upload/Valentina Pinkas.webp", credentials: ["Registro N° 819970"], registroPdf: "/registros/valentina-pinkas.pdf" },
       { name: "Dra. Bárbara Sepúlveda", role: "Cirujana Dentista", image: "/images/upload/Bárbara Sepúlveda.webp", credentials: ["Registro N° 435023"], registroPdf: "/registros/barbara-sepulveda.pdf" },
       { name: "Dra. Camila Figueroa", role: "Cirujana Dentista", image: "/images/upload/Camila Figueroa.webp", credentials: ["Registro N° 745646"], registroPdf: "/registros/camila-figueroa.pdf" },
     ],

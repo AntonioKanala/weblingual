@@ -192,22 +192,25 @@ export default function TratamientoPage() {
             </h2>
           </FadeIn>
 
-          <div className="mt-12 space-y-16 lg:mt-16 lg:space-y-24">
+          <div className="mt-12 space-y-16 lg:mt-16 lg:space-y-20">
             {benefitTabs.map((benefit, i) => (
               <FadeIn key={benefit.title} delay={0.1}>
-                <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-14">
-                  <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                    <h3 className="font-display text-2xl font-bold text-text-light md:text-3xl">
+                <div className="grid items-stretch gap-8 lg:grid-cols-[3fr_2fr] lg:gap-12">
+                  {/* Text column — wider (3fr) */}
+                  <div
+                    className={`flex flex-col justify-center ${i % 2 === 1 ? "lg:order-2" : ""}`}
+                  >
+                    <h3 className="font-display text-2xl font-bold text-text-light md:text-3xl lg:text-4xl">
                       {benefit.title}
                     </h3>
-                    <p className="mt-4 text-base leading-relaxed text-text-muted">
+                    <p className="mt-4 text-base leading-relaxed text-text-muted lg:text-lg">
                       {benefit.description}
                     </p>
                     <ul className="mt-6 space-y-3 border-t border-text-light/10 pt-6">
                       {benefit.bullets.map((bullet) => (
                         <li
                           key={bullet}
-                          className="flex items-start gap-3 text-sm leading-relaxed text-text-light/80"
+                          className="flex items-start gap-3 text-sm leading-relaxed text-text-light/80 lg:text-base"
                         >
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-gold" />
                           {bullet}
@@ -215,15 +218,16 @@ export default function TratamientoPage() {
                       ))}
                     </ul>
                   </div>
+                  {/* Image column — narrower (2fr), fills text height on lg+ */}
                   <div
-                    className={`relative aspect-[4/3] overflow-hidden rounded-2xl ${i % 2 === 1 ? "lg:order-1" : ""}`}
+                    className={`relative aspect-[4/3] overflow-hidden rounded-2xl lg:aspect-auto lg:min-h-[420px] ${i % 2 === 1 ? "lg:order-1" : ""}`}
                   >
                     <Image
                       src={benefit.image}
                       alt={benefit.title}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
                     />
                   </div>
                 </div>
