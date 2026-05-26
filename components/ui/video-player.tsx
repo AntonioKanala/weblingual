@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { useVideoCoordinator } from "@/components/ui/video-player-context";
 
 export interface VideoPlayerProps {
   type: "youtube" | "native" | "instagram";
@@ -28,7 +29,13 @@ export const VideoPlayer = ({
   loop = false,
   playsInline = true,
 }: VideoPlayerProps) => {
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const coordinator = useVideoCoordinator();
+  const [localPlaying, setLocalPlaying] = useState(autoPlay);
+  const isPlaying = coordinator.isInProvider ? coordinator.isActive : localPlaying;
+  const handlePlay = () => {
+    if (coordinator.isInProvider) coordinator.activate();
+    else setLocalPlaying(true);
+  };
 
   if (type === "instagram") {
     // Extract ID from full URL or just use ID, assume src is the shortcode like "C8H3V10Rxlm"
@@ -67,7 +74,7 @@ export const VideoPlayer = ({
             <div className="absolute inset-0 bg-gradient-to-t from-background-dark/60 to-transparent transition-opacity group-hover:opacity-90" />
             {/* Play button */}
             <button
-              onClick={() => setIsPlaying(true)}
+              onClick={handlePlay}
               className="absolute inset-0 flex items-center justify-center"
               aria-label={`Play ${title}`}
             >

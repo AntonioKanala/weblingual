@@ -1,5 +1,6 @@
+import { LocationMap } from "@/components/ui/location-map";
 import { ASSETS, CONTACT, HASHTAG, URLS } from "@/lib/constants";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -50,6 +51,14 @@ export const Footer = () => {
                   className="text-sm text-white/40 transition-colors hover:text-white"
                 >
                   Nuestro Equipo
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={URLS.instalaciones}
+                  className="text-sm text-white/40 transition-colors hover:text-white"
+                >
+                  Nuestras Instalaciones
                 </Link>
               </li>
               <li>
@@ -106,15 +115,13 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-white/40">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold/60" />
-                <span>{CONTACT.location}</span>
+                <span>{CONTACT.addressShort}</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-white/40">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold/60" />
-                <span>+56 9 XXXX XXXX</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm text-white/40">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold/60" />
-                <span>contacto@clinicalingual.cl</span>
+                <a href={CONTACT.phoneHref} className="transition-colors hover:text-white">
+                  {CONTACT.phone}
+                </a>
               </li>
             </ul>
 
@@ -138,6 +145,26 @@ export const Footer = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Location Map */}
+        <div className="mt-12 grid gap-6 border-t border-white/10 pt-10 lg:grid-cols-[1fr_2fr] lg:gap-10">
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+              Visítanos
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-white/60">
+              {CONTACT.address}
+            </p>
+            <a
+              href={CONTACT.phoneHref}
+              className="mt-3 inline-flex items-center gap-2 text-sm text-accent-gold transition-colors hover:text-accent-gold-light"
+            >
+              <Phone className="h-4 w-4" />
+              {CONTACT.phone}
+            </a>
+          </div>
+          <LocationMap compact theme="dark" />
         </div>
 
         {/* Bottom Bar */}

@@ -1,6 +1,7 @@
 "use client";
 
 import { VideoPlayer } from "@/components/ui/video-player";
+import { VideoPlayerProvider } from "@/components/ui/video-player-context";
 import { FadeIn } from "@/components/animations/fade-in";
 import { videoTestimonials } from "@/content/testimonials";
 import { URLS } from "@/lib/constants";
@@ -10,6 +11,7 @@ import Image from "next/image";
 
 export const VideoTestimonials = () => {
   return (
+    <VideoPlayerProvider>
     <section className="bg-background-light py-20 lg:py-28">
       <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
@@ -75,5 +77,6 @@ export const VideoTestimonials = () => {
         </div>
       </div>
     </section>
+    </VideoPlayerProvider>
   );
 };

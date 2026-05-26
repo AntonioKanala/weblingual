@@ -54,8 +54,8 @@ export const videoTestimonials: Testimonial[] = [
     type: "video",
   },
   {
-    id: "testimonio-6",
-    name: "Paciente",
+    id: "teresita",
+    name: "Teresita Donoso",
     quote: "Mi transformación con ortodoncia lingual",
     videoUrl: "32nJKwemTmM",
     type: "video",

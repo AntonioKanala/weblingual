@@ -41,3 +41,14 @@ yarn-error.log*
 
 # raw content source files
 Contenido Web/
+Imágenes Lingual Actualizadas/
+REGISTRO SUPER INTENDENCIA.zip
+
+# build / dev logs
+build*.log
+dev.log
+
+# loose source images at root (raw assets pending sorting)
+/biomecanica 2.0.png
+/control-radicular 2.0.png
+/correccion-mordida 2.0.png

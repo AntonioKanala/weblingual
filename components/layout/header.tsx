@@ -72,6 +72,12 @@ export const Header = () => {
                   >
                     Nuestro Equipo
                   </Link>
+                  <Link
+                    href={URLS.instalaciones}
+                    className="block rounded-lg px-4 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    Nuestras Instalaciones
+                  </Link>
                 </div>
               </div>
             )}

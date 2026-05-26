@@ -1,5 +1,6 @@
 import { FadeIn } from "@/components/animations/fade-in";
 import { VideoPlayer } from "@/components/ui/video-player";
+import { VideoPlayerProvider } from "@/components/ui/video-player-context";
 import { URLS } from "@/lib/constants";
 import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +13,6 @@ export const metadata: Metadata = {
     "Conoce las historias reales de nuestros pacientes. +5,000 tratamientos de ortodoncia lingual finalizados con éxito en Santiago, Chile.",
 };
 
-import { GoogleReviews } from "@/components/sections/google-reviews";
 import { videoTestimonials } from "@/content/testimonials";
 
 export default function TestimoniosPage() {
@@ -62,6 +62,7 @@ export default function TestimoniosPage() {
             </h2>
           </FadeIn>
 
+          <VideoPlayerProvider>
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {videoTestimonials.map((t, i) => (
               <FadeIn key={t.id} delay={(i % 3) * 0.1}>
@@ -93,10 +94,9 @@ export default function TestimoniosPage() {
               </FadeIn>
             ))}
           </div>
+          </VideoPlayerProvider>
         </div>
       </section>
-
-      <GoogleReviews />
 
       {/* CTA */}
       <section className="bg-background-dark py-24 lg:py-32">

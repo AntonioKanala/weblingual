@@ -1,6 +1,6 @@
 import { FadeIn } from "@/components/animations/fade-in";
 import { URLS } from "@/lib/constants";
-import { ArrowRight, Award, GraduationCap, MapPin } from "lucide-react";
+import { ArrowRight, Award, FileCheck, GraduationCap, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 type TeamMember = {
   name: string;
   role: string;
-  bio: string;
   image: string;
   credentials: string[];
+  registroPdf?: string;
 };
 
 type Department = {
@@ -27,50 +27,47 @@ type Department = {
 
 const PLACEHOLDER_IMAGE = "/images/team/placeholder.png";
 
-const defaultBio =
-  "[Reemplazar con la descripción del doctor. Ejemplo: Especialista dedicado con amplia experiencia clínica. Graduado de la universidad X, enfocado en brindar una atención de excelencia a sus pacientes.]";
-
 const departments: Department[] = [
   {
     name: "Ortodoncia",
     description: "Nuestros especialistas en cambiar sonrisas mediante ortodoncia lingual y técnicas avanzadas.",
     members: [
-      { name: "Dra. Loreto Díaz", role: "Ortodoncista", bio: defaultBio, image: "/images/upload/Loreto Diaz.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dr. José Kun", role: "Ortodoncista", bio: defaultBio, image: "/images/upload/Jose Kuhn.png", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dra. Camila Delgado", role: "Ortodoncista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Loreto Díaz", role: "Ortodoncista", image: "/images/upload/Loreto Diaz.webp", credentials: ["Registro N° 35613"], registroPdf: "/registros/loreto-diaz.pdf" },
+      { name: "Dr. José Kuhn", role: "Cirujano Dentista", image: "/images/upload/Jose Kuhn.webp", credentials: ["Registro N° 403439"], registroPdf: "/registros/jose-kuhn.pdf" },
+      { name: "Dra. Camila Delgado", role: "Ortodoncista", image: PLACEHOLDER_IMAGE, credentials: ["Registro N° 473274"], registroPdf: "/registros/camila-delgado.pdf" },
     ],
   },
   {
     name: "Especialistas",
     description: "Expertos en periodoncia, endodoncia, cirugía y otras especialidades complementarias.",
     members: [
-      { name: "Dr. Victor Olivos", role: "Especialista", bio: defaultBio, image: "/images/upload/Victor Olivos.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dra. Javiera Gutiérrez", role: "Especialista", bio: defaultBio, image: "/images/upload/Javiera Gutierrez.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dr. Cristian Carrillo", role: "Especialista", bio: defaultBio, image: "/images/upload/Cristian Carrillo.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dra. Francisca Venegas", role: "Especialista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dr. Cristian Darrigrandi", role: "Especialista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dr. Marcelo Beltrán", role: "Especialista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dr. Víctor Olivos", role: "Cirujano Maxilofacial", image: "/images/upload/Victor Olivos.webp", credentials: ["Registro N° 44374"], registroPdf: "/registros/victor-olivos.pdf" },
+      { name: "Dra. Javiera Gutiérrez", role: "Rehabilitadora Oral", image: "/images/upload/Javiera Gutierrez.webp", credentials: ["Registro N° 397324"], registroPdf: "/registros/javiera-gutierrez.pdf" },
+      { name: "Dr. Cristian Carrillo", role: "Cirujano Dentista", image: "/images/upload/Cristian Carrillo.webp", credentials: ["Registro N° 748017"], registroPdf: "/registros/cristian-carrillo.pdf" },
+      { name: "Dra. Francisca Venegas", role: "Rehabilitadora Oral", image: PLACEHOLDER_IMAGE, credentials: ["Registro N° 614878"], registroPdf: "/registros/francisca-venegas.pdf" },
+      { name: "Dr. Cristian Darrigrande", role: "Rehabilitador Oral", image: PLACEHOLDER_IMAGE, credentials: ["Registro N° 478843"], registroPdf: "/registros/cristian-darrigrande.pdf" },
+      { name: "Dr. Marcelo Beltrán", role: "Rehabilitador Oral", image: PLACEHOLDER_IMAGE, credentials: ["Registro N° 576015"], registroPdf: "/registros/marcelo-beltran.pdf" },
     ],
   },
   {
     name: "Odontología General",
     description: "El equipo encargado de la salud y prevención bucal integral de nuestros pacientes.",
     members: [
-      { name: "Dra. Bárbara Sepúlveda", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/Bárbara Sepúlveda.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dr. Javier Poblete", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/Javier Poblete.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dra. Valentina Pinkas", role: "Cirujano Dentista", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dr. Pablo Bórquez", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/Pablo Borquez.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dra. María Paz Teutsch", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/María Paz Teutsch.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dr. Vicente Martínez", role: "Cirujano Dentista", bio: defaultBio, image: "/images/upload/Vicente Martinez.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Bárbara Sepúlveda", role: "Cirujana Dentista", image: "/images/upload/Bárbara Sepúlveda.webp", credentials: ["Registro N° 435023"], registroPdf: "/registros/barbara-sepulveda.pdf" },
+      { name: "Dr. Javier Poblete", role: "Cirujano Dentista", image: "/images/upload/Javier Poblete.webp", credentials: ["Registro N° 687841"], registroPdf: "/registros/javier-poblete.pdf" },
+      { name: "Dra. Valentina Pinkas", role: "Cirujana Dentista", image: PLACEHOLDER_IMAGE, credentials: ["Registro N° 819970"], registroPdf: "/registros/valentina-pinkas.pdf" },
+      { name: "Dr. Pablo Bórquez", role: "Cirujano Dentista", image: "/images/upload/Pablo Borquez.webp", credentials: ["Registro N° 477222"], registroPdf: "/registros/pablo-borquez.pdf" },
+      { name: "Dra. María Paz Teutsch", role: "Cirujana Dentista", image: "/images/upload/María Paz Teutsch.webp", credentials: ["Registro N° 677533"], registroPdf: "/registros/maria-paz-teutsch.pdf" },
+      { name: "Dr. Vicente Martínez", role: "Cirujano Dentista", image: "/images/upload/Vicente Martinez.webp", credentials: ["Registro N° 612851"], registroPdf: "/registros/vicente-martinez.pdf" },
     ],
   },
   {
     name: "Estética",
     description: "Enfocados en la estética facial y dental para complementar la armonía de tu sonrisa.",
     members: [
-      { name: "Dra. Valentina Pinkas", role: "Especialista en Estética", bio: defaultBio, image: PLACEHOLDER_IMAGE, credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dra. Bárbara Sepúlveda", role: "Especialista en Estética", bio: defaultBio, image: "/images/upload/Bárbara Sepúlveda.webp", credentials: ["Registro Seremi: Pendiente"] },
-      { name: "Dra. Camila Figueroa", role: "Especialista en Estética", bio: defaultBio, image: "/images/upload/Camila Figueroa.webp", credentials: ["Registro Seremi: Pendiente"] },
+      { name: "Dra. Valentina Pinkas", role: "Cirujana Dentista", image: PLACEHOLDER_IMAGE, credentials: ["Registro N° 819970"], registroPdf: "/registros/valentina-pinkas.pdf" },
+      { name: "Dra. Bárbara Sepúlveda", role: "Cirujana Dentista", image: "/images/upload/Bárbara Sepúlveda.webp", credentials: ["Registro N° 435023"], registroPdf: "/registros/barbara-sepulveda.pdf" },
+      { name: "Dra. Camila Figueroa", role: "Cirujana Dentista", image: "/images/upload/Camila Figueroa.webp", credentials: ["Registro N° 745646"], registroPdf: "/registros/camila-figueroa.pdf" },
     ],
   },
 ];
@@ -189,18 +186,29 @@ export default function EquipoPage() {
                         <p className="mt-1 text-sm font-medium text-accent-gold">
                           {member.role}
                         </p>
-                        <p className="mt-4 text-sm leading-relaxed text-text-muted">
-                          {member.bio}
-                        </p>
                         <div className="mt-5 flex flex-wrap gap-2">
-                          {member.credentials.map((c) => (
-                            <span
-                              key={c}
-                              className="rounded-full bg-accent-gold/10 px-3 py-1 text-[10px] font-semibold text-accent-gold"
-                            >
-                              {c}
-                            </span>
-                          ))}
+                          {member.credentials.map((c) =>
+                            member.registroPdf ? (
+                              <a
+                                key={c}
+                                href={member.registroPdf}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="Ver certificado oficial de la Superintendencia de Salud"
+                                className="inline-flex items-center gap-1 rounded-full bg-accent-gold/10 px-3 py-1 text-[10px] font-semibold text-accent-gold transition-colors hover:bg-accent-gold/20"
+                              >
+                                <FileCheck className="h-3 w-3" />
+                                {c}
+                              </a>
+                            ) : (
+                              <span
+                                key={c}
+                                className="inline-flex items-center gap-1 rounded-full bg-accent-gold/10 px-3 py-1 text-[10px] font-semibold text-accent-gold"
+                              >
+                                {c}
+                              </span>
+                            ),
+                          )}
                         </div>
                       </div>
                     </div>

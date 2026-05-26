@@ -97,6 +97,13 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                             >
                               Nuestro Equipo
                             </Link>
+                            <Link
+                              href={URLS.instalaciones}
+                              onClick={onClose}
+                              className="block rounded-lg p-3 text-sm text-text-dark/80 transition-colors hover:bg-accent-gold/10 hover:text-accent-gold"
+                            >
+                              Nuestras Instalaciones
+                            </Link>
                           </div>
                         </motion.div>
                       )}

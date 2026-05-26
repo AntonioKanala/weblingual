@@ -4,7 +4,6 @@ import { BenefitsGrid } from "@/components/sections/benefits-grid";
 import { BenefitsExpandable } from "@/components/sections/benefits-expandable";
 import { ScienceTabs } from "@/components/sections/science-tabs";
 import { ComparisonTable } from "@/components/sections/comparison-table";
-import { BrandMarquee } from "@/components/sections/brand-marquee";
 import { VideoTestimonials } from "@/components/sections/video-testimonials";
 import { IdealForYou } from "@/components/sections/ideal-for-you";
 import { Journey } from "@/components/sections/journey";
@@ -47,7 +46,6 @@ export default function HomePage() {
       <BenefitsExpandable />
       <ScienceTabs />
       <ComparisonTable />
-      <BrandMarquee />
       <VideoTestimonials />
       <IdealForYou />
       <Journey />

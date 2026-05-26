@@ -36,17 +36,17 @@ export const CtaStatement = () => {
         <FadeIn delay={0.45}>
           <div className="mt-10 flex flex-wrap items-center gap-6">
             <Link
-              href={URLS.tratamiento}
+              href={URLS.agenda}
               className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
             >
-              Aprender más sobre la Ortodoncia Invisible
+              Agendar evaluación
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href={URLS.agenda}
+              href={URLS.tratamiento}
               className="inline-flex items-center gap-1 text-sm font-medium text-white/60 transition-colors hover:text-white"
             >
-              Agendar evaluación
+              Aprender más sobre la Ortodoncia Invisible
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>

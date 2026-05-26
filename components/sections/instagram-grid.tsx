@@ -8,38 +8,32 @@ import Image from "next/image";
 const instagramPosts = [
   {
     id: "1",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/66dd4ecfab806ec7a53a9ada.webp",
+    image: "/images/lifestyle/paciente-riendo-perfil.webp",
     url: "https://instagram.com/clinicalingual",
   },
   {
     id: "2",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb5ef66cf904b5ac0d8c4.webp",
+    image: "/images/lifestyle/brackets-personalizados.webp",
     url: "https://instagram.com/clinicalingual",
   },
   {
     id: "3",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb6de8edd42cfa5a448d6.webp",
+    image: "/images/lifestyle/paciente-alineador-luz.webp",
     url: "https://instagram.com/clinicalingual",
   },
   {
     id: "4",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb7ef22549f5498daded8.webp",
+    image: "/images/lifestyle/lifestyle-sombrero-exterior.webp",
     url: "https://instagram.com/clinicalingual",
   },
   {
     id: "5",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668eb493350bac47a8e031e2.webp",
+    image: "/images/lifestyle/paciente-hombre-riendo.webp",
     url: "https://instagram.com/clinicalingual",
   },
   {
     id: "6",
-    image:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/66dd4ecf766f9862f1350235.webp",
+    image: "/images/lifestyle/paciente-resultado.webp",
     url: "https://instagram.com/clinicalingual",
   },
 ];

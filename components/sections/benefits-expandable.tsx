@@ -13,7 +13,7 @@ export const BenefitsExpandable = () => {
   const activeBenefit = benefits.find((b) => b.id === activeId)!;
 
   return (
-    <section className="bg-[#f5f3f0] py-20 lg:py-28">
+    <section className="bg-[#f5f3f0] py-16 lg:py-20">
       <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
         <FadeIn>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold">
@@ -24,11 +24,11 @@ export const BenefitsExpandable = () => {
           </h2>
         </FadeIn>
 
-        {/* AG1 Quality Standards layout: image left + accordion right */}
-        <div className="mt-14 grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left — Active benefit image */}
+        {/* Image left (smaller, sticky on desktop) + accordion right */}
+        <div className="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+          {/* Left — Active benefit image, compact */}
           <FadeIn direction="left">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+            <div className="relative mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl lg:sticky lg:top-32 lg:aspect-square lg:max-w-none">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeId}
@@ -43,7 +43,7 @@ export const BenefitsExpandable = () => {
                     alt={activeBenefit.title}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="(max-width: 1024px) 90vw, 40vw"
                   />
                 </motion.div>
               </AnimatePresence>
