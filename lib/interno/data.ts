@@ -8,7 +8,7 @@ const PACIENTE_COLS = "id,rut,nombre,apellidos,telefono,celular,email";
 
 // Agenda de un día: citas de esa fecha + datos del paciente + si ya fue evaluada.
 export async function getAgendaDelDia(fecha: string): Promise<CitaConPaciente[]> {
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await supabaseAdmin()
     .from("citas")
     .select(CITA_COLS)
     .eq("fecha", fecha)
@@ -24,9 +24,9 @@ export async function getAgendaDelDia(fecha: string): Promise<CitaConPaciente[]>
   const citaIds = citas.map((c) => c.id);
 
   const [pacientesRes, evalsRes] = await Promise.all([
-    supabaseAdmin.from("pacientes").select(PACIENTE_COLS).in("id", pacienteIds),
+    supabaseAdmin().from("pacientes").select(PACIENTE_COLS).in("id", pacienteIds),
     // evaluaciones puede no existir todavía; si falla, se trata como vacío.
-    supabaseAdmin.from("evaluaciones").select("dentalink_cita_id").in("dentalink_cita_id", citaIds),
+    supabaseAdmin().from("evaluaciones").select("dentalink_cita_id").in("dentalink_cita_id", citaIds),
   ]);
 
   const pacientes = (pacientesRes.data ?? []) as Paciente[];
@@ -69,7 +69,7 @@ export async function getCitaDetalle(citaId: number): Promise<{
   paciente: Paciente | null;
   evaluacion: EvaluacionRow | null;
 } | null> {
-  const { data: cita } = await supabaseAdmin
+  const { data: cita } = await supabaseAdmin()
     .from("citas")
     .select(CITA_COLS)
     .eq("id", citaId)
@@ -79,12 +79,12 @@ export async function getCitaDetalle(citaId: number): Promise<{
   const citaTyped = cita as Cita;
 
   const [pacRes, evalRes] = await Promise.all([
-    supabaseAdmin
+    supabaseAdmin()
       .from("pacientes")
       .select(PACIENTE_COLS)
       .eq("id", citaTyped.id_paciente)
       .maybeSingle(),
-    supabaseAdmin
+    supabaseAdmin()
       .from("evaluaciones")
       .select(EVAL_COLS)
       .eq("dentalink_cita_id", citaId)

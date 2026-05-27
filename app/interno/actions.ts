@@ -47,7 +47,7 @@ export async function guardarEvaluacion(input: EvaluacionInput): Promise<Guardar
     created_by: user?.id ?? null,
   };
 
-  const { data: inserted, error } = await supabaseAdmin
+  const { data: inserted, error } = await supabaseAdmin()
     .from("evaluaciones")
     .insert(row)
     .select("id")
@@ -75,7 +75,7 @@ export async function guardarEvaluacion(input: EvaluacionInput): Promise<Guardar
       ghlError = e instanceof Error ? e.message : "Error llamando a n8n";
     }
 
-    await supabaseAdmin
+    await supabaseAdmin()
       .from("evaluaciones")
       .update({
         enviado_ghl: ghlOk,
