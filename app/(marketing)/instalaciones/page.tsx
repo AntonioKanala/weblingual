@@ -28,9 +28,9 @@ const spaces: Space[] = [
     image: "/images/instalaciones/estacionamiento.webp",
   },
   {
-    title: "Recepción",
+    title: "Espacio co-work",
     description:
-      "Te recibimos en un ambiente cálido y profesional apenas llegas, listos para asistirte en cada visita.",
+      "Un ambiente luminoso y cómodo donde puedes esperar trabajando o conectarte con nuestro equipo en un entorno relajado.",
     image: "/images/instalaciones/recepcion.webp",
   },
   {
@@ -55,7 +55,7 @@ const spaces: Space[] = [
     title: "Sala de análisis de casos",
     description:
       "Donde nuestro equipo planifica cada caso en detalle, revisando radiografías, escáneres 3D y diseñando tu tratamiento.",
-    image: "/images/lifestyle/atencion-multidisciplinaria.webp",
+    image: "/images/instalaciones/analisis-casos.webp",
   },
 ];
 
