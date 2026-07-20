@@ -4,6 +4,15 @@ export const metadata: Metadata = {
   title: "Agenda tu Evaluación | Clínica Lingual Santiago",
   description:
     "Agenda tu evaluación inicial de ortodoncia lingual en Clínica Lingual, Las Condes, Santiago. +5,000 tratamientos. Llámanos al +56 9 5412 7979.",
+  alternates: {
+    canonical: "/agenda-tu-sonrisa-perfecta",
+  },
+  openGraph: {
+    title: "Agenda tu Evaluación | Clínica Lingual Santiago",
+    description:
+      "Agenda tu evaluación inicial de ortodoncia lingual en Las Condes, Santiago.",
+    url: "/agenda-tu-sonrisa-perfecta",
+  },
 };
 
 export default function AgendaLayout({

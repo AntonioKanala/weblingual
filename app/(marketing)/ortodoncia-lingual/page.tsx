@@ -1,5 +1,6 @@
 import { ComparisonTable } from "@/components/sections/comparison-table";
 import { FadeIn } from "@/components/animations/fade-in";
+import { getBreadcrumbSchema } from "@/lib/schemas";
 import { ScienceTabs } from "@/components/sections/science-tabs";
 import { FAQ } from "@/components/sections/faq";
 import { VideoPlayer } from "@/components/ui/video-player";
@@ -15,6 +16,15 @@ export const metadata: Metadata = {
   title: "Ortodoncia Lingual | El Tratamiento Invisible | Clínica Lingual",
   description:
     "Descubre la ortodoncia lingual: brackets 100% invisibles, personalizados con tecnología 3D. Eficaz para casos complejos. +5,000 tratamientos en Santiago.",
+  alternates: {
+    canonical: "/ortodoncia-lingual",
+  },
+  openGraph: {
+    title: "Ortodoncia Lingual | El Tratamiento Invisible | Clínica Lingual",
+    description:
+      "Brackets 100% invisibles, personalizados con tecnología 3D. Eficaz para casos complejos.",
+    url: "/ortodoncia-lingual",
+  },
 };
 
 const timelineSteps = [
@@ -114,6 +124,16 @@ const benefitTabs = [
 export default function TratamientoPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getBreadcrumbSchema([
+              { name: "Ortodoncia Lingual", path: "/ortodoncia-lingual" },
+            ]),
+          ),
+        }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-background-dark pb-16 pt-32 lg:pb-20 lg:pt-40">
         {/* Background image — brackets personalizados */}

@@ -34,9 +34,6 @@ export const metadata: Metadata = {
   creator: "Clínica Lingual",
   publisher: "Clínica Lingual",
   metadataBase: new URL("https://clinicalingual.cl"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Clínica Lingual | La Verdadera Ortodoncia Invisible",
     description:

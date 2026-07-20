@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/animations/fade-in";
+import { getBreadcrumbSchema, getPersonListSchema } from "@/lib/schemas";
 import { URLS } from "@/lib/constants";
 import { ArrowRight, Award, FileCheck, GraduationCap, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -9,6 +10,15 @@ export const metadata: Metadata = {
   title: "Nuestro Equipo | Clínica Lingual Santiago",
   description:
     "Conoce al equipo de ortodoncistas especialistas en ortodoncia lingual de Clínica Lingual. Miembros de la ESLO, Las Condes, Santiago.",
+  alternates: {
+    canonical: "/nuestro-equipo",
+  },
+  openGraph: {
+    title: "Nuestro Equipo | Clínica Lingual Santiago",
+    description:
+      "Ortodoncistas especialistas en ortodoncia lingual, miembros de la ESLO. Las Condes, Santiago.",
+    url: "/nuestro-equipo",
+  },
 };
 
 type TeamMember = {
@@ -94,9 +104,31 @@ const clinicFeatures = [
   },
 ];
 
+const uniqueMembers = departments
+  .flatMap((d) => d.members)
+  .filter(
+    (m, i, all) => all.findIndex((other) => other.name === m.name) === i,
+  );
+
 export default function EquipoPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getPersonListSchema(uniqueMembers)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getBreadcrumbSchema([
+              { name: "Nuestro Equipo", path: "/nuestro-equipo" },
+            ]),
+          ),
+        }}
+      />
       {/* Hero */}
       <section className="bg-background-dark pb-20 pt-36 lg:pb-28 lg:pt-44">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
