@@ -1,5 +1,5 @@
 import { FadeIn } from "@/components/animations/fade-in";
-import { FlaskConical, Users } from "lucide-react";
+import { FlaskConical, Star, Users } from "lucide-react";
 import Image from "next/image";
 
 const credentials = [
@@ -17,6 +17,11 @@ const credentials = [
     icon: "patients",
     text: "+5,000 tratamientos finalizados",
     subtext: "Experiencia clínica comprobada en Chile",
+  },
+  {
+    icon: "google",
+    text: "4,2 ★ en Google",
+    subtext: "166 opiniones de pacientes",
   },
 ];
 
@@ -37,6 +42,8 @@ export const TrustBar = () => {
                 />
               ) : item.icon === "science" ? (
                 <FlaskConical className="h-5 w-5 text-text-muted" />
+              ) : item.icon === "google" ? (
+                <Star className="h-5 w-5 fill-accent-gold text-accent-gold" />
               ) : (
                 <Users className="h-5 w-5 text-text-muted" />
               )}

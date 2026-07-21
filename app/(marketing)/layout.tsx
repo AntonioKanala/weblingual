@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MobileCtaBar } from "@/components/layout/mobile-cta-bar";
+import { WhatsAppFloat } from "@/components/layout/whatsapp-float";
 
 export default function MarketingLayout({
   children,
@@ -13,6 +14,7 @@ export default function MarketingLayout({
       <main>{children}</main>
       <Footer />
       <MobileCtaBar />
+      <WhatsAppFloat />
     </>
   );
 }
