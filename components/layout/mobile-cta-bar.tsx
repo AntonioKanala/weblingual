@@ -5,11 +5,13 @@ import { URLS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { motion, useScroll } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const MobileCtaBar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
 
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
@@ -19,6 +21,9 @@ export const MobileCtaBar = () => {
 
     return () => unsubscribe();
   }, [scrollY]);
+
+  // En /agenda el CTA llevaría a la misma página (loop) y tapa el widget de reservas
+  if (pathname === URLS.agenda) return null;
 
   return (
     <motion.div

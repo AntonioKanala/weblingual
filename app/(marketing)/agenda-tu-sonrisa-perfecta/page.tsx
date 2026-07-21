@@ -13,7 +13,7 @@ export default function AgendaPage() {
           <FadeIn>
             <div className="text-center">
               <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Agenda.
+                Agenda tu Evaluación de Ortodoncia Invisible
               </h1>
               <p className="mt-4 text-xl font-medium text-white/80 sm:text-2xl">
                 Cambia tu sonrisa sin que nadie se entere
@@ -71,7 +71,7 @@ export default function AgendaPage() {
                 src="https://link.canala-studio.com/widget/booking/5m1hsxhm7R3E5aEH5C97"
                 style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "750px" }}
                 scrolling="no"
-                id="OCEdH6prfEDBCI7unTk7_1774641824086"
+                id="OCEdH6prfEDBCI7unTk7_1784592578264"
                 title="Agenda tu evaluación inicial"
               />
               <Script 

@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/animations/fade-in";
+import { getBreadcrumbSchema } from "@/lib/schemas";
 import { ImageWithFallback } from "@/components/ui/image-with-fallback";
 import { LocationMap } from "@/components/ui/location-map";
 import { CONTACT, URLS } from "@/lib/constants";
@@ -10,6 +11,15 @@ export const metadata: Metadata = {
   title: "Nuestras Instalaciones | Clínica Lingual Santiago",
   description:
     "Conoce nuestras instalaciones en Las Condes: recepción, sala de espera, box clínico, sala de presupuestos, sala de análisis de casos y estacionamiento.",
+  alternates: {
+    canonical: "/instalaciones",
+  },
+  openGraph: {
+    title: "Nuestras Instalaciones | Clínica Lingual Santiago",
+    description:
+      "Conoce nuestras instalaciones en Las Condes: box clínico, salas de análisis y más.",
+    url: "/instalaciones",
+  },
 };
 
 type Space = {
@@ -62,6 +72,16 @@ const spaces: Space[] = [
 export default function InstalacionesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getBreadcrumbSchema([
+              { name: "Instalaciones", path: "/instalaciones" },
+            ]),
+          ),
+        }}
+      />
       {/* Hero */}
       <section className="bg-background-dark pb-16 pt-32 lg:pb-20 lg:pt-40">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">

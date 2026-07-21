@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/animations/fade-in";
+import { getBreadcrumbSchema } from "@/lib/schemas";
 import { URLS } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -10,6 +11,15 @@ export const metadata: Metadata = {
   title: "Casos Clínicos | Clínica Lingual Santiago",
   description:
     "Mira los resultados reales de nuestros tratamientos de ortodoncia lingual. Antes y después de casos reales en Clínica Lingual, Santiago.",
+  alternates: {
+    canonical: "/casos-clinicos",
+  },
+  openGraph: {
+    title: "Casos Clínicos | Clínica Lingual Santiago",
+    description:
+      "Antes y después de casos reales de ortodoncia lingual en Clínica Lingual, Santiago.",
+    url: "/casos-clinicos",
+  },
 };
 
 const clinicalCases: ClinicalCaseData[] = [
@@ -83,6 +93,16 @@ const clinicalCases: ClinicalCaseData[] = [
 export default function CasosClinicosPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getBreadcrumbSchema([
+              { name: "Casos Clínicos", path: "/casos-clinicos" },
+            ]),
+          ),
+        }}
+      />
       {/* Hero */}
       <section className="bg-background-dark pb-20 pt-36 lg:pb-28 lg:pt-44">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">

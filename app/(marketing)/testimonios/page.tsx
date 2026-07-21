@@ -1,4 +1,8 @@
 import { FadeIn } from "@/components/animations/fade-in";
+import {
+  getBreadcrumbSchema,
+  getVideoTestimonialsSchema,
+} from "@/lib/schemas";
 import { VideoPlayer } from "@/components/ui/video-player";
 import { VideoPlayerProvider } from "@/components/ui/video-player-context";
 import { URLS } from "@/lib/constants";
@@ -11,6 +15,15 @@ export const metadata: Metadata = {
   title: "Testimonios | Clínica Lingual Santiago",
   description:
     "Conoce las historias reales de nuestros pacientes. +5,000 tratamientos de ortodoncia lingual finalizados con éxito en Santiago, Chile.",
+  alternates: {
+    canonical: "/testimonios",
+  },
+  openGraph: {
+    title: "Testimonios | Clínica Lingual Santiago",
+    description:
+      "Historias reales de pacientes de ortodoncia lingual. +5,000 tratamientos finalizados en Santiago.",
+    url: "/testimonios",
+  },
 };
 
 import { videoTestimonials } from "@/content/testimonials";
@@ -18,6 +31,22 @@ import { videoTestimonials } from "@/content/testimonials";
 export default function TestimoniosPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getVideoTestimonialsSchema(videoTestimonials)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            getBreadcrumbSchema([
+              { name: "Testimonios", path: "/testimonios" },
+            ]),
+          ),
+        }}
+      />
       {/* Hero */}
       <section className="bg-background-dark pb-20 pt-36 lg:pb-28 lg:pt-44">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">

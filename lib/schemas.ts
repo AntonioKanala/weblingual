@@ -35,12 +35,8 @@ export const getLocalBusinessSchema = () => ({
     latitude: -33.4172,
     longitude: -70.5985,
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    reviewCount: "5000",
-    bestRating: "5",
-  },
+  // AggregateRating removido: solo debe volver con el rating y conteo REALES
+  // de la ficha de Google Business Profile, respaldados por reseñas visibles en la página.
   priceRange: "$$$",
   openingHoursSpecification: [
     {
@@ -50,6 +46,62 @@ export const getLocalBusinessSchema = () => ({
       closes: "18:00",
     },
   ],
+});
+
+export const getBreadcrumbSchema = (
+  items: Array<{ name: string; path: string }>,
+) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://clinicalingual.cl/" },
+    ...items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 2,
+      name: item.name,
+      item: `https://clinicalingual.cl${item.path}`,
+    })),
+  ],
+});
+
+export const getPersonListSchema = (
+  members: Array<{ name: string; role: string; image?: string }>,
+) => ({
+  "@context": "https://schema.org",
+  "@graph": members.map((m) => ({
+    "@type": "Person",
+    name: m.name,
+    jobTitle: m.role,
+    ...(m.image && !m.image.includes("placeholder")
+      ? { image: `https://clinicalingual.cl${encodeURI(m.image)}` }
+      : {}),
+    worksFor: {
+      "@type": "Dentist",
+      name: "Clínica Lingual",
+      url: "https://clinicalingual.cl",
+    },
+  })),
+});
+
+export const getVideoTestimonialsSchema = (
+  testimonials: Array<{ name: string; quote: string; videoUrl?: string }>,
+) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Testimonios de pacientes de Clínica Lingual",
+  itemListElement: testimonials
+    .filter((t) => t.videoUrl)
+    .map((t, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "VideoObject",
+        name: `Testimonio de ${t.name}: ${t.quote}`,
+        description: `${t.name} cuenta su experiencia con la ortodoncia lingual en Clínica Lingual, Santiago.`,
+        embedUrl: `https://www.youtube.com/embed/${t.videoUrl}`,
+        thumbnailUrl: `https://i.ytimg.com/vi/${t.videoUrl}/hqdefault.jpg`,
+      },
+    })),
 });
 
 export const getMedicalOrganizationSchema = () => ({
