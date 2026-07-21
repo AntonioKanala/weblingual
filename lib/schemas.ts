@@ -35,8 +35,15 @@ export const getLocalBusinessSchema = () => ({
     latitude: -33.4172,
     longitude: -70.5985,
   },
-  // AggregateRating removido: solo debe volver con el rating y conteo REALES
-  // de la ficha de Google Business Profile, respaldados por reseñas visibles en la página.
+  // Rating real de la ficha de Google Business Profile (visible en el trust bar de la home).
+  // Actualizar aquí y en trust-bar.tsx cuando cambie en Google.
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.2",
+    reviewCount: "166",
+    bestRating: "5",
+  },
+  telephone: "+56 2 2944 4714",
   priceRange: "$$$",
   openingHoursSpecification: [
     {
