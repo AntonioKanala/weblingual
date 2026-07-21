@@ -214,7 +214,7 @@ export default function LandingOrtodonciaInvisiblePage() {
 
           <div className="relative h-[55vh] min-h-[380px] w-full lg:h-auto lg:min-h-0">
             <Image
-              src="/images/lifestyle/paciente-resultado.webp"
+              src="/images/lifestyle/paciente-hombre-riendo.webp"
               alt="Paciente sonriendo con su resultado de ortodoncia lingual invisible"
               fill
               priority

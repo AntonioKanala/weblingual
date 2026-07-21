@@ -81,7 +81,7 @@ export const ClinicalCaseViewer = ({ data }: ClinicalCaseViewerProps) => {
       </div>
 
       {/* Image Viewer Area */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#e5e5e5] md:aspect-video lg:h-[480px] lg:w-auto">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-white md:aspect-video lg:h-[480px] lg:w-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${activeView}-${activeStage}`}
@@ -106,9 +106,11 @@ export const ClinicalCaseViewer = ({ data }: ClinicalCaseViewerProps) => {
             )}
           </motion.div>
         </AnimatePresence>
+      </div>
 
-        {/* Stage Selector (Bottom Pill Overlay) */}
-        <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center rounded-full bg-white/90 p-1.5 shadow-xl backdrop-blur-md">
+      {/* Stage Selector (debajo de la foto para no tapar la imagen) */}
+      <div className="flex justify-center border-t border-text-light/5 bg-[#fcfbf9] px-6 py-4">
+        <div className="flex items-center rounded-full bg-white p-1.5 shadow-md">
           {(["antes", "durante", "despues"] as CaseStage[]).map((stage) => {
             // Disable "durante" if it doesn't exist for this image set
             const isDisabled = stage === "durante" && !currentImageSet?.durante;
@@ -137,7 +139,6 @@ export const ClinicalCaseViewer = ({ data }: ClinicalCaseViewerProps) => {
           })}
         </div>
       </div>
-
     </div>
   );
 };

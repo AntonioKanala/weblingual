@@ -32,7 +32,7 @@ export const CONTACT = {
   address: "Cam. El Alba 8760, oficina 701, Las Condes, Región Metropolitana",
   addressShort: "Cam. El Alba 8760, of. 701, Las Condes",
   mapsEmbedSrc:
-    "https://www.google.com/maps?q=Cam.+El+Alba+8760+oficina+701,+Las+Condes&output=embed",
+    "https://maps.google.com/maps?q=Cam.%20El%20Alba%208760%2C%20Las%20Condes%2C%20Chile&t=&z=15&ie=UTF8&iwloc=&output=embed",
   mapsLink:
     "https://www.google.com/maps/search/?api=1&query=Cam.+El+Alba+8760+oficina+701,+Las+Condes",
 } as const;
