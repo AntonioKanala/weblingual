@@ -22,6 +22,16 @@ export const CAMPANAS: Campana[] = [
     desde: "2026-07-18",
   },
   {
+    slug: "vacaciones-invierno",
+    nombre: "Vacaciones de Invierno",
+    tagAudiencia: "vacas de invierno 26 junio",
+    tagInteresado: "interesado vacas de inv 26",
+    desde: "2026-06-01",
+  },
+  {
+    // Ojo: al 27-07-2026 esta campaña tiene 1.521 contactos en la audiencia pero
+    // CERO con el tag de interesado, así que la tabla sale vacía a propósito.
+    // La audiencia comparte contactos con el tag "promo julio 2026" (mismos 1.521).
     slug: "invierno-julio",
     nombre: "Invierno Julio",
     tagAudiencia: "invierno julio 2026",
