@@ -47,6 +47,9 @@ REGISTRO SUPER INTENDENCIA.zip
 # build / dev logs
 build*.log
 dev.log
+dev.err.log
+install.log
+install.err.log
 
 # loose source images at root (raw assets pending sorting)
 /biomecanica 2.0.png
