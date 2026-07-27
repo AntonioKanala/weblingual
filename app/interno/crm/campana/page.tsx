@@ -96,6 +96,23 @@ export default async function CampanaPage({
               />
             </div>
 
+            {datos.embudo.descartados.length > 0 && (
+              <div className="mb-4 rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-700">
+                <p>
+                  Se apartaron <strong>{datos.embudo.descartados.length}</strong> contacto
+                  {datos.embudo.descartados.length === 1 ? "" : "s"} que tienen el tag de interesado
+                  pero también uno de rechazo. No aparecen en la lista de abajo:
+                </p>
+                <ul className="mt-2 space-y-0.5">
+                  {datos.embudo.descartados.map((d) => (
+                    <li key={`${d.nombre}-${d.motivo}`} className="text-xs">
+                      · <strong>{d.nombre}</strong> — {d.motivo}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {datos.embudo.sinCruzar > 0 && (
               <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
                 <strong>{datos.embudo.sinCruzar} de {datos.embudo.interesados} interesados</strong> no

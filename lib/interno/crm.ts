@@ -64,7 +64,10 @@ function diasEntre(desde: string, hasta: Date): number {
  * no inician tratamiento. Ordenados por fecha de evaluación descendente
  * (los más recientes primero, que son los que más rinde llamar).
  */
-export async function getNoIniciaron(desde: string, hasta: string): Promise<FilaLlamado[]> {
+export async function getNoIniciaron(
+  desde: string,
+  hasta: string,
+): Promise<{ filas: FilaLlamado[]; excluidosNoContactar: number }> {
   const db = supabaseAdmin();
 
   const { data: citasRaw, error } = await db
@@ -85,12 +88,19 @@ export async function getNoIniciaron(desde: string, hasta: string): Promise<Fila
     nombre_paciente: string | null;
     fecha: string;
   }[];
-  if (citas.length === 0) return [];
+  if (citas.length === 0) return { filas: [], excluidosNoContactar: 0 };
 
   const pacienteIds = [...new Set(citas.map((c) => c.id_paciente).filter(Boolean))];
   const citaIds = citas.map((c) => c.id);
 
-  const [pacRes, tratRes, evalRes, llamRes] = await Promise.all([
+  const [noContactarRes, pacRes, tratRes, evalRes, llamRes] = await Promise.all([
+    // Lista de no contactar de Dentalink (vive solo en el esquema `core`).
+    // Son 7.750 personas; llamarlas sería un problema, no una oportunidad.
+    supabaseAdmin()
+      .schema("core")
+      .from("pacientes_no_contactar")
+      .select("id_paciente")
+      .in("id_paciente", pacienteIds),
     db.from("pacientes").select("id,rut,nombre,apellidos,telefono,celular,email").in("id", pacienteIds),
     db
       .from("tratamientos")
@@ -111,6 +121,10 @@ export async function getNoIniciaron(desde: string, hasta: string): Promise<Fila
       .in("dentalink_cita_id", citaIds)
       .order("llamado_at", { ascending: false }),
   ]);
+
+  const noContactar = new Set(
+    ((noContactarRes.data ?? []) as { id_paciente: number }[]).map((r) => r.id_paciente),
+  );
 
   const pacientes = new Map(((pacRes.data ?? []) as Paciente[]).map((p) => [p.id, p]));
 
@@ -134,8 +148,15 @@ export async function getNoIniciaron(desde: string, hasta: string): Promise<Fila
 
   const hoy = new Date();
   const filas: FilaLlamado[] = [];
+  let excluidosNoContactar = 0;
 
   for (const c of citas) {
+    // Nunca listar a quien pidió no ser contactado.
+    if (noContactar.has(c.id_paciente)) {
+      excluidosNoContactar += 1;
+      continue;
+    }
+
     const desdeCorte = sumarDias(c.fecha, -DIAS_GRACIA_ANTES);
     const delPaciente = tratamientos.filter((t) => t.id_paciente === c.id_paciente);
     const relevantes = delPaciente.filter(
@@ -180,7 +201,7 @@ export async function getNoIniciaron(desde: string, hasta: string): Promise<Fila
     });
   }
 
-  return filas;
+  return { filas, excluidosNoContactar };
 }
 
 export type ResumenNoIniciaron = {
@@ -189,15 +210,22 @@ export type ResumenNoIniciaron = {
   noIniciaron: number;
   sinLlamar: number;
   montoEnJuego: number;
+  excluidosNoContactar: number;
 };
 
-export function resumir(filas: FilaLlamado[], atendidos: number): ResumenNoIniciaron {
+export function resumir(
+  filas: FilaLlamado[],
+  atendidos: number,
+  excluidosNoContactar: number,
+): ResumenNoIniciaron {
   return {
     atendidos,
-    iniciaron: atendidos - filas.length,
+    // Los excluidos no iniciaron: simplemente no se pueden llamar.
+    iniciaron: atendidos - filas.length - excluidosNoContactar,
     noIniciaron: filas.length,
     sinLlamar: filas.filter((f) => f.vecesLlamado === 0).length,
     montoEnJuego: filas.reduce((s, f) => s + (f.montoCotizado ?? 0), 0),
+    excluidosNoContactar,
   };
 }
 

@@ -43,6 +43,24 @@ export const CAMPANAS: Campana[] = [
   },
 ];
 
+// En GHL el "no interesado" se marca con otro tag, sin quitar el de interesado,
+// así que un contacto puede tener los dos a la vez. Hay muchas variantes escritas
+// a mano ("no interesada", "nointeresada", "no interesado.", ...), de ahí el regex.
+// Los "no quiere que la llamen" son pedidos explícitos de no contacto: pesan más.
+const TAG_NEGATIVO = /^(no\s*est[aá]\s*interesad|no\s*interesad|nointeresad|descartad)/i;
+const TAG_NO_LLAMAR = /^(no\s*quiere\s*(mas\s*)?(llamadas|que\s*la\s*llamen)|no\s*contactar)/i;
+
+/** Devuelve el motivo por el que NO hay que llamar a este contacto, o null. */
+function motivoDescarte(tags: string[]): string | null {
+  for (const t of tags) {
+    if (TAG_NO_LLAMAR.test(t.trim())) return `Pidió no ser contactado (“${t}”)`;
+  }
+  for (const t of tags) {
+    if (TAG_NEGATIVO.test(t.trim())) return `Marcado no interesado (“${t}”)`;
+  }
+  return null;
+}
+
 export type FilaCampana = {
   contactId: string;
   nombre: string;
@@ -67,6 +85,8 @@ export type EmbudoCampana = {
   iniciaron: number;
   /** Interesados que no se pudieron cruzar con Dentalink: de ellos NO se sabe nada. */
   sinCruzar: number;
+  /** Contactos apartados por tener tag de "no interesado" o de no contactar. */
+  descartados: { nombre: string; motivo: string }[];
 };
 
 /**
@@ -183,7 +203,22 @@ export async function getCampana(
     llamadas.set(l.ghl_contact_id, arr);
   }
 
-  const filas: FilaCampana[] = interesados.map((c) => {
+  // Apartar a quien ya dijo que no: tener el tag de interesado no basta si
+  // después lo marcaron como no interesado o pidió que no lo llamaran.
+  const descartados: { nombre: string; motivo: string }[] = [];
+  const llamables = interesados.filter((c) => {
+    const motivo = motivoDescarte(c.tags);
+    if (motivo) {
+      descartados.push({
+        nombre: [c.firstName, c.lastName].filter(Boolean).join(" ").trim() || "Sin nombre",
+        motivo,
+      });
+      return false;
+    }
+    return true;
+  });
+
+  const filas: FilaCampana[] = llamables.map((c) => {
     const pacienteId = pacienteDeContacto.get(c.id) ?? null;
     const suyas = pacienteId ? citas.filter((x) => x.id_paciente === pacienteId) : [];
     const evaluaciones = suyas.filter((x) => x.nombre_dentista === PROFESIONAL_EVALUACION);
@@ -219,6 +254,7 @@ export async function getCampana(
       // Sin paciente de Dentalink no sabemos si agendó, asistió ni inició.
       // Contarlos aparte evita leer "sin agendar" donde en realidad es "sin dato".
       sinCruzar: filas.filter((f) => f.pacienteId === null).length,
+      descartados,
     },
   };
 }
