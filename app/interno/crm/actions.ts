@@ -3,29 +3,14 @@
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import {
+  RESULTADOS_LLAMADA,
+  type ResultadoLlamada,
+  type RegistroLlamada,
+} from "@/lib/interno/llamadas";
 
-export const RESULTADOS_LLAMADA = [
-  "Contactado",
-  "No contesta",
-  "Volver a llamar",
-  "Agendó",
-  "No interesado",
-  "Número equivocado",
-] as const;
-
-export type ResultadoLlamada = (typeof RESULTADOS_LLAMADA)[number];
-
-export type RegistroLlamada = {
-  origen: "no_iniciaron" | "campana";
-  resultado: string;
-  notas?: string;
-  nombre?: string;
-  telefono?: string | null;
-  dentalinkCitaId?: number;
-  dentalinkPacienteId?: number | null;
-  ghlContactId?: string;
-  campana?: string;
-};
+// Este archivo lleva "use server": solo puede exportar funciones async.
+// Las constantes y tipos viven en lib/interno/llamadas.ts.
 
 export async function registrarLlamada(
   input: RegistroLlamada,
