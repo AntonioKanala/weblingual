@@ -96,6 +96,17 @@ export default async function CampanaPage({
               />
             </div>
 
+            {datos.embudo.sinCruzar > 0 && (
+              <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                <strong>{datos.embudo.sinCruzar} de {datos.embudo.interesados} interesados</strong> no
+                se pudieron cruzar con Dentalink: su teléfono y correo en GoHighLevel no coinciden con
+                ninguna ficha, y les falta el campo <code>dentalinkPatientId</code>. De esos contactos
+                el sistema <em>no sabe</em> si agendaron o iniciaron — aparecen como “Sin dato” y hay
+                que revisarlos a mano. Las cifras de agendaron / asistieron / iniciaron son por lo
+                tanto un piso, no el total real.
+              </div>
+            )}
+
             {datos.filas.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-black/15 bg-white px-6 py-16 text-center text-[#6B6B6B]">
                 Nadie tiene el tag “{campana.tagInteresado}” en GoHighLevel.
@@ -132,7 +143,13 @@ export default async function CampanaPage({
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex flex-wrap gap-1">
-                            {f.inicio ? (
+                            {/* Sin paciente de Dentalink no se sabe NADA de este contacto.
+                                Mostrar "Sin agendar" acá sería afirmar algo falso. */}
+                            {f.pacienteId === null ? (
+                              <span className="rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800">
+                                Sin dato · verificar a mano
+                              </span>
+                            ) : f.inicio ? (
                               <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">
                                 Inició
                               </span>
