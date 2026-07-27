@@ -43,6 +43,24 @@ export const CAMPANAS: Campana[] = [
   },
 ];
 
+// En GHL el "no interesado" se marca con otro tag, sin quitar el de interesado,
+// así que un contacto puede tener los dos a la vez. Hay muchas variantes escritas
+// a mano ("no interesada", "nointeresada", "no interesado.", ...), de ahí el regex.
+// Los "no quiere que la llamen" son pedidos explícitos de no contacto: pesan más.
+const TAG_NEGATIVO = /^(no\s*est[aá]\s*interesad|no\s*interesad|nointeresad|descartad)/i;
+const TAG_NO_LLAMAR = /^(no\s*quiere\s*(mas\s*)?(llamadas|que\s*la\s*llamen)|no\s*contactar)/i;
+
+/** Devuelve el motivo por el que NO hay que llamar a este contacto, o null. */
+function motivoDescarte(tags: string[]): string | null {
+  for (const t of tags) {
+    if (TAG_NO_LLAMAR.test(t.trim())) return `Pidió no ser contactado (“${t}”)`;
+  }
+  for (const t of tags) {
+    if (TAG_NEGATIVO.test(t.trim())) return `Marcado no interesado (“${t}”)`;
+  }
+  return null;
+}
+
 export type FilaCampana = {
   contactId: string;
   nombre: string;
@@ -65,6 +83,10 @@ export type EmbudoCampana = {
   agendaron: number;
   asistieron: number;
   iniciaron: number;
+  /** Interesados que no se pudieron cruzar con Dentalink: de ellos NO se sabe nada. */
+  sinCruzar: number;
+  /** Contactos apartados por tener tag de "no interesado" o de no contactar. */
+  descartados: { nombre: string; motivo: string }[];
 };
 
 /**
@@ -86,7 +108,9 @@ export async function getCampana(
 
   const porId = new Map<number, ContactoGHL>();
   const porTelefono = new Map<string, ContactoGHL>();
+  const porEmail = new Map<string, ContactoGHL>();
   const variantes: string[] = [];
+  const emails: string[] = [];
 
   for (const c of interesados) {
     if (c.dentalinkPacienteId) porId.set(c.dentalinkPacienteId, c);
@@ -94,29 +118,47 @@ export async function getCampana(
       porTelefono.set(v, c);
       variantes.push(v);
     }
+    const mail = (c.email ?? "").trim().toLowerCase();
+    // "notiene@email.com" es el relleno que usa la clínica cuando no hay correo.
+    if (mail && mail !== "notiene@email.com") {
+      porEmail.set(mail, c);
+      emails.push(mail);
+    }
   }
 
-  // Resolver el paciente de Dentalink de cada contacto.
-  const pacientesEncontrados: { id: number; celular: string | null; telefono: string | null }[] = [];
+  // Resolver el paciente de Dentalink de cada contacto: por teléfono o por correo.
+  type PacienteMatch = { id: number; celular: string | null; telefono: string | null; email: string | null };
+  const pacientesEncontrados: PacienteMatch[] = [];
 
+  const consultas = [];
   if (variantes.length > 0) {
-    const [porCel, porTel] = await Promise.all([
-      db.from("pacientes").select("id,celular,telefono").in("celular", variantes),
-      db.from("pacientes").select("id,celular,telefono").in("telefono", variantes),
-    ]);
-    pacientesEncontrados.push(
-      ...((porCel.data ?? []) as typeof pacientesEncontrados),
-      ...((porTel.data ?? []) as typeof pacientesEncontrados),
+    consultas.push(
+      db.from("pacientes").select("id,celular,telefono,email").in("celular", variantes),
+      db.from("pacientes").select("id,celular,telefono,email").in("telefono", variantes),
     );
+  }
+  if (emails.length > 0) {
+    consultas.push(db.from("pacientes").select("id,celular,telefono,email").in("email", emails));
+  }
+  if (consultas.length > 0) {
+    for (const res of await Promise.all(consultas)) {
+      pacientesEncontrados.push(...((res.data ?? []) as PacienteMatch[]));
+    }
   }
 
   const contactoDePaciente = new Map<number, ContactoGHL>(porId);
   for (const p of pacientesEncontrados) {
+    if (contactoDePaciente.has(p.id)) continue;
     for (const campo of [p.celular, p.telefono]) {
       for (const v of variantesBusqueda(campo)) {
         const c = porTelefono.get(v);
         if (c && !contactoDePaciente.has(p.id)) contactoDePaciente.set(p.id, c);
       }
+    }
+    const mail = (p.email ?? "").trim().toLowerCase();
+    if (mail && !contactoDePaciente.has(p.id)) {
+      const c = porEmail.get(mail);
+      if (c) contactoDePaciente.set(p.id, c);
     }
   }
 
@@ -161,7 +203,22 @@ export async function getCampana(
     llamadas.set(l.ghl_contact_id, arr);
   }
 
-  const filas: FilaCampana[] = interesados.map((c) => {
+  // Apartar a quien ya dijo que no: tener el tag de interesado no basta si
+  // después lo marcaron como no interesado o pidió que no lo llamaran.
+  const descartados: { nombre: string; motivo: string }[] = [];
+  const llamables = interesados.filter((c) => {
+    const motivo = motivoDescarte(c.tags);
+    if (motivo) {
+      descartados.push({
+        nombre: [c.firstName, c.lastName].filter(Boolean).join(" ").trim() || "Sin nombre",
+        motivo,
+      });
+      return false;
+    }
+    return true;
+  });
+
+  const filas: FilaCampana[] = llamables.map((c) => {
     const pacienteId = pacienteDeContacto.get(c.id) ?? null;
     const suyas = pacienteId ? citas.filter((x) => x.id_paciente === pacienteId) : [];
     const evaluaciones = suyas.filter((x) => x.nombre_dentista === PROFESIONAL_EVALUACION);
@@ -194,6 +251,10 @@ export async function getCampana(
       agendaron: filas.filter((f) => f.agendo).length,
       asistieron: filas.filter((f) => f.asistio).length,
       iniciaron: filas.filter((f) => f.inicio).length,
+      // Sin paciente de Dentalink no sabemos si agendó, asistió ni inició.
+      // Contarlos aparte evita leer "sin agendar" donde en realidad es "sin dato".
+      sinCruzar: filas.filter((f) => f.pacienteId === null).length,
+      descartados,
     },
   };
 }

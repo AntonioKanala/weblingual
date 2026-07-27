@@ -38,12 +38,12 @@ export default async function NoIniciaronPage({
   const desde = normalizarFecha(params.desde ?? sumarDias(hasta, -60));
   const soloSinLlamar = params.solo === "sin-llamar";
 
-  const [filasTodas, atendidos] = await Promise.all([
+  const [{ filas: filasTodas, excluidosNoContactar }, atendidos] = await Promise.all([
     getNoIniciaron(desde, hasta),
     contarAtendidos(desde, hasta),
   ]);
 
-  const resumen = resumir(filasTodas, atendidos);
+  const resumen = resumir(filasTodas, atendidos, excluidosNoContactar);
   const filas = soloSinLlamar ? filasTodas.filter((f) => f.vecesLlamado === 0) : filasTodas;
   const conversion = atendidos > 0 ? Math.round((resumen.iniciaron / atendidos) * 100) : 0;
 
@@ -96,6 +96,14 @@ export default async function NoIniciaronPage({
             detalle="suma de lo cotizado"
           />
         </div>
+
+        {resumen.excluidosNoContactar > 0 && (
+          <div className="mb-4 rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-2.5 text-sm text-zinc-700">
+            Se excluyeron <strong>{resumen.excluidosNoContactar}</strong> paciente
+            {resumen.excluidosNoContactar === 1 ? "" : "s"} que están en la lista de{" "}
+            <strong>no contactar</strong> de Dentalink. No aparecen abajo y no hay que llamarlos.
+          </div>
+        )}
 
         <div className="mb-3 flex flex-wrap gap-2 text-sm">
           <a
