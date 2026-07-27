@@ -1,5 +1,6 @@
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { PROFESIONAL_EVALUACION } from "./constants";
+import { sumarDias } from "./fecha";
 import type { Paciente } from "./types";
 
 // ---------------------------------------------------------------------------
@@ -9,14 +10,24 @@ import type { Paciente } from "./types";
 // "Asistió a la evaluación" = tiene una cita en la agenda de Evaluación Inicial
 // con estado "Atendido".
 //
-// "Inició tratamiento"      = después de esa evaluación se le creó un tratamiento
-//                             con precio (total > 0) y con algún abono (abonado > 0).
+// "Inició tratamiento"      = tiene un tratamiento con precio (total > 0) y con
+//                             algún abono (abonado > 0), fechado desde 30 días ANTES
+//                             de la evaluación en adelante.
 //                             Se excluye "Diagnóstico" porque va siempre en $0 y se
 //                             le crea a todo el mundo en la evaluación misma.
 //
 // Todo lo que asistió y NO cumple lo segundo es la lista de llamado.
+//
+// Lo de los 30 días antes no es capricho: en Dentalink el tratamiento se registra
+// con la fecha en que se armó el presupuesto, que suele ser DÍAS ANTES de la cita
+// de evaluación formal. Sin esa ventana, 17 pacientes que ya habían pagado su
+// ortodoncia caían en la lista de llamado. Se midió la distribución real: 19 de
+// los 22 pagos previos ocurren dentro de los 7 días, y a partir de los 30 la cifra
+// se aplana (22 → 25 a los 60 → 26 a los 90), así que 30 separa bien al que acaba
+// de iniciar del que fue paciente hace años y vuelve a evaluarse.
 
 const TRATAMIENTOS_NO_CUENTAN = ["diagnóstico", "diagnostico"];
+const DIAS_GRACIA_ANTES = 30;
 
 export type FilaLlamado = {
   citaId: number;
@@ -125,11 +136,12 @@ export async function getNoIniciaron(desde: string, hasta: string): Promise<Fila
   const filas: FilaLlamado[] = [];
 
   for (const c of citas) {
+    const desdeCorte = sumarDias(c.fecha, -DIAS_GRACIA_ANTES);
     const delPaciente = tratamientos.filter((t) => t.id_paciente === c.id_paciente);
     const relevantes = delPaciente.filter(
       (t) =>
         !TRATAMIENTOS_NO_CUENTAN.includes((t.nombre ?? "").trim().toLowerCase()) &&
-        (t.fecha ?? "") >= c.fecha,
+        (t.fecha ?? "") >= desdeCorte,
     );
 
     // Si ya abonó algo en un tratamiento posterior a la evaluación, inició: fuera de la lista.
