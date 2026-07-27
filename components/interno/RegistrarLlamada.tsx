@@ -2,11 +2,8 @@
 
 import { useState, useTransition } from "react";
 import { Check, Loader2 } from "lucide-react";
-import {
-  registrarLlamada,
-  RESULTADOS_LLAMADA,
-  type RegistroLlamada,
-} from "@/app/interno/crm/actions";
+import { registrarLlamada } from "@/app/interno/crm/actions";
+import { RESULTADOS_LLAMADA, type RegistroLlamada } from "@/lib/interno/llamadas";
 
 // Formulario compacto para anotar el resultado de una llamada sin salir de la lista.
 // Se abre con <details> para no depender de una librería de popovers.
