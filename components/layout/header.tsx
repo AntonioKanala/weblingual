@@ -98,6 +98,13 @@ export const Header = () => {
           </Link>
 
           <Link
+            href={URLS.blog}
+            className="text-[13px] font-medium uppercase tracking-[0.1em] text-white/70 transition-colors hover:text-white"
+          >
+            Blog
+          </Link>
+
+          <Link
             href={URLS.pago}
             target="_blank"
             rel="noopener noreferrer"

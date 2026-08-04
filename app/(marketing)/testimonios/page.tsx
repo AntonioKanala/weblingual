@@ -89,6 +89,17 @@ export default function TestimoniosPage() {
             <h2 className="mt-3 font-display text-3xl font-bold text-text-light md:text-4xl">
               Escucha sus historias
             </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+              Cada paciente llegó a Clínica Lingual con una razón distinta:
+              discreción para el trabajo, casos complejos que otras técnicas no
+              pudieron resolver, o simplemente el deseo de sonreír durante todo
+              el tratamiento. Si quieres conocer más sobre el proceso antes de
+              agendar, revisa nuestra{" "}
+              <Link href="/blog" className="text-accent-gold underline underline-offset-2">
+                guía completa en el blog
+              </Link>
+              .
+            </p>
           </FadeIn>
 
           <VideoPlayerProvider>

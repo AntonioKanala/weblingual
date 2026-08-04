@@ -13,14 +13,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ortodoncia Lingual | El Tratamiento Invisible | Clínica Lingual",
+  title: "Ortodoncia Lingual: Tratamiento Invisible | Clínica Lingual",
   description:
     "Descubre la ortodoncia lingual: brackets 100% invisibles, personalizados con tecnología 3D. Eficaz para casos complejos. +5,000 tratamientos en Santiago.",
   alternates: {
     canonical: "/ortodoncia-lingual",
   },
   openGraph: {
-    title: "Ortodoncia Lingual | El Tratamiento Invisible | Clínica Lingual",
+    title: "Ortodoncia Lingual: Tratamiento Invisible | Clínica Lingual",
     description:
       "Brackets 100% invisibles, personalizados con tecnología 3D. Eficaz para casos complejos.",
     url: "/ortodoncia-lingual",

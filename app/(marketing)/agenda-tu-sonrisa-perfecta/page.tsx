@@ -2,6 +2,7 @@
 
 import { FadeIn } from "@/components/animations/fade-in";
 import { ArrowRight, MessageCircle, Sparkles, Gift } from "lucide-react";
+import Link from "next/link";
 import Script from "next/script";
 
 export default function AgendaPage() {
@@ -49,6 +50,19 @@ export default function AgendaPage() {
             <h2 className="font-display text-2xl font-bold text-text-light sm:text-3xl">
               Descubre un Tratamiento 100% Invisible
             </h2>
+            <p className="mt-4 text-sm leading-relaxed text-text-muted sm:text-base">
+              En tu evaluación inicial revisamos tu caso, resolvemos tus dudas
+              y te damos un plan de tratamiento con plazos y presupuesto
+              claros. Si quieres conocer el proceso completo antes de agendar,
+              puedes leer sobre{" "}
+              <Link
+                href="/ortodoncia-lingual"
+                className="text-accent-gold underline underline-offset-2"
+              >
+                cómo funciona la ortodoncia lingual
+              </Link>
+              .
+            </p>
             <div className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent-gold/10 px-6 py-4 text-left">
               <Gift className="h-6 w-6 shrink-0 text-accent-gold" />
               <p className="text-sm font-medium text-text-light sm:text-base">

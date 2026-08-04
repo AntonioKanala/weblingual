@@ -69,6 +69,14 @@ export const Footer = () => {
                   Casos Clínicos
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={URLS.blog}
+                  className="text-sm text-white/40 transition-colors hover:text-white"
+                >
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
 

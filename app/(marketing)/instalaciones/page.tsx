@@ -123,9 +123,9 @@ export default function InstalacionesPage() {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="font-display text-xl font-bold text-text-light">
+                    <h2 className="font-display text-xl font-bold text-text-light">
                       {space.title}
-                    </h3>
+                    </h2>
                     <p className="mt-3 text-sm leading-relaxed text-text-muted">
                       {space.description}
                     </p>

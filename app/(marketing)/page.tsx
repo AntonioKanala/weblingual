@@ -9,6 +9,7 @@ import { IdealForYou } from "@/components/sections/ideal-for-you";
 import { Journey } from "@/components/sections/journey";
 import { CtaStatement } from "@/components/sections/cta-statement";
 import { InstagramGrid } from "@/components/sections/instagram-grid";
+import { BlogPreview } from "@/components/sections/blog-preview";
 import { FAQ } from "@/components/sections/faq";
 import {
   getFAQPageSchema,
@@ -58,6 +59,7 @@ export default function HomePage() {
       <Journey />
       <CtaStatement />
       <InstagramGrid />
+      <BlogPreview />
       <FAQ />
     </>
   );

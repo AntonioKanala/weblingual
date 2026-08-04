@@ -13,6 +13,7 @@ export const URLS = {
   instalaciones: "/instalaciones",
   testimonios: "/testimonios",
   casosClinicos: "/casos-clinicos",
+  blog: "/blog",
   pago: "https://www.webpay.cl/form-pay/106507",
 } as const;
 
