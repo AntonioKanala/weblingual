@@ -1,3 +1,4 @@
+import { getAllBlogPosts } from "@/lib/blog";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://clinicalingual.cl";
@@ -9,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
   }> = [
     { path: "/", priority: 1, changeFrequency: "weekly" },
+    { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
     { path: "/ortodoncia-lingual", priority: 0.9, changeFrequency: "monthly" },
     {
       path: "/agenda-tu-sonrisa-perfecta",
@@ -33,10 +35,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terminos", priority: 0.2, changeFrequency: "yearly" },
   ];
 
-  return routes.map(({ path, priority, changeFrequency }) => ({
+  const staticEntries = routes.map(({ path, priority, changeFrequency }) => ({
     url: `${BASE_URL}${path}`,
     lastModified: new Date(),
     changeFrequency,
     priority,
   }));
+
+  const postEntries = getAllBlogPosts().map((post) => ({
+    url: `${BASE_URL}/post/${post.slug}`,
+    lastModified: new Date(`${post.publishedAt}T12:00:00`),
+    changeFrequency: "yearly" as const,
+    priority: 0.5,
+  }));
+
+  return [...staticEntries, ...postEntries];
 }

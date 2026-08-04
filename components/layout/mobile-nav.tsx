@@ -128,6 +128,14 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                   </Link>
 
                   <Link
+                    href={URLS.blog}
+                    onClick={onClose}
+                    className="block rounded-lg p-3 font-body text-base font-medium text-text-dark transition-colors hover:bg-text-dark/5"
+                  >
+                    Blog
+                  </Link>
+
+                  <Link
                     href={URLS.pago}
                     target="_blank"
                     rel="noopener noreferrer"

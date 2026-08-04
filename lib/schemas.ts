@@ -111,6 +111,46 @@ export const getVideoTestimonialsSchema = (
     })),
 });
 
+export const getBlogPostingSchema = (post: {
+  slug: string;
+  title: string;
+  description: string;
+  coverImage: string;
+  publishedAt: string;
+  wordCount: number;
+}) => {
+  const url = `https://clinicalingual.cl/post/${post.slug}`;
+  const image = post.coverImage.startsWith("http")
+    ? post.coverImage
+    : `https://clinicalingual.cl${post.coverImage}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    headline: post.title.slice(0, 110),
+    description: post.description.slice(0, 200),
+    image,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: "Equipo Clínica Lingual",
+      url: "https://clinicalingual.cl/nuestro-equipo",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Clínica Lingual",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/668eb72f8edd42a40ba448f2.webp",
+      },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    inLanguage: "es-CL",
+    wordCount: post.wordCount,
+  };
+};
+
 export const getMedicalOrganizationSchema = () => ({
   "@context": "https://schema.org",
   "@type": "MedicalOrganization",

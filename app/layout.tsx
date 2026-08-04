@@ -17,7 +17,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Clínica Lingual | La Verdadera Ortodoncia Invisible en Santiago",
+  title: "Clínica Lingual | Ortodoncia Invisible en Santiago",
   description:
     "Especialistas en ortodoncia lingual en Las Condes, Santiago. +5,000 tratamientos. Brackets invisibles personalizados con tecnología 3D.",
   keywords: [
