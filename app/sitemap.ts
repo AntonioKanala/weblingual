@@ -13,6 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
     { path: "/ortodoncia-lingual", priority: 0.9, changeFrequency: "monthly" },
     {
+      path: "/precios-ortodoncia-lingual",
+      priority: 0.8,
+      changeFrequency: "monthly",
+    },
+    {
       path: "/agenda-tu-sonrisa-perfecta",
       priority: 0.9,
       changeFrequency: "monthly",
