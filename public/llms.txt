@@ -18,6 +18,7 @@ Datos clave:
 - [Testimonios](https://clinicalingual.cl/testimonios): historias en video de pacientes reales.
 - [Nuestro Equipo](https://clinicalingual.cl/nuestro-equipo): ortodoncistas especialistas, miembros de la ESLO.
 - [Instalaciones](https://clinicalingual.cl/instalaciones): box clínico, salas de análisis y presupuestos en Las Condes.
+- [Precios y Financiamiento](https://clinicalingual.cl/precios-ortodoncia-lingual): planes de pago en cuotas, valor al contado, qué incluye la evaluación y uso de seguros complementarios.
 - [Blog](https://clinicalingual.cl/blog): guías sobre ortodoncia lingual, cuidados diarios, comparativas con alineadores y seguros dentales en Chile (50+ artículos).
 
 ## Preguntas frecuentes que responde el sitio

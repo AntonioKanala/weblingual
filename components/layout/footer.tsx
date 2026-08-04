@@ -96,6 +96,14 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
+                  href={URLS.precios}
+                  className="text-sm text-white/40 transition-colors hover:text-white"
+                >
+                  Precios y Financiamiento
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={URLS.agenda}
                   className="text-sm text-white/40 transition-colors hover:text-white"
                 >

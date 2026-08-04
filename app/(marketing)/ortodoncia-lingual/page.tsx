@@ -74,12 +74,12 @@ const benefitTabs = [
   {
     title: "Casos complejos",
     description:
-      "A diferencia de los alineadores (41-50% de precisión en movimientos de anteriores), la ortodoncia lingual alcanza hasta 95% de precisión. Resuelve casos que los alineadores no pueden abordar de forma fiable.",
+      "A diferencia de los alineadores (41-50% de precisión en movimientos de anteriores), la ortodoncia lingual alcanza hasta 95% de precisión. Resuelve tipos de mordida y casos que los alineadores no pueden abordar de forma fiable: mordida cruzada, mordida abierta, sobremordida profunda y apiñamiento severo.",
     bullets: [
-      "Mordidas cruzadas y apiñamientos severos",
+      "Mordida cruzada y mordida abierta",
+      "Sobremordida profunda y apiñamiento severo",
       "Casos con extracciones y cierre de espacios",
       "Maloclusiones esqueléticas Clase II y III",
-      "Control radicular tridimensional real",
     ],
     image: "/images/lifestyle/atencion-multidisciplinaria.webp",
   },
@@ -367,6 +367,18 @@ export default function TratamientoPage() {
                 o llámanos al {CONTACT.phone}
               </a>
             </div>
+          </FadeIn>
+          <FadeIn delay={0.3}>
+            <p className="mt-6 text-sm text-white/40">
+              ¿Quieres saber cuánto cuesta antes de agendar?{" "}
+              <Link
+                href={URLS.precios}
+                className="text-accent-gold underline underline-offset-2"
+              >
+                Revisa precios y financiamiento
+              </Link>
+              .
+            </p>
           </FadeIn>
         </div>
       </section>

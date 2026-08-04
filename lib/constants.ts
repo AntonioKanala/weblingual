@@ -14,6 +14,7 @@ export const URLS = {
   testimonios: "/testimonios",
   casosClinicos: "/casos-clinicos",
   blog: "/blog",
+  precios: "/precios-ortodoncia-lingual",
   pago: "https://www.webpay.cl/form-pay/106507",
 } as const;
 
