@@ -24,7 +24,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Ortodoncia Invisible en Las Condes | Clínica Lingual",
   description:
-    "Cambia tu sonrisa sin que nadie se entere. Brackets linguales 100% invisibles, personalizados con tecnología 3D. +5,000 tratamientos finalizados. Escríbenos por WhatsApp y agenda tu evaluación.",
+    "Brackets linguales 100% invisibles, personalizados con tecnología 3D. +5,000 tratamientos. Escríbenos por WhatsApp y agenda tu evaluación.",
   alternates: {
     canonical: "/landing/ortodoncia-invisible",
   },
