@@ -5,32 +5,32 @@ const brands = [
   {
     name: "Ciencia",
     image:
-      "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/667d95cd0ec821a7386a9942.png",
+      "/images/migrated/667d95cd0ec821a7386a9942.png",
   },
   {
     name: "Materiales Premium",
     image:
-      "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/667d962e96b7578b4f63c3ec.png",
+      "/images/migrated/667d962e96b7578b4f63c3ec.png",
   },
   {
     name: "Optimización",
     image:
-      "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/667d967f9d31c71e063d22c3.png",
+      "/images/migrated/667d967f9d31c71e063d22c3.png",
   },
   {
     name: "Confianza Profesional",
     image:
-      "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/667d96c0d91b508f2955b9c0.png",
+      "/images/migrated/667d96c0d91b508f2955b9c0.png",
   },
   {
     name: "Evolución Constante",
     image:
-      "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/667d97730c2bc7ae6b21bce9.png",
+      "/images/migrated/667d97730c2bc7ae6b21bce9.png",
   },
   {
     name: "Eco-friendly",
     image:
-      "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/667d977248971adac2065d80.png",
+      "/images/migrated/667d977248971adac2065d80.png",
   },
 ];
 
