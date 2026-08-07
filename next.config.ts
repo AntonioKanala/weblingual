@@ -15,6 +15,41 @@ const nextConfig: NextConfig = {
         destination: "/blog",
         permanent: true,
       },
+      // Restos indexados del sitio viejo en Wix/GHL — Search Console todavía
+      // les manda impresiones. El blog vivía además en /promociones/b/[slug]
+      // con el mismo slug que ahora usa /post/[slug].
+      {
+        source: "/home-1",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/resenas",
+        destination: "/testimonios",
+        permanent: true,
+      },
+      {
+        source: "/promociones",
+        destination: "/precios-ortodoncia-lingual",
+        permanent: true,
+      },
+      {
+        source: "/promociones/b/:slug",
+        destination: "/post/:slug",
+        permanent: true,
+      },
+      {
+        source: "/promociones/c/:path*",
+        destination: "/",
+        permanent: true,
+      },
+      // El sitio viejo a veces se indexó con "www" — el dominio real es sin www.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.clinicalingual.cl" }],
+        destination: "https://clinicalingual.cl/:path*",
+        permanent: true,
+      },
     ];
   },
   images: {
