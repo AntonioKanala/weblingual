@@ -19,11 +19,11 @@ export const URLS = {
 } as const;
 
 export const ASSETS = {
-  logo: "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/668eb72f8edd42a40ba448f2.webp",
+  logo: "/images/migrated/668eb72f8edd42a40ba448f2.webp",
   videos: {
     hero: "/videos/hero-home.mp4",
     heroAlt:
-      "https://storage.googleapis.com/msgsndr/SKKTEbSYs4aaSrh7QW9p/media/668818656254fc3ab111e571.mp4",
+      "/images/migrated/668818656254fc3ab111e571.mp4",
   },
 } as const;
 

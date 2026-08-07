@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/668eb72f8edd42a40ba448f2.webp",
+        url: "/images/migrated/668eb72f8edd42a40ba448f2.webp",
         width: 1200,
         height: 630,
         alt: "Clínica Lingual - Ortodoncia Invisible",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     description:
       "Cambia tu sonrisa sin que nadie se entere con nuestros brackets y alineadores invisibles.",
     images: [
-      "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/668eb72f8edd42a40ba448f2.webp",
+      "/images/migrated/668eb72f8edd42a40ba448f2.webp",
     ],
   },
   robots: {

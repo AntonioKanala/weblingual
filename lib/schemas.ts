@@ -20,9 +20,9 @@ export const getLocalBusinessSchema = () => ({
   description:
     "Especialistas en ortodoncia lingual en Las Condes, Santiago. +5,000 tratamientos. Brackets invisibles personalizados con tecnología 3D.",
   url: "https://clinicalingual.cl",
-  logo: "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/668eb72f8edd42a40ba448f2.webp",
+  logo: "https://clinicalingual.cl/images/migrated/668eb72f8edd42a40ba448f2.webp",
   image:
-    "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/668eb72f8edd42a40ba448f2.webp",
+    "https://clinicalingual.cl/images/migrated/668eb72f8edd42a40ba448f2.webp",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Las Condes",
@@ -142,7 +142,7 @@ export const getBlogPostingSchema = (post: {
       name: "Clínica Lingual",
       logo: {
         "@type": "ImageObject",
-        url: "https://assets.cdn.filesafe.space/SKKTEbSYs4aaSrh7QW9p/media/668eb72f8edd42a40ba448f2.webp",
+        url: "https://clinicalingual.cl/images/migrated/668eb72f8edd42a40ba448f2.webp",
       },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
