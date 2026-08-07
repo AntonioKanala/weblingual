@@ -21,14 +21,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Brackets Invisibles | Ortodoncia Lingual — Clínica Lingual Santiago",
+  title: "Brackets Invisibles | Ortodoncia Lingual Santiago",
   description:
-    "Tu sonrisa perfecta sin que nadie se entere. Brackets 100% invisibles, personalizados con tecnología 3D. Cuota inicial $250.000 + 11 cuotas sin interés. Evaluación inicial gratis en Las Condes.",
+    "Brackets 100% invisibles con tecnología 3D. Cuota inicial $250.000 + 11 cuotas sin interés. Evaluación inicial gratis en Las Condes.",
   alternates: {
     canonical: "/landing/brackets-invisibles",
   },
   openGraph: {
-    title: "Brackets Invisibles | Ortodoncia Lingual — Clínica Lingual Santiago",
+    title: "Brackets Invisibles | Ortodoncia Lingual Santiago",
     description:
       "Brackets 100% invisibles con tecnología 3D. Evaluación inicial gratis en Las Condes.",
     url: "/landing/brackets-invisibles",

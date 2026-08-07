@@ -33,7 +33,7 @@ export const Header = () => {
     >
       <nav className="flex items-center justify-between px-6 py-4 sm:px-10 lg:px-16 lg:py-5 xl:px-24">
         {/* Logo */}
-        <Link href={URLS.home} className="relative h-14 w-40 shrink-0 lg:h-16 lg:w-48">
+        <Link href={URLS.home} className="relative h-16 w-44 shrink-0 lg:h-20 lg:w-56">
           <Image
             src={ASSETS.logo}
             alt="Clínica Lingual"

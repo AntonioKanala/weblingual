@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Precio de la Ortodoncia Lingual en Chile | Clínica Lingual",
   description:
-    "Cuánto cuesta la ortodoncia lingual en Clínica Lingual: planes de pago en cuotas, valor al contado, qué incluye la evaluación y cómo usar tu seguro complementario.",
+    "Cuánto cuesta la ortodoncia lingual: planes de pago en cuotas, valor al contado, qué incluye la evaluación y cómo usar tu seguro complementario.",
   alternates: {
     canonical: "/precios-ortodoncia-lingual",
   },
