@@ -126,7 +126,25 @@ export default async function CampanaPage({
 
             {datos.filas.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-black/15 bg-white px-6 py-16 text-center text-[#6B6B6B]">
-                Nadie tiene el tag “{campana.tagInteresado}” en GoHighLevel.
+                {datos.embudo.enviados === 0 ? (
+                  <>
+                    <p className="font-medium text-[#1A1A1A]">Esta campaña todavía no se lanza.</p>
+                    <p className="mt-1 text-sm">
+                      Los tags ya están creados en GoHighLevel. Apenas se empiece a etiquetar
+                      contactos, esta pestaña se llena sola.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="font-medium text-[#1A1A1A]">
+                      Todavía no hay interesados en esta campaña.
+                    </p>
+                    <p className="mt-1 text-sm">
+                      Se envió a {datos.embudo.enviados.toLocaleString("es-CL")} contactos, pero
+                      nadie tiene aún el tag “{campana.tagInteresado}”.
+                    </p>
+                  </>
+                )}
               </div>
             ) : (
               <div className="overflow-x-auto rounded-2xl border border-black/10 bg-white">
