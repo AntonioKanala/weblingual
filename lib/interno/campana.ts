@@ -41,6 +41,15 @@ export const CAMPANAS: Campana[] = [
     tagInteresado: "interesado invierno julio 26",
     desde: "2026-07-01",
   },
+  {
+    // Todavía no se lanza (al 27-07-2026 ambos tags existen en GHL con 0 contactos).
+    // La pestaña queda lista para que se llene sola cuando empiece a etiquetarse.
+    slug: "agosto-oferta",
+    nombre: "Oferta Agosto",
+    tagAudiencia: "agosto 26 oferta",
+    tagInteresado: "interesado agosto 26 oferta",
+    desde: "2026-08-01",
+  },
 ];
 
 // En GHL el "no interesado" se marca con otro tag, sin quitar el de interesado,
