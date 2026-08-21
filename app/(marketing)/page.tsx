@@ -18,6 +18,10 @@ import {
 } from "@/lib/schemas";
 import type { Metadata } from "next";
 
+// Revalida cada hora: la sección "Aprende más" muestra los posts más
+// recientes, incluyendo los que se programaron a futuro.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   alternates: {
     canonical: "/",

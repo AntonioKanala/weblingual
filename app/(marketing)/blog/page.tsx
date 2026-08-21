@@ -6,6 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
+// Revalida cada hora para que los posts programados (publishedAt futuro)
+// aparezcan solos en su fecha, sin necesitar un nuevo deploy.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Blog | Ortodoncia Lingual y Salud Bucal | Clínica Lingual",
   description:
