@@ -32,19 +32,26 @@ export const BLOG_CATEGORIES: Record<BlogCategory, string> = {
 
 const POSTS_DIR = path.join(process.cwd(), "content", "blog-posts");
 
-let cache: BlogPost[] | null = null;
-
+/**
+ * Publicación programada: un post con publishedAt futuro vive en el repo
+ * (y se despliega) pero se mantiene invisible -- fuera de /blog, del
+ * sitemap y de la home -- hasta que su fecha llega. No hay caché de
+ * módulo aquí a propósito: junto con `revalidate` en las páginas que
+ * consumen esto, permite que un post programado aparezca solo con el
+ * paso del tiempo, sin un nuevo deploy.
+ */
 const loadAllPosts = (): BlogPost[] => {
-  if (cache) return cache;
   const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".json"));
-  const posts = files.map(
-    (file) =>
-      JSON.parse(
-        fs.readFileSync(path.join(POSTS_DIR, file), "utf-8"),
-      ) as BlogPost,
-  );
+  const todayIso = new Date().toISOString().slice(0, 10);
+  const posts = files
+    .map(
+      (file) =>
+        JSON.parse(
+          fs.readFileSync(path.join(POSTS_DIR, file), "utf-8"),
+        ) as BlogPost,
+    )
+    .filter((post) => post.publishedAt <= todayIso);
   posts.sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
-  cache = posts;
   return posts;
 };
 

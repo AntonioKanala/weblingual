@@ -3,6 +3,10 @@ import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://clinicalingual.cl";
 
+// Revalida cada hora: si hay posts programados a futuro, el sitemap
+// los incorpora solo cuando llega su fecha.
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: Array<{
     path: string;

@@ -12,6 +12,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
+// Revalida cada hora: si un slug programado a futuro todavía no existía
+// al momento del build, esto permite que aparezca solo en su fecha.
+export const revalidate = 3600;
+
 export const generateStaticParams = () =>
   getAllBlogSlugs().map((slug) => ({ slug }));
 
