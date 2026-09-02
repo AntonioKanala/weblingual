@@ -8,7 +8,9 @@ import { variantesBusqueda } from "./telefono";
 export type Campana = {
   slug: string;
   nombre: string;
-  tagAudiencia: string;
+  // Uno o varios tags de audiencia (p. ej. una campaña segmentada en S1/S2
+  // que igual se reporta como una sola pestaña). Se suman/combinan al leer.
+  tagAudiencia: string | string[];
   tagInteresado: string;
   desde: string; // para contar agendamientos posteriores al envío
 };
@@ -52,19 +54,13 @@ export const CAMPANAS: Campana[] = [
   },
   {
     // Workflow "Reactivación Septiembre 2026" en GHL: una sola rama de
-    // respuesta para ambos segmentos, por eso S1 y S2 comparten el mismo
-    // tagInteresado ("interesado sept 26", no "interesado aguinaldo 26 s1/s2"
-    // — ese último nunca se conectó a nada real).
-    slug: "aguinaldo-sept-s1",
-    nombre: "Aguinaldo Sept — S1 (asistió y no inició)",
-    tagAudiencia: "aguinaldo 26 s1",
-    tagInteresado: "interesado sept 26",
-    desde: "2026-09-02",
-  },
-  {
-    slug: "aguinaldo-sept-s2",
-    nombre: "Aguinaldo Sept — S2 (agendó y no asistió)",
-    tagAudiencia: "aguinaldo 26 s2",
+    // respuesta para ambos segmentos (S1 y S2), por eso es una sola pestaña
+    // con dos tags de audiencia y un solo tagInteresado ("interesado sept
+    // 26", no "interesado aguinaldo 26 s1/s2" — ese último nunca se conectó
+    // a nada real).
+    slug: "aguinaldo-sept-2026",
+    nombre: "Aguinaldo Septiembre 2026",
+    tagAudiencia: ["aguinaldo 26 s1", "aguinaldo 26 s2"],
     tagInteresado: "interesado sept 26",
     desde: "2026-09-02",
   },
@@ -141,10 +137,17 @@ export async function getCampana(
 ): Promise<{ filas: FilaCampana[]; embudo: EmbudoCampana }> {
   const db = supabaseAdmin();
 
-  const [enviados, interesados] = await Promise.all([
-    contarPorTag(campana.tagAudiencia),
+  const tagsAudiencia = Array.isArray(campana.tagAudiencia)
+    ? campana.tagAudiencia
+    : [campana.tagAudiencia];
+
+  const [conteos, interesados] = await Promise.all([
+    Promise.all(tagsAudiencia.map((t) => contarPorTag(t))),
     contactosPorTag(campana.tagInteresado, 500),
   ]);
+  // Los tags de audiencia son mutuamente excluyentes (cada contacto entra a
+  // un solo segmento), así que sumar los conteos no duplica gente.
+  const enviados = conteos.reduce((a, b) => a + b, 0);
 
   const porId = new Map<number, ContactoGHL>();
   const porTelefono = new Map<string, ContactoGHL>();
