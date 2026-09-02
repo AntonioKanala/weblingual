@@ -31,7 +31,9 @@ export function FormularioExperiencia() {
   const [nombre, setNombre] = useState(nombreInicial);
   const [rut, setRut] = useState("");
   const [rutError, setRutError] = useState(false);
+  const [detalle, setDetalle] = useState("");
   const [estado, setEstado] = useState<Estado>("form");
+  const mostrarComentario = rating === null || rating <= 4;
 
   if (estado === "listo") {
     return <ExperienciaExito rating={rating} nombre={nombre} />;
@@ -56,6 +58,7 @@ export function FormularioExperiencia() {
           contactId,
           nombre: nombreLimpio,
           rut: rutLimpio,
+          detalle: mostrarComentario ? detalle.trim() : undefined,
         }),
       });
       setEstado(res.ok ? "listo" : "error");
@@ -143,6 +146,26 @@ export function FormularioExperiencia() {
             </p>
           )}
         </div>
+
+        {mostrarComentario && (
+          <div className="flex flex-col gap-2">
+            <label
+              htmlFor="detalle"
+              className="font-display text-lg font-semibold text-neutral-900"
+            >
+              ¿Quieres contarnos qué pasó? <span className="font-body text-sm font-normal text-neutral-500">(opcional)</span>
+            </label>
+            <textarea
+              id="detalle"
+              name="detalle"
+              rows={4}
+              value={detalle}
+              onChange={(e) => setDetalle(e.target.value)}
+              placeholder="Lo que quieras contarnos. Lo lee una persona del equipo, no un robot."
+              className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-neutral-800 placeholder:text-neutral-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1A6B4F]"
+            />
+          </div>
+        )}
 
         {estado === "error" && (
           <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
