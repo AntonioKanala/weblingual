@@ -31,6 +31,11 @@ export default async function CampanaPage({
     error = e instanceof Error ? e.message : "Error desconocido leyendo GHL";
   }
 
+  // Solo las campañas de reseñas traen esto (tabla `resenas`, no Dentalink).
+  // Se muestra la columna nada más si hay al menos una fila con dato, para
+  // no meter columnas vacías en las campañas de reactivación normales.
+  const mostrarResena = datos ? datos.filas.some((f) => f.puntuacion !== null) : false;
+
   return (
     <>
       <InternoHeader />
@@ -153,6 +158,12 @@ export default async function CampanaPage({
                     <tr>
                       <th className="px-4 py-3 font-medium">Contacto</th>
                       <th className="px-4 py-3 font-medium">Teléfono</th>
+                      {mostrarResena && (
+                        <>
+                          <th className="px-4 py-3 font-medium">Nota</th>
+                          <th className="px-4 py-3 font-medium">Comentario</th>
+                        </>
+                      )}
                       <th className="px-4 py-3 font-medium">Ficha Dentalink</th>
                       <th className="px-4 py-3 font-medium">Estado</th>
                       <th className="px-4 py-3 font-medium">Seguimiento</th>
@@ -169,6 +180,31 @@ export default async function CampanaPage({
                         <td className="px-4 py-3">
                           <CeldaTelefono telefono={f.telefono} mensajeWhatsApp={MENSAJE_WA} />
                         </td>
+                        {mostrarResena && (
+                          <>
+                            <td className="px-4 py-3">
+                              {f.puntuacion !== null ? (
+                                <span
+                                  className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
+                                    f.puntuacion >= 5
+                                      ? "bg-emerald-50 text-emerald-700"
+                                      : f.puntuacion === 4
+                                        ? "bg-sky-50 text-sky-700"
+                                        : "bg-red-50 text-red-700"
+                                  }`}
+                                >
+                                  {"★".repeat(f.puntuacion)}
+                                  {"☆".repeat(5 - f.puntuacion)}
+                                </span>
+                              ) : (
+                                <span className="text-[#B0B0B0]">—</span>
+                              )}
+                            </td>
+                            <td className="max-w-xs px-4 py-3 text-xs text-[#1A1A1A]">
+                              {f.comentario || <span className="text-[#B0B0B0]">Sin comentario</span>}
+                            </td>
+                          </>
+                        )}
                         <td className="px-4 py-3 text-xs">
                           {f.pacienteId ? (
                             <span className="text-[#6B6B6B]">Paciente #{f.pacienteId}</span>

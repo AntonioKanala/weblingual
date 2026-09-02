@@ -111,6 +111,10 @@ export type FilaCampana = {
   estadoCita: string | null;
   ultimaLlamada: { resultado: string; llamado_at: string } | null;
   vecesLlamado: number;
+  // Solo se llena para campañas de reseñas (tabla `resenas`, match directo
+  // por ghl_contact_id). En el resto de las campañas queda null siempre.
+  puntuacion: number | null;
+  comentario: string | null;
 };
 
 export type EmbudoCampana = {
@@ -213,7 +217,9 @@ export async function getCampana(
   // -1 nunca existe: evita ramificar el tipo cuando no hay pacientes que consultar.
   const idsConsulta = pacienteIds.length ? pacienteIds : [-1];
 
-  const [citasRes, tratRes, llamRes] = await Promise.all([
+  const contactIds = interesados.map((c) => c.id);
+
+  const [citasRes, tratRes, llamRes, resenasRes] = await Promise.all([
     db
       .from("citas")
       .select("id_paciente,fecha,estado_cita,nombre_dentista")
@@ -231,6 +237,16 @@ export async function getCampana(
       .select("ghl_contact_id,resultado,llamado_at")
       .eq("campana", campana.tagInteresado)
       .order("llamado_at", { ascending: false }),
+    // Solo aplica a campañas de reseñas, pero es barato pedirlo siempre: si
+    // ningún interesado dejó fila en `resenas`, esto vuelve vacío y no hace
+    // nada. Match directo por ghl_contact_id, no hace falta cruzar con Dentalink.
+    contactIds.length
+      ? db
+          .from("resenas")
+          .select("ghl_contact_id,puntuacion,detalle,creado_el")
+          .in("ghl_contact_id", contactIds)
+          .order("creado_el", { ascending: false })
+      : Promise.resolve({ data: [] as { ghl_contact_id: string; puntuacion: number; detalle: string | null }[] }),
   ]);
 
   type Cita = { id_paciente: number; fecha: string; estado_cita: string | null; nombre_dentista: string | null };
@@ -244,6 +260,13 @@ export async function getCampana(
     const arr = llamadas.get(l.ghl_contact_id) ?? [];
     arr.push(l);
     llamadas.set(l.ghl_contact_id, arr);
+  }
+
+  type Resena = { ghl_contact_id: string; puntuacion: number; detalle: string | null };
+  // Viene ordenado por creado_el desc: la primera fila por contacto es la más reciente.
+  const resenaPorContacto = new Map<string, Resena>();
+  for (const r of (resenasRes.data ?? []) as Resena[]) {
+    if (!resenaPorContacto.has(r.ghl_contact_id)) resenaPorContacto.set(r.ghl_contact_id, r);
   }
 
   // Apartar a quien ya dijo que no: tener el tag de interesado no basta si
@@ -267,6 +290,7 @@ export async function getCampana(
     const evaluaciones = suyas.filter((x) => x.nombre_dentista === PROFESIONAL_EVALUACION);
     const cita = evaluaciones[0] ?? suyas[0] ?? null;
     const hist = llamadas.get(c.id) ?? [];
+    const resena = resenaPorContacto.get(c.id) ?? null;
 
     return {
       contactId: c.id,
@@ -283,6 +307,8 @@ export async function getCampana(
       estadoCita: cita?.estado_cita ?? null,
       ultimaLlamada: hist[0] ? { resultado: hist[0].resultado, llamado_at: hist[0].llamado_at } : null,
       vecesLlamado: hist.length,
+      puntuacion: resena?.puntuacion ?? null,
+      comentario: resena?.detalle ?? null,
     };
   });
 
