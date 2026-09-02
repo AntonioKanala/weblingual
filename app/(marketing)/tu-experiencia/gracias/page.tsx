@@ -1,25 +1,24 @@
-import { Suspense } from "react";
-import type { Metadata } from "next";
-import { GraciasResena } from "@/components/sections/gracias-resena";
-import { SITE_NAME } from "@/lib/constants";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: `Gracias | ${SITE_NAME}`,
-  description:
-    "Gracias por contarnos cómo estuvo tu experiencia en Clínica Lingual.",
-  alternates: { canonical: "/tu-experiencia/gracias" },
-  // Se llega por un enlace personal desde el correo: no tiene sentido indexarla.
-  robots: { index: false, follow: false },
-};
+/**
+ * Ruta vieja: hasta ago-2026, quien marcaba 5 estrellas en el correo llegaba
+ * directo acá (sin pasar por el formulario). Ahora las 5 calificaciones usan
+ * el mismo formulario en /tu-experiencia, así que esto es solo un redirect
+ * de compatibilidad por si queda algún enlace de 5 estrellas ya enviado
+ * apuntando a /tu-experiencia/gracias.
+ */
+export default async function GraciasPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const sp = await searchParams;
+  const qs = new URLSearchParams({ rating: "5" });
 
-export default function GraciasPage() {
-  return (
-    <section className="bg-background-light pb-20 pt-32 lg:pb-28 lg:pt-40">
-      <div className="mx-auto max-w-xl px-6 sm:px-10">
-        <Suspense fallback={<div className="h-96" aria-hidden="true" />}>
-          <GraciasResena />
-        </Suspense>
-      </div>
-    </section>
-  );
+  const c = sp.c;
+  const nombre = sp.nombre;
+  if (typeof c === "string" && c) qs.set("c", c);
+  if (typeof nombre === "string" && nombre) qs.set("nombre", nombre);
+
+  redirect(`/tu-experiencia?${qs.toString()}`);
 }

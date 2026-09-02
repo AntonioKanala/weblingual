@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+/**
+ * Página a la que llegan todas las calificaciones (1 a 5) del correo/WhatsApp
+ * de reseñas. Antes, 5 estrellas saltaba directo a /tu-experiencia/gracias;
+ * ahora toda estrella pasa por el mismo formulario (ver formulario-experiencia.tsx).
+ */
 export default function TuExperienciaPage() {
   return (
     <section className="bg-background-light pb-20 pt-32 lg:pb-28 lg:pt-40">
