@@ -50,6 +50,37 @@ export const CAMPANAS: Campana[] = [
     tagInteresado: "interesado agosto 26 oferta",
     desde: "2026-08-01",
   },
+  {
+    // Workflow "Reactivación Septiembre 2026" en GHL: una sola rama de
+    // respuesta para ambos segmentos, por eso S1 y S2 comparten el mismo
+    // tagInteresado ("interesado sept 26", no "interesado aguinaldo 26 s1/s2"
+    // — ese último nunca se conectó a nada real).
+    slug: "aguinaldo-sept-s1",
+    nombre: "Aguinaldo Sept — S1 (asistió y no inició)",
+    tagAudiencia: "aguinaldo 26 s1",
+    tagInteresado: "interesado sept 26",
+    desde: "2026-09-02",
+  },
+  {
+    slug: "aguinaldo-sept-s2",
+    nombre: "Aguinaldo Sept — S2 (agendó y no asistió)",
+    tagAudiencia: "aguinaldo 26 s2",
+    tagInteresado: "interesado sept 26",
+    desde: "2026-09-02",
+  },
+  {
+    // No es una reactivación (no busca agendar evaluación), así que las
+    // columnas agendó/asistió/inició del embudo compartido no aplican mucho
+    // acá — se dejan igual por consistencia con el resto del CRM.
+    // tagInteresado = el tag que se aplica a CUALQUIERA que completa el
+    // formulario de /tu-experiencia (1 a 5 estrellas), porque es el único tag
+    // universal de respuesta: mide participación real, no solo audiencia.
+    slug: "resenas-sept-2026",
+    nombre: "Reseñas Sept 2026",
+    tagAudiencia: "campaña reseñas 2026",
+    tagInteresado: "sorteo higiene blanqueamiento sept 26",
+    desde: "2026-09-02",
+  },
 ];
 
 // En GHL el "no interesado" se marca con otro tag, sin quitar el de interesado,
