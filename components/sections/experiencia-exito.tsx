@@ -42,19 +42,26 @@ export function ExperienciaExito({
       )}
 
       <div className="mt-6 rounded-xl border border-accent-green/30 bg-accent-green/10 px-4 py-3 text-sm text-accent-green">
-        Ya estás participando por el sorteo de una{" "}
-        <strong>Higiene Dental + un Blanqueamiento</strong>. El sorteo cierra el{" "}
-        <strong>30 de septiembre de 2026</strong> y avisamos a la persona
-        ganadora por WhatsApp o teléfono.
+        {esCincoEstrellas ? (
+          <>
+            Solo te falta <strong>dejar tu reseña en Google</strong> y ya
+            estarás participando por el sorteo de una{" "}
+            <strong>Higiene Dental + un Blanqueamiento</strong>. El sorteo
+            cierra el <strong>30 de septiembre de 2026</strong> y avisamos a
+            la persona ganadora por WhatsApp o teléfono.
+          </>
+        ) : (
+          <>
+            Ya estás participando por el sorteo de una{" "}
+            <strong>Higiene Dental + un Blanqueamiento</strong>. El sorteo
+            cierra el <strong>30 de septiembre de 2026</strong> y avisamos a
+            la persona ganadora por WhatsApp o teléfono.
+          </>
+        )}
       </div>
 
       {esCincoEstrellas && (
         <>
-          <p className="mt-6 text-neutral-600">
-            Si quieres ayudarnos aún más, puedes dejar tu reseña en Google. Es
-            un paso extra y opcional: ya estás participando del sorteo solo
-            por haber llenado este formulario.
-          </p>
           <a
             href={GOOGLE_REVIEW_URL}
             target="_blank"
