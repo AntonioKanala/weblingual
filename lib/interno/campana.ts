@@ -115,6 +115,10 @@ export type FilaCampana = {
   // por ghl_contact_id). En el resto de las campañas queda null siempre.
   puntuacion: number | null;
   comentario: string | null;
+  // "dejó reseña" / "resena google" se aplican A MANO en GHL cuando alguien
+  // del equipo confirma que la persona efectivamente publicó en Google — no
+  // se puede saber solo con haber enviado el formulario interno.
+  dejoResena: boolean;
 };
 
 export type EmbudoCampana = {
@@ -291,6 +295,10 @@ export async function getCampana(
     const cita = evaluaciones[0] ?? suyas[0] ?? null;
     const hist = llamadas.get(c.id) ?? [];
     const resena = resenaPorContacto.get(c.id) ?? null;
+    const dejoResena = c.tags.some((t) => {
+      const n = t.trim().toLowerCase();
+      return n === "dejó reseña" || n === "resena google" || n === "reseña google";
+    });
 
     return {
       contactId: c.id,
@@ -309,6 +317,7 @@ export async function getCampana(
       vecesLlamado: hist.length,
       puntuacion: resena?.puntuacion ?? null,
       comentario: resena?.detalle ?? null,
+      dejoResena,
     };
   });
 
