@@ -9,13 +9,20 @@ export type ContactoGHL = {
   lastName: string | null;
   email: string | null;
   phone: string | null;
+  rut: string | null;
   tags: string[];
   dateAdded: string | null;
+  // Se usa como proxy de "cuándo respondió": es cuando se le agregó el tag
+  // de interesado (o cualquier otro cambio), no una fecha específica de
+  // ese tag — GHL no expone eso por contacto.
+  dateUpdated: string | null;
   dentalinkPacienteId: number | null;
 };
 
 // Custom field de GHL que guarda el id del paciente en Dentalink.
 const CAMPO_DENTALINK_ID = process.env.GHL_CAMPO_DENTALINK_ID ?? "BxC3NTfTW3XWgcELLj9t";
+// Custom field de GHL que guarda el RUT del contacto.
+const CAMPO_RUT = process.env.GHL_CAMPO_RUT ?? "NrPfWuO3fCKKTlD1ZrEI";
 
 function credenciales() {
   const token = process.env.GHL_API_TOKEN;
@@ -37,6 +44,7 @@ type RespuestaBusqueda = {
     phone?: string | null;
     tags?: string[];
     dateAdded?: string | null;
+    dateUpdated?: string | null;
     customFields?: { id?: string; value?: unknown }[];
   }[];
   total?: number;
@@ -85,9 +93,12 @@ export async function contactosPorTag(tag: string, maximo = 500): Promise<Contac
     if (lote.length === 0) break;
 
     for (const c of lote) {
-      const campo = (c.customFields ?? []).find((f) => f.id === CAMPO_DENTALINK_ID);
-      const valor = campo?.value;
+      const campos = c.customFields ?? [];
+      const campoDentalink = campos.find((f) => f.id === CAMPO_DENTALINK_ID);
+      const valor = campoDentalink?.value;
       const dentalinkId = valor ? Number(String(valor)) : NaN;
+      const campoRut = campos.find((f) => f.id === CAMPO_RUT);
+      const rut = campoRut?.value ? String(campoRut.value).trim() : "";
 
       salida.push({
         id: c.id,
@@ -95,8 +106,10 @@ export async function contactosPorTag(tag: string, maximo = 500): Promise<Contac
         lastName: c.lastName ?? null,
         email: c.email ?? null,
         phone: c.phone ?? null,
+        rut: rut || null,
         tags: c.tags ?? [],
         dateAdded: c.dateAdded ?? null,
+        dateUpdated: c.dateUpdated ?? null,
         dentalinkPacienteId: Number.isFinite(dentalinkId) ? dentalinkId : null,
       });
     }

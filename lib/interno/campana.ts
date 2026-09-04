@@ -100,8 +100,13 @@ function motivoDescarte(tags: string[]): string | null {
 export type FilaCampana = {
   contactId: string;
   nombre: string;
+  rut: string | null;
   telefono: string | null;
   email: string | null;
+  // Cuándo respondió: para reseñas es la fecha real del formulario
+  // (resenas.creado_el); para el resto, es dateUpdated del contacto en GHL
+  // (proxy — es cuándo se le tocó algo por última vez, no un campo dedicado).
+  fechaRespuesta: string | null;
   pacienteId: number | null;
   // Estado en Dentalink, posterior al envío de la campaña
   agendo: boolean;
@@ -266,7 +271,7 @@ export async function getCampana(
     llamadas.set(l.ghl_contact_id, arr);
   }
 
-  type Resena = { ghl_contact_id: string; puntuacion: number; detalle: string | null };
+  type Resena = { ghl_contact_id: string; puntuacion: number; detalle: string | null; creado_el: string };
   // Viene ordenado por creado_el desc: la primera fila por contacto es la más reciente.
   const resenaPorContacto = new Map<string, Resena>();
   for (const r of (resenasRes.data ?? []) as Resena[]) {
@@ -303,8 +308,10 @@ export async function getCampana(
     return {
       contactId: c.id,
       nombre: [c.firstName, c.lastName].filter(Boolean).join(" ").trim() || "Sin nombre",
+      rut: c.rut,
       telefono: c.phone,
       email: c.email,
+      fechaRespuesta: resena?.creado_el ?? c.dateUpdated ?? null,
       pacienteId,
       agendo: suyas.length > 0,
       asistio: suyas.some((x) => x.estado_cita === "Atendido"),
