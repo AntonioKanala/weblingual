@@ -188,6 +188,15 @@ export const Footer = () => {
           <div className="flex flex-col items-center justify-between gap-4 text-center lg:flex-row lg:text-left">
             <p className="text-xs text-white/30">
               © {currentYear} Clínica Lingual. Todos los derechos reservados.
+              {" · "}Sitio creado por{" "}
+              <a
+                href="https://canala-studio.com"
+                target="_blank"
+                rel="noopener"
+                className="transition-colors hover:text-white/60"
+              >
+                Canala Studio
+              </a>
             </p>
             <div className="flex gap-6">
               <Link
