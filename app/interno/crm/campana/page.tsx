@@ -42,11 +42,21 @@ export default async function CampanaPage({
       <main className="mx-auto max-w-7xl px-4 py-8">
         <CrmNav activa="/interno/crm/campana" />
 
-        <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-[#1A1A1A]">Campaña · {campana.nombre}</h1>
-          <p className="mt-1 text-sm text-[#6B6B6B]">
-            Quienes respondieron que sí, cruzados con lo que realmente pasó en Dentalink.
-          </p>
+        <div className="mb-6 flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-semibold text-[#1A1A1A]">Campaña · {campana.nombre}</h1>
+            <p className="mt-1 text-sm text-[#6B6B6B]">
+              Quienes respondieron que sí, cruzados con lo que realmente pasó en Dentalink.
+            </p>
+          </div>
+          {datos && datos.filas.length > 0 && (
+            <a
+              href={`/interno/crm/campana/export?c=${campana.slug}`}
+              className="shrink-0 rounded-lg border border-black/15 bg-white px-3 py-1.5 text-sm font-medium text-[#1A1A1A] hover:bg-black/[0.03]"
+            >
+              Descargar Excel
+            </a>
+          )}
         </div>
 
         <div className="mb-6 flex flex-wrap gap-2">
