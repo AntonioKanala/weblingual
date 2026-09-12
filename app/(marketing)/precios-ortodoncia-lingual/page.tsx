@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Precio de la Ortodoncia Lingual en Chile | Clínica Lingual",
   description:
-    "Cuánto cuesta la ortodoncia lingual en Chile: plan en cuotas, valor al contado y comparativa de precios con alineadores invisibles y brackets tradicionales.",
+    "Cuánto cuesta la ortodoncia lingual en Chile: plan de pago en cuotas, valor al contado, qué incluye el tratamiento y cómo usar tu seguro complementario.",
   alternates: {
     canonical: "/precios-ortodoncia-lingual",
   },
@@ -35,49 +35,9 @@ const includesList = [
   "Atención por nuestro equipo especialista miembro ESLO",
 ];
 
-/**
- * Rangos de referencia del mercado chileno, tomados de precios publicados
- * por otras clínicas (revisados en septiembre de 2026). NO son precios de
- * Clínica Lingual: el plan propio va en las tarjetas de arriba.
- *
- * Actualizar la fecha de `PRECIOS_REVISADOS_EN` cada vez que se revisen.
- */
-const PRECIOS_REVISADOS_EN = "septiembre de 2026";
-
-const comparativaTratamientos = [
-  {
-    tratamiento: "Ortodoncia lingual",
-    visibilidad: "100% invisible",
-    duracion: "12 a 18 meses",
-    rango: "$1.350.000 – $7.000.000",
-    nota: "Es el tratamiento de Clínica Lingual. El extremo bajo del rango es nuestro valor al contado.",
-    destacado: true,
-  },
-  {
-    tratamiento: "Alineadores invisibles (Invisalign y similares)",
-    visibilidad: "Casi invisible, pero removible",
-    duracion: "12 a 24 meses",
-    rango: "$1.200.000 – $6.000.000",
-    nota: "Dependen de que el paciente los use 22 horas al día.",
-    destacado: false,
-  },
-  {
-    tratamiento: "Brackets estéticos (cerámica o zafiro)",
-    visibilidad: "Se ven, pero menos que el metal",
-    duracion: "18 a 30 meses",
-    rango: "$1.000.000 – $2.000.000",
-    nota: "Suelen cobrarse como pago inicial más mensualidad.",
-    destacado: false,
-  },
-  {
-    tratamiento: "Brackets metálicos tradicionales",
-    visibilidad: "Completamente visibles",
-    duracion: "18 a 36 meses",
-    rango: "$700.000 – $1.500.000",
-    nota: "La opción más económica y la más visible.",
-    destacado: false,
-  },
-];
+// La comparativa de precios por tipo de tratamiento quedó fuera a la espera de
+// que la clínica valide los rangos de mercado. Está en el commit 6261711 para
+// recuperarla cuando se confirmen.
 
 const priceFaqs = [
   {
@@ -97,12 +57,8 @@ const priceFaqs = [
     a: "Agenda tu evaluación inicial para conocer el valor exacto de tu caso, con diagnóstico 3D y plan de tratamiento detallado.",
   },
   {
-    q: "¿Cuánto cuesta una ortodoncia en Chile?",
-    a: `Depende del tipo de tratamiento. Revisados en ${PRECIOS_REVISADOS_EN}, los rangos publicados por clínicas chilenas van desde $700.000 a $1.500.000 en brackets metálicos tradicionales, $1.000.000 a $2.000.000 en brackets estéticos, $1.200.000 a $6.000.000 en alineadores invisibles y $1.350.000 a $7.000.000 en ortodoncia lingual. Son referencias de mercado, no precios de Clínica Lingual: el valor de tu caso se define en la evaluación.`,
-  },
-  {
-    q: "¿Cuál es la diferencia de precio entre alineadores invisibles y ortodoncia lingual?",
-    a: "En el mercado chileno ambos tratamientos se mueven en rangos parecidos y se traslapan bastante. La diferencia real no suele estar en el precio sino en el tipo de caso: los alineadores dependen de que los uses 22 horas al día y no resuelven bien apiñamientos severos, extracciones ni mordidas complejas, mientras que los brackets linguales trabajan las 24 horas sin depender de tu disciplina.",
+    q: "¿Conviene más un alineador invisible o la ortodoncia lingual?",
+    a: "La diferencia principal no está en el precio sino en el tipo de caso. Los alineadores son removibles y dependen de que los uses alrededor de 22 horas al día, y no resuelven bien apiñamientos severos, extracciones ni mordidas complejas. Los brackets linguales van fijos por dentro de los dientes, así que trabajan las 24 horas sin depender de tu disciplina. En tu evaluación revisamos cuál corresponde a tu caso.",
   },
   {
     q: "¿Por qué la ortodoncia lingual suele ser más cara?",
@@ -247,125 +203,8 @@ export default function PreciosPage() {
         </div>
       </section>
 
-      {/* Comparativa de mercado por tipo de tratamiento */}
-      <section className="bg-background-light py-16 lg:py-24">
-        <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
-          <FadeIn>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold">
-              Comparativa
-            </p>
-            <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold text-text-light md:text-4xl">
-              ¿Cuánto cuesta una ortodoncia en Chile?
-            </h2>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-text-muted">
-              Antes de decidir conviene comparar los cuatro tratamientos que
-              existen hoy en Chile, no solo por precio sino por cuánto se ven,
-              cuánto duran y qué casos resuelven.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <div className="mt-10 overflow-x-auto">
-              <table className="w-full min-w-[720px] border-collapse text-left">
-                <thead>
-                  <tr className="border-b border-text-light/15">
-                    <th className="py-4 pr-6 text-xs font-semibold uppercase tracking-[0.1em] text-text-muted">
-                      Tratamiento
-                    </th>
-                    <th className="py-4 pr-6 text-xs font-semibold uppercase tracking-[0.1em] text-text-muted">
-                      ¿Se ve?
-                    </th>
-                    <th className="py-4 pr-6 text-xs font-semibold uppercase tracking-[0.1em] text-text-muted">
-                      Duración
-                    </th>
-                    <th className="py-4 text-xs font-semibold uppercase tracking-[0.1em] text-text-muted">
-                      Rango en Chile
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparativaTratamientos.map((t) => (
-                    <tr
-                      key={t.tratamiento}
-                      className={`border-b border-text-light/10 ${
-                        t.destacado ? "bg-accent-gold/10" : ""
-                      }`}
-                    >
-                      <td className="py-5 pr-6 align-top">
-                        <p className="font-display text-base font-bold text-text-light">
-                          {t.tratamiento}
-                        </p>
-                        <p className="mt-1 max-w-xs text-sm text-text-muted">
-                          {t.nota}
-                        </p>
-                      </td>
-                      <td className="py-5 pr-6 align-top text-sm text-text-muted">
-                        {t.visibilidad}
-                      </td>
-                      <td className="py-5 pr-6 align-top text-sm text-text-muted">
-                        {t.duracion}
-                      </td>
-                      <td className="py-5 align-top">
-                        <span className="font-display text-base font-bold text-text-light">
-                          {t.rango}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <p className="mt-6 max-w-3xl text-xs leading-relaxed text-text-muted">
-              Rangos de referencia construidos con precios publicados
-              públicamente por clínicas chilenas, revisados en{" "}
-              {PRECIOS_REVISADOS_EN}. No son precios de Clínica Lingual ni una
-              cotización: el valor de tu tratamiento se define en tu evaluación
-              inicial. El plan de pago de Clínica Lingual es el que aparece más
-              arriba en esta página.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.25}>
-            <div className="mt-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold">
-                Compara en detalle
-              </p>
-              <ul className="mt-4 space-y-3">
-                <li>
-                  <Link
-                    href="/post/alineadores-vs-brackets-linguales-cul-es-la-mejor-opcin-para-ti"
-                    className="text-base font-medium text-text-light underline underline-offset-2 hover:text-accent-gold"
-                  >
-                    Alineadores vs. brackets linguales: cuál elegir
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/post/ortodoncia-invisible-vs-brackets-tradicionales"
-                    className="text-base font-medium text-text-light underline underline-offset-2 hover:text-accent-gold"
-                  >
-                    Ortodoncia invisible vs. brackets tradicionales
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/post/brackets-invisibles-chile"
-                    className="text-base font-medium text-text-light underline underline-offset-2 hover:text-accent-gold"
-                  >
-                    Brackets invisibles en Chile: la ortodoncia que no se ve
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* Seguros */}
-      <section className="bg-[#f5f3f0] py-16 lg:py-24">
+      <section className="bg-background-light py-16 lg:py-24">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
             <FadeIn>
@@ -410,6 +249,22 @@ export default function PreciosPage() {
                     Isapres y planes complementarios para tratamientos dentales
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/post/alineadores-vs-brackets-linguales-cul-es-la-mejor-opcin-para-ti"
+                    className="text-base font-medium text-text-light underline underline-offset-2 hover:text-accent-gold"
+                  >
+                    Alineadores vs. brackets linguales: cuál elegir
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/post/ortodoncia-invisible-vs-brackets-tradicionales"
+                    className="text-base font-medium text-text-light underline underline-offset-2 hover:text-accent-gold"
+                  >
+                    Ortodoncia invisible vs. brackets tradicionales
+                  </Link>
+                </li>
               </ul>
             </FadeIn>
           </div>
@@ -417,7 +272,7 @@ export default function PreciosPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-background-light py-16 lg:py-24">
+      <section className="bg-[#f5f3f0] py-16 lg:py-24">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
           <FadeIn>
             <h2 className="font-display text-2xl font-bold text-text-light md:text-3xl">
