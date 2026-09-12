@@ -4,8 +4,16 @@ import { FadeIn } from "@/components/animations/fade-in";
 import { ArrowRight, MessageCircle, Sparkles, Gift } from "lucide-react";
 import Link from "next/link";
 import Script from "next/script";
+import { useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function AgendaPage() {
+  // El agendamiento ocurre dentro del iframe de GoHighLevel, así que este
+  // es el último paso del embudo que el sitio puede medir por sí mismo.
+  useEffect(() => {
+    trackEvent("agenda_view");
+  }, []);
+
   return (
     <>
       {/* Hero Section */}

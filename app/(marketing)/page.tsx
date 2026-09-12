@@ -15,6 +15,7 @@ import {
   getFAQPageSchema,
   getLocalBusinessSchema,
   getMedicalOrganizationSchema,
+  getWebSiteSchema,
 } from "@/lib/schemas";
 import type { Metadata } from "next";
 
@@ -23,6 +24,15 @@ import type { Metadata } from "next";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
+  // La home no tenía título ni descripción propios: heredaba los del layout
+  // raíz, escritos para "ortodoncia lingual" y "brackets invisibles". Eso la
+  // ponía a competir contra /ortodoncia-lingual por las mismas consultas y se
+  // las ganaba sin convertirlas (posición 3,9 en "frenillos linguales chile"
+  // con cero clics). La home se queda con la marca y la categoría; el término
+  // de tratamiento es de /ortodoncia-lingual.
+  title: "Clínica Lingual | Ortodoncia Invisible en Santiago",
+  description:
+    "Clínica especializada en ortodoncia invisible en Las Condes, Santiago. +5.000 tratamientos finalizados por un equipo miembro de la ESLO. Agenda tu evaluación.",
   alternates: {
     canonical: "/",
   },
@@ -48,6 +58,12 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(getMedicalOrganizationSchema()),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getWebSiteSchema()),
         }}
       />
 

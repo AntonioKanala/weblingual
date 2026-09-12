@@ -13,14 +13,19 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ortodoncia Lingual: Tratamiento Invisible | Clínica Lingual",
+  // Esta página existe para quedarse con "brackets linguales" y "ortodoncia
+  // lingual". Hasta ahora la home le ganaba esas consultas (posición 9,7 contra
+  // 97) porque heredaba una descripción escrita para el mismo término; el
+  // título de acá ahora lleva la keyword exacta al principio y el de la home
+  // se corrió a la categoría.
+  title: "Brackets Linguales: Ortodoncia Lingual en Santiago",
   description:
-    "Descubre la ortodoncia lingual: brackets 100% invisibles, personalizados con tecnología 3D. Eficaz para casos complejos. +5,000 tratamientos en Santiago.",
+    "Brackets linguales por dentro de los dientes: 100% invisibles, hechos a medida con tecnología 3D. Resuelven casos complejos que los alineadores no pueden.",
   alternates: {
     canonical: "/ortodoncia-lingual",
   },
   openGraph: {
-    title: "Ortodoncia Lingual: Tratamiento Invisible | Clínica Lingual",
+    title: "Brackets Linguales: Ortodoncia Lingual en Santiago",
     description:
       "Brackets 100% invisibles, personalizados con tecnología 3D. Eficaz para casos complejos.",
     url: "/ortodoncia-lingual",
@@ -376,6 +381,27 @@ export default function TratamientoPage() {
                 className="text-accent-gold underline underline-offset-2"
               >
                 Revisa precios y financiamiento
+              </Link>
+              .
+            </p>
+          </FadeIn>
+          {/* Las dos landings no recibían ningún enlace interno: existían solo
+              en el sitemap, sin llegarles nada de señal desde el sitio. */}
+          <FadeIn delay={0.35}>
+            <p className="mt-2 text-sm text-white/40">
+              ¿Aún comparando alternativas? Mira en qué se diferencian la{" "}
+              <Link
+                href="/landing/ortodoncia-invisible"
+                className="text-accent-gold underline underline-offset-2"
+              >
+                ortodoncia invisible
+              </Link>{" "}
+              y los{" "}
+              <Link
+                href="/landing/brackets-invisibles"
+                className="text-accent-gold underline underline-offset-2"
+              >
+                brackets invisibles
               </Link>
               .
             </p>

@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Precio de la Ortodoncia Lingual en Chile | Clínica Lingual",
   description:
-    "Cuánto cuesta la ortodoncia lingual: planes de pago en cuotas, valor al contado, qué incluye la evaluación y cómo usar tu seguro complementario.",
+    "Cuánto cuesta la ortodoncia lingual en Chile: plan de pago en cuotas, valor al contado, qué incluye el tratamiento y cómo usar tu seguro complementario.",
   alternates: {
     canonical: "/precios-ortodoncia-lingual",
   },
@@ -35,6 +35,10 @@ const includesList = [
   "Atención por nuestro equipo especialista miembro ESLO",
 ];
 
+// La comparativa de precios por tipo de tratamiento quedó fuera a la espera de
+// que la clínica valide los rangos de mercado. Está en el commit 6261711 para
+// recuperarla cuando se confirmen.
+
 const priceFaqs = [
   {
     q: "¿Cuánto cuesta la ortodoncia lingual?",
@@ -51,6 +55,14 @@ const priceFaqs = [
   {
     q: "¿La evaluación inicial tiene costo?",
     a: "Agenda tu evaluación inicial para conocer el valor exacto de tu caso, con diagnóstico 3D y plan de tratamiento detallado.",
+  },
+  {
+    q: "¿Conviene más un alineador invisible o la ortodoncia lingual?",
+    a: "La diferencia principal no está en el precio sino en el tipo de caso. Los alineadores son removibles y dependen de que los uses alrededor de 22 horas al día, y no resuelven bien apiñamientos severos, extracciones ni mordidas complejas. Los brackets linguales van fijos por dentro de los dientes, así que trabajan las 24 horas sin depender de tu disciplina. En tu evaluación revisamos cuál corresponde a tu caso.",
+  },
+  {
+    q: "¿Por qué la ortodoncia lingual suele ser más cara?",
+    a: "Porque cada bracket se fabrica a la medida de tus dientes con escaneo y diseño 3D, y porque la técnica exige formación específica del ortodoncista: se trabaja en la cara interna de los dientes, con menos visibilidad y acceso. Eso encarece tanto los materiales como las horas de especialista.",
   },
 ];
 
@@ -235,6 +247,22 @@ export default function PreciosPage() {
                     className="text-base font-medium text-text-light underline underline-offset-2 hover:text-accent-gold"
                   >
                     Isapres y planes complementarios para tratamientos dentales
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/post/alineadores-vs-brackets-linguales-cul-es-la-mejor-opcin-para-ti"
+                    className="text-base font-medium text-text-light underline underline-offset-2 hover:text-accent-gold"
+                  >
+                    Alineadores vs. brackets linguales: cuál elegir
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/post/ortodoncia-invisible-vs-brackets-tradicionales"
+                    className="text-base font-medium text-text-light underline underline-offset-2 hover:text-accent-gold"
+                  >
+                    Ortodoncia invisible vs. brackets tradicionales
                   </Link>
                 </li>
               </ul>
