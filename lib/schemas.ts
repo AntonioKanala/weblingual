@@ -1,4 +1,29 @@
 import { faqItems } from "@/content/faq";
+import { CONTACT } from "@/lib/constants";
+
+/**
+ * Un único @id para el negocio, para que Dentist y MedicalOrganization se
+ * fusionen en la misma entidad en vez de leerse como dos organizaciones.
+ */
+const CLINICA_ID = "https://clinicalingual.cl/#clinica";
+
+/** Perfiles oficiales — los mismos que enlaza el footer. */
+const SAME_AS = [
+  "https://www.instagram.com/clinicalingual",
+  "https://www.facebook.com/clinicalingual",
+  "https://www.youtube.com/@clinicalingual",
+];
+
+/** Comunas donde la clínica capta pacientes (una sola dirección, en Las Condes). */
+const AREA_SERVIDA = [
+  "Las Condes",
+  "Vitacura",
+  "Providencia",
+  "Ñuñoa",
+  "Lo Barnechea",
+  "La Reina",
+  "Santiago",
+].map((name) => ({ "@type": "City", name }));
 
 export const getFAQPageSchema = () => ({
   "@context": "https://schema.org",
@@ -16,6 +41,7 @@ export const getFAQPageSchema = () => ({
 export const getLocalBusinessSchema = () => ({
   "@context": "https://schema.org",
   "@type": "Dentist",
+  "@id": CLINICA_ID,
   name: "Clínica Lingual",
   description:
     "Especialistas en ortodoncia lingual en Las Condes, Santiago. +5,000 tratamientos. Brackets invisibles personalizados con tecnología 3D.",
@@ -23,27 +49,40 @@ export const getLocalBusinessSchema = () => ({
   logo: "https://clinicalingual.cl/images/migrated/668eb72f8edd42a40ba448f2.webp",
   image:
     "https://clinicalingual.cl/images/migrated/668eb72f8edd42a40ba448f2.webp",
+  // NAP idéntico al de la ficha de Google Business Profile. Antes decía
+  // streetAddress "Las Condes" (que es la comuna, no la calle) y unas
+  // coordenadas a 5,1 km de la clínica.
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Las Condes",
-    addressLocality: "Santiago",
+    streetAddress: "Cam. El Alba 8760, oficina 701",
+    addressLocality: "Las Condes",
     addressRegion: "Región Metropolitana",
+    postalCode: "7560795",
     addressCountry: "CL",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: -33.4172,
-    longitude: -70.5985,
+    latitude: -33.4064762,
+    longitude: -70.5446002,
   },
-  // Rating real de la ficha de Google Business Profile (visible en el trust bar de la home).
-  // Actualizar aquí y en trust-bar.tsx cuando cambie en Google.
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.2",
-    reviewCount: "166",
-    bestRating: "5",
-  },
+  hasMap: CONTACT.mapsLink,
+  areaServed: AREA_SERVIDA,
+  sameAs: SAME_AS,
+  // Fijo publicado en Google Business Profile. El móvil de WhatsApp, que es
+  // el que ve el usuario en la web, va como punto de contacto adicional.
   telephone: "+56 2 2944 4714",
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: CONTACT.phone,
+      areaServed: "CL",
+      availableLanguage: "Spanish",
+    },
+  ],
+  // Sin aggregateRating: Google no considera elegible el marcado de reseñas
+  // que una entidad se pone a sí misma (self-serving review markup) en
+  // LocalBusiness/Organization. La nota real vive en el trust bar y en la ficha.
   priceRange: "$$$",
   openingHoursSpecification: [
     {
@@ -151,8 +190,21 @@ export const getBlogPostingSchema = (post: {
   };
 };
 
+export const getWebSiteSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://clinicalingual.cl/#website",
+  name: "Clínica Lingual",
+  url: "https://clinicalingual.cl",
+  inLanguage: "es-CL",
+  publisher: { "@id": CLINICA_ID },
+});
+
 export const getMedicalOrganizationSchema = () => ({
   "@context": "https://schema.org",
+  // Mismo @id que el Dentist: se fusionan en una sola entidad en vez de
+  // competir como dos organizaciones distintas con el mismo nombre.
+  "@id": CLINICA_ID,
   "@type": "MedicalOrganization",
   name: "Clínica Lingual",
   description:

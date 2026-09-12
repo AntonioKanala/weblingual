@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 type WhatsAppFormProps = {
   /** Número en formato internacional sin "+", ej: "56954127979" */
@@ -40,6 +41,9 @@ export const WhatsAppForm = ({ phone, source }: WhatsAppFormProps) => {
     ];
     if (mensaje.trim()) lines.push(`Mensaje: ${mensaje.trim()}`);
     if (source) lines.push("", `(Desde: ${source})`);
+    // Sale por window.open dentro de un submit, así que la medición
+    // automática de GA4 (que solo ve clics sobre <a>) no lo detecta.
+    trackEvent("whatsapp_form_submit", { source: source ?? "sin-origen", motivo });
     window.open(
       `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(lines.join("\n"))}`,
       "_blank",

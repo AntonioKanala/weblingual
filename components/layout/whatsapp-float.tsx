@@ -1,9 +1,17 @@
 "use client";
 
 import { CONTACT } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 
-const WHATSAPP_URL = `${CONTACT.whatsapp}?text=${encodeURIComponent("Hola, quiero información sobre la ortodoncia invisible")}`;
+const MENSAJE_BASE = "Hola, quiero información sobre la ortodoncia invisible";
+
+const buildUrl = (origen?: string) => {
+  const texto = origen ? `${MENSAJE_BASE}\n\n(Desde: ${origen})` : MENSAJE_BASE;
+  return `${CONTACT.whatsapp}?text=${encodeURIComponent(texto)}`;
+};
+
+const WHATSAPP_URL = buildUrl();
 
 /**
  * Botón flotante de WhatsApp propio (reemplaza el chat widget de GHL).
@@ -12,6 +20,13 @@ const WHATSAPP_URL = `${CONTACT.whatsapp}?text=${encodeURIComponent("Hola, quier
  */
 export const WhatsAppFloat = () => {
   const [visible, setVisible] = useState(false);
+  // El mensaje lleva la página desde la que se escribió, para poder
+  // separar en el CRM quién llegó por el blog y quién por una landing.
+  const [href, setHref] = useState(WHATSAPP_URL);
+
+  useEffect(() => {
+    setHref(buildUrl(`Botón WhatsApp · ${window.location.pathname}`));
+  }, []);
 
   useEffect(() => {
     // Aparece tras un pequeño scroll para no competir con el hero
@@ -23,7 +38,8 @@ export const WhatsAppFloat = () => {
 
   return (
     <a
-      href={WHATSAPP_URL}
+      href={href}
+      onClick={() => trackEvent("whatsapp_click", { source: "boton-flotante" })}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escríbenos por WhatsApp"
