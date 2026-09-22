@@ -65,6 +65,19 @@ export const CAMPANAS: Campana[] = [
     desde: "2026-09-02",
   },
   {
+    // Tanda 2, enviada el 22-09-2026 por el workflow "Reactivación Septiembre
+    // 2026 · Tanda 2". Usa tags propios, así que no se mezcla con la pestaña
+    // del 2-09. La audiencia es el tag que el workflow aplica al enviar, no el
+    // de carga ("sept 26 t2 ola1"). Existe un clon "Tanda 2 S1" que aplica
+    // "sept 26 t2 s1 oferta" / "interesado sept 26 t2 s1", pero al 22-09 no
+    // tiene a nadie inscrito: si se usa, sus interesados NO salen acá.
+    slug: "aguinaldo-sept-2026-t2",
+    nombre: "Aguinaldo Parte 2",
+    tagAudiencia: "sept 26 t2 oferta",
+    tagInteresado: "interesado sept 26 t2",
+    desde: "2026-09-22",
+  },
+  {
     // No es una reactivación (no busca agendar evaluación), así que las
     // columnas agendó/asistió/inició del embudo compartido no aplican mucho
     // acá — se dejan igual por consistencia con el resto del CRM.
