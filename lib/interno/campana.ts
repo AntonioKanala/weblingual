@@ -78,6 +78,19 @@ export const CAMPANAS: Campana[] = [
     desde: "2026-09-22",
   },
   {
+    // Cyber Lingual del 01-10-2026: cuota inicial $300.000 + 12 cuotas de
+    // $89.000. Workflow "Reactivación Cyber Octubre 2026" (a603d38f-…), clon de
+    // la tanda 2 con tags propios. La carga se taguea "cyber oct 26 ola2" (y
+    // "ola3" si se usa la reserva); la audiencia es el tag que aplica el
+    // workflow al enviar. Respuesta por botones: "Quiero agendar" / "Me
+    // interesa" caen en la rama Sí del workflow.
+    slug: "cyber-oct-2026",
+    nombre: "Cyber Lingual Octubre",
+    tagAudiencia: "cyber oct 26 oferta",
+    tagInteresado: "interesado cyber oct 26",
+    desde: "2026-10-01",
+  },
+  {
     // No es una reactivación (no busca agendar evaluación), así que las
     // columnas agendó/asistió/inició del embudo compartido no aplican mucho
     // acá — se dejan igual por consistencia con el resto del CRM.
