@@ -46,8 +46,9 @@ const sections = [
     body: "Aplicamos medidas técnicas y organizativas razonables para proteger tus datos contra acceso, pérdida o divulgación no autorizados. La ficha clínica se conserva por los plazos que exige la normativa sanitaria vigente.",
   },
   {
-    title: "8. Cookies y analítica",
-    body: "Este sitio utiliza cookies y herramientas de analítica para medir el uso de las páginas y mejorar tu experiencia. Puedes bloquear o eliminar las cookies desde la configuración de tu navegador sin que ello impida navegar por el sitio.",
+    title: "8. Cookies, medición y herramientas de terceros",
+    body: "Las fuentes tipográficas del sitio se sirven desde nuestro propio servidor. Usamos Google Analytics para medir de forma agregada el uso de las páginas, pero solo se activa si lo aceptas en el aviso que aparece al entrar; si lo rechazas, no se carga. El mapa de Google Maps, los videos de YouTube y la agenda en línea son servicios de terceros: el mapa y los videos se cargan solo cuando pulsas el botón correspondiente, y la agenda funciona dentro de la página de agendamiento. Puedes cambiar tu decisión sobre la medición con el botón de abajo y bloquear o eliminar las cookies desde la configuración de tu navegador sin que ello impida navegar por el sitio.",
+    reabrirAviso: true,
   },
   {
     title: "9. Contacto",
@@ -68,7 +69,7 @@ export default function PrivacidadPage() {
             {SITE_NAME}.
           </p>
           <p className="mt-2 text-sm text-white/40">
-            Última actualización: julio de 2026
+            Última actualización: 22 de octubre de 2026
           </p>
         </div>
       </section>
@@ -84,6 +85,15 @@ export default function PrivacidadPage() {
                 <p className="mt-3 leading-relaxed text-text-muted">
                   {section.body}
                 </p>
+                {"reabrirAviso" in section && section.reabrirAviso && (
+                  <button
+                    type="button"
+                    data-aviso-reabrir
+                    className="mt-4 rounded-full border border-text-light/20 px-5 py-2 text-sm font-semibold text-text-light transition-colors hover:border-accent-gold hover:text-accent-gold"
+                  >
+                    Cambiar mi decisión sobre la medición
+                  </button>
+                )}
               </div>
             ))}
           </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import Script from "next/script";
-import { GA_MEASUREMENT_ID, GA_LINKER_DOMAINS } from "@/lib/analytics";
+import { AvisoMedicion } from "@/components/ui/aviso-medicion";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -83,18 +83,14 @@ export default function RootLayout({
     <html lang="es" className={`${playfair.variable} ${dmSans.variable}`}>
       <body>
         {children}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
+        {/* Solo el stub de gtag (no hace pedidos a la red). gtag.js y el
+            gtag('config') los carga <AvisoMedicion /> cuando la persona
+            acepta la medición. */}
         <Script id="google-analytics" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              linker: { domains: ${JSON.stringify(GA_LINKER_DOMAINS)} }
-            });`}
+            function gtag(){dataLayer.push(arguments);}`}
         </Script>
+        <AvisoMedicion />
       </body>
     </html>
   );

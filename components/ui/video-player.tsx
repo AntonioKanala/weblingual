@@ -40,16 +40,37 @@ export const VideoPlayer = ({
   if (type === "instagram") {
     // Extract ID from full URL or just use ID, assume src is the shortcode like "C8H3V10Rxlm"
     const embedUrl = `https://www.instagram.com/p/${src}/embed`;
+    const postUrl = `https://www.instagram.com/p/${src}/`;
     return (
       <div className={cn("relative overflow-hidden rounded-2xl bg-white shadow-sm flex justify-center", className)}>
-        <iframe
-          src={embedUrl}
-          className="w-full h-[600px]"
-          frameBorder="0"
-          scrolling="no"
-          allowTransparency={true}
-          allowFullScreen={true}
-        />
+        {isPlaying ? (
+          <iframe
+            src={embedUrl}
+            className="w-full h-[600px]"
+            frameBorder="0"
+            scrolling="no"
+            allowTransparency={true}
+            allowFullScreen={true}
+          />
+        ) : (
+          // Aviso: la publicación de Instagram no se carga sola.
+          <div className="flex h-[600px] w-full flex-col items-center justify-center gap-3 px-6 text-center text-sm text-text-muted">
+            <p className="max-w-xs">
+              Esta publicación la entrega Instagram. Al cargarla, Instagram
+              recibe datos de tu visita.
+            </p>
+            <button
+              type="button"
+              onClick={handlePlay}
+              className="rounded-full border border-text-light/20 px-4 py-2 text-xs font-semibold text-text-light transition-colors hover:border-accent-gold hover:text-accent-gold"
+            >
+              Cargar publicación
+            </button>
+            <a href={postUrl} target="_blank" rel="noopener noreferrer" className="text-xs underline hover:text-accent-gold">
+              Abrir en Instagram
+            </a>
+          </div>
+        )}
       </div>
     );
   }
@@ -76,18 +97,30 @@ export const VideoPlayer = ({
             <button
               onClick={handlePlay}
               className="absolute inset-0 flex items-center justify-center"
-              aria-label={`Play ${title}`}
+              aria-label={`Cargar video de YouTube: ${title}`}
             >
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-accent-gold shadow-2xl transition-all hover:scale-110 hover:bg-accent-gold-light">
                 <Play className="h-8 w-8 fill-background-dark text-background-dark" />
               </div>
             </button>
+            {/* Aviso: el reproductor de YouTube se carga solo al pulsar. */}
+            <p className="absolute inset-x-0 bottom-0 z-10 bg-background-dark/70 px-3 py-1.5 text-center text-[11px] leading-snug text-white/85">
+              Video de YouTube: al reproducirlo, YouTube recibe datos de tu visita.{" "}
+              <a
+                href={`https://www.youtube.com/watch?v=${src}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-accent-gold"
+              >
+                Abrir en YouTube
+              </a>
+            </p>
           </div>
         ) : (
           // Actual YouTube iframe
           <div className="relative aspect-video">
             <iframe
-              src={`https://www.youtube.com/embed/${src}?autoplay=1&rel=0`}
+              src={`https://www.youtube-nocookie.com/embed/${src}?autoplay=1&rel=0`}
               title={title}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
