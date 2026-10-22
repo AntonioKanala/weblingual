@@ -32,6 +32,8 @@ export function FormularioExperiencia() {
   const [rut, setRut] = useState("");
   const [rutError, setRutError] = useState(false);
   const [detalle, setDetalle] = useState("");
+  const [acepta, setAcepta] = useState(false);
+  const [consentimientoError, setConsentimientoError] = useState(false);
   const [estado, setEstado] = useState<Estado>("form");
   const mostrarComentario = rating === null || rating <= 4;
 
@@ -46,7 +48,9 @@ export function FormularioExperiencia() {
     const rutLimpio = rut.trim();
     const rutValido = RUT_REGEX.test(rutLimpio);
     setRutError(!rutValido);
-    if (!nombreLimpio || !rutValido) return;
+    // noValidate: el `required` de la casilla no frena el envío, se exige aquí.
+    setConsentimientoError(!acepta);
+    if (!nombreLimpio || !rutValido || !acepta) return;
 
     setEstado("enviando");
     try {
@@ -166,6 +170,40 @@ export function FormularioExperiencia() {
             />
           </div>
         )}
+
+        <div className="flex flex-col gap-2">
+          <label className="flex items-start gap-3 text-sm text-neutral-700">
+            <input
+              type="checkbox"
+              name="consentimiento"
+              required
+              checked={acepta}
+              onChange={(e) => {
+                setAcepta(e.target.checked);
+                if (e.target.checked) setConsentimientoError(false);
+              }}
+              aria-invalid={consentimientoError}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-[#1A6B4F]"
+            />
+            <span>
+              Acepto que Clínica Lingual use estos datos para responder mi
+              consulta, según su{" "}
+              <a
+                href="/privacidad"
+                target="_blank"
+                rel="noopener"
+                className="underline hover:text-[#1A6B4F]"
+              >
+                política de privacidad
+              </a>
+            </span>
+          </label>
+          {consentimientoError && (
+            <p className="text-sm text-red-600">
+              Para enviar tu respuesta debes aceptar el uso de tus datos.
+            </p>
+          )}
+        </div>
 
         {estado === "error" && (
           <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">

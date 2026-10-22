@@ -24,6 +24,8 @@ export const WhatsAppForm = ({ phone, source }: WhatsAppFormProps) => {
   const [motivo, setMotivo] = useState(motivos[0]);
   const [mensaje, setMensaje] = useState("");
   const [error, setError] = useState(false);
+  const [acepta, setAcepta] = useState(false);
+  const [errorConsentimiento, setErrorConsentimiento] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +34,13 @@ export const WhatsAppForm = ({ phone, source }: WhatsAppFormProps) => {
       return;
     }
     setError(false);
+    // El form usa noValidate, así que el `required` de la casilla no frena el
+    // envío por sí solo: el consentimiento se exige aquí.
+    if (!acepta) {
+      setErrorConsentimiento(true);
+      return;
+    }
+    setErrorConsentimiento(false);
     const lines = [
       "Hola, quiero agendar mi evaluación de ortodoncia invisible.",
       "",
@@ -131,9 +140,39 @@ export const WhatsAppForm = ({ phone, source }: WhatsAppFormProps) => {
         />
       </div>
 
+      <label className="flex items-start gap-3 text-sm text-text-muted">
+        <input
+          type="checkbox"
+          name="consentimiento"
+          required
+          checked={acepta}
+          onChange={(e) => {
+            setAcepta(e.target.checked);
+            if (e.target.checked) setErrorConsentimiento(false);
+          }}
+          className="mt-0.5 h-4 w-4 shrink-0 accent-accent-gold"
+        />
+        <span>
+          Acepto que Clínica Lingual use estos datos para responder mi consulta, según su{" "}
+          <a
+            href="/privacidad"
+            target="_blank"
+            rel="noopener"
+            className="underline hover:text-accent-gold"
+          >
+            política de privacidad
+          </a>
+        </span>
+      </label>
+
       {error && (
         <p className="text-sm font-medium text-red-600" role="alert">
           Completa tu nombre y teléfono para que podamos responderte.
+        </p>
+      )}
+      {errorConsentimiento && (
+        <p className="text-sm font-medium text-red-600" role="alert">
+          Para enviar tu consulta debes aceptar el uso de tus datos.
         </p>
       )}
 

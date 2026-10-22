@@ -88,6 +88,15 @@ export default function AgendaPage() {
             <h3 className="mb-6 text-center font-display text-2xl font-bold text-text-light sm:text-3xl">
               Agenda Nuevos Pacientes
             </h3>
+            <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-text-muted">
+              La agenda funciona con nuestro sistema de reservas, de un proveedor
+              externo. Los datos que ingreses se usan solo para coordinar tu
+              evaluación, según nuestra{" "}
+              <a href="/privacidad" className="underline hover:text-accent-gold">
+                política de privacidad
+              </a>
+              .
+            </p>
             <div className="overflow-hidden rounded-2xl border border-text-light/10 bg-white shadow-xl min-h-[750px]">
               <iframe
                 src="https://link.canala-studio.com/widget/booking/5m1hsxhm7R3E5aEH5C97"
