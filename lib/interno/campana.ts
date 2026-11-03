@@ -123,6 +123,68 @@ function motivoDescarte(tags: string[]): string | null {
   return null;
 }
 
+// "Atendiéndose" y "En sala de espera" son la misma visita a medio registrar:
+// el espejo de Dentalink es nocturno y a veces la pilla antes de cerrarse.
+const ESTADOS_ATENDIDA = new Set(["Atendido", "Atendiéndose", "En sala de espera"]);
+
+type Cita = { id_paciente: number; fecha: string; estado_cita: string | null; nombre_dentista: string | null };
+
+/** Qué había pasado con el paciente en Dentalink ANTES de recibir la campaña. */
+export type HistorialPrevio = {
+  // "asistio": fue al menos a una evaluación. "no_vino": agendó evaluación pero
+  // nunca llegó (faltó, se anuló, quedó sin confirmar…). "nunca": su ficha no
+  // tiene ninguna evaluación antes del envío.
+  estado: "asistio" | "no_vino" | "nunca";
+  // Última evaluación atendida si asistió; última agendada si no vino.
+  fecha: string | null;
+  // Estado en Dentalink de su última evaluación agendada, tal cual viene.
+  ultimoEstado: string | null;
+  vecesAgendo: number;
+};
+
+/**
+ * Evaluaciones de estos pacientes anteriores a `antesDe`, de la más nueva a la
+ * más vieja. Pagina porque PostgREST corta en 1.000 filas sin avisar, y cientos
+ * de pacientes con años de historia pasan ese tope. Devuelve null si falla,
+ * para no confundir "no se pudo leer" con "nunca agendó".
+ */
+async function evaluacionesPrevias(ids: number[], antesDe: string): Promise<Cita[] | null> {
+  const db = supabaseAdmin();
+  const filas: Cita[] = [];
+  for (let offset = 0; ; offset += 1000) {
+    const { data, error } = await db
+      .from("citas")
+      .select("id_paciente,fecha,estado_cita,nombre_dentista")
+      .in("id_paciente", ids)
+      .eq("nombre_dentista", PROFESIONAL_EVALUACION)
+      .lt("fecha", antesDe)
+      .order("fecha", { ascending: false })
+      .order("id", { ascending: false })
+      .range(offset, offset + 999);
+    if (error) return null;
+    filas.push(...((data ?? []) as Cita[]));
+    if (!data || data.length < 1000) return filas;
+  }
+}
+
+/** `evals` viene ordenado de la más nueva a la más vieja. */
+function resumirHistorial(evals: Cita[]): HistorialPrevio {
+  // "Cambio de fecha" es la cita vieja de una reprogramación: la nueva queda
+  // como fila aparte, así que contarla duplicaría el agendamiento.
+  const reales = evals.filter((x) => x.estado_cita !== "Cambio de fecha");
+  const base = reales.length ? reales : evals;
+  if (base.length === 0) {
+    return { estado: "nunca", fecha: null, ultimoEstado: null, vecesAgendo: 0 };
+  }
+  const atendida = base.find((x) => ESTADOS_ATENDIDA.has(x.estado_cita ?? ""));
+  return {
+    estado: atendida ? "asistio" : "no_vino",
+    fecha: (atendida ?? base[0]).fecha,
+    ultimoEstado: base[0].estado_cita,
+    vecesAgendo: base.length,
+  };
+}
+
 export type FilaCampana = {
   contactId: string;
   nombre: string;
@@ -140,6 +202,8 @@ export type FilaCampana = {
   inicio: boolean;
   fechaCita: string | null;
   estadoCita: string | null;
+  // null si no se cruzó con Dentalink o si no se pudo leer su historial.
+  historial: HistorialPrevio | null;
   ultimaLlamada: { resultado: string; llamado_at: string } | null;
   vecesLlamado: number;
   // Solo se llena para campañas de reseñas (tabla `resenas`, match directo
@@ -254,7 +318,7 @@ export async function getCampana(
 
   const contactIds = interesados.map((c) => c.id);
 
-  const [citasRes, tratRes, llamRes, resenasRes] = await Promise.all([
+  const [citasRes, tratRes, llamRes, resenasRes, previas] = await Promise.all([
     db
       .from("citas")
       .select("id_paciente,fecha,estado_cita,nombre_dentista")
@@ -282,10 +346,16 @@ export async function getCampana(
           .in("ghl_contact_id", contactIds)
           .order("creado_el", { ascending: false })
       : Promise.resolve({ data: [] as { ghl_contact_id: string; puntuacion: number; detalle: string | null }[] }),
+    evaluacionesPrevias(idsConsulta, campana.desde),
   ]);
 
-  type Cita = { id_paciente: number; fecha: string; estado_cita: string | null; nombre_dentista: string | null };
   const citas = (citasRes.data ?? []) as Cita[];
+  const previasPorPaciente = new Map<number, Cita[]>();
+  for (const x of previas ?? []) {
+    const arr = previasPorPaciente.get(x.id_paciente) ?? [];
+    arr.push(x);
+    previasPorPaciente.set(x.id_paciente, arr);
+  }
   type Trat = { id_paciente: number; abonado: number };
   const tratamientos = (tratRes.data ?? []) as Trat[];
 
@@ -340,12 +410,14 @@ export async function getCampana(
       fechaRespuesta: resena?.creado_el ?? c.dateUpdated ?? null,
       pacienteId,
       agendo: suyas.length > 0,
-      asistio: suyas.some((x) => x.estado_cita === "Atendido"),
+      asistio: suyas.some((x) => ESTADOS_ATENDIDA.has(x.estado_cita ?? "")),
       inicio: pacienteId
         ? tratamientos.some((t) => t.id_paciente === pacienteId && Number(t.abonado) > 0)
         : false,
       fechaCita: cita?.fecha ?? null,
       estadoCita: cita?.estado_cita ?? null,
+      historial:
+        pacienteId && previas ? resumirHistorial(previasPorPaciente.get(pacienteId) ?? []) : null,
       ultimaLlamada: hist[0] ? { resultado: hist[0].resultado, llamado_at: hist[0].llamado_at } : null,
       vecesLlamado: hist.length,
       puntuacion: resena?.puntuacion ?? null,

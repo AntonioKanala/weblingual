@@ -4,6 +4,7 @@ const PESTANAS = [
   { href: "/interno/agenda", etiqueta: "Agenda del día" },
   { href: "/interno/crm/no-iniciaron", etiqueta: "Asistió y no inició" },
   { href: "/interno/crm/campana", etiqueta: "Campañas" },
+  { href: "/interno/crm/resenas", etiqueta: "Reseñas" },
 ];
 
 export function CrmNav({ activa }: { activa: string }) {
