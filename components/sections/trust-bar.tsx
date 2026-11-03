@@ -15,13 +15,13 @@ const credentials = [
   },
   {
     icon: "patients",
-    text: "+5,000 tratamientos finalizados",
+    text: "+5.000 tratamientos finalizados",
     subtext: "Experiencia clínica comprobada en Chile",
   },
   {
     icon: "google",
-    text: "4,2 ★ en Google",
-    subtext: "166 opiniones de pacientes",
+    text: "4,3 ★ en Google",
+    subtext: "Más de 170 opiniones de pacientes",
   },
 ];
 

@@ -24,21 +24,20 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Ortodoncia Invisible en Las Condes | Clínica Lingual",
   description:
-    "Brackets linguales 100% invisibles, personalizados con tecnología 3D. +5,000 tratamientos. Escríbenos por WhatsApp y agenda tu evaluación.",
+    "Brackets linguales 100% invisibles, personalizados con tecnología 3D. +5.000 tratamientos. Escríbenos por WhatsApp y agenda tu evaluación.",
   alternates: {
     canonical: "/landing/ortodoncia-invisible",
   },
   openGraph: {
     title: "Ortodoncia Invisible en Las Condes | Clínica Lingual",
     description:
-      "Brackets linguales 100% invisibles. +5,000 tratamientos finalizados en Santiago.",
+      "Brackets linguales 100% invisibles. +5.000 tratamientos finalizados en Santiago.",
     url: "/landing/ortodoncia-invisible",
   },
 };
 
-// Número al que conversan los CTAs de esta landing. La landing original (lingualclinica.cl)
-// usaba +56 9 7807 4000 — confirmar cuál es la línea de campaña vigente antes de publicar.
-const WHATSAPP_DIGITS = "56954127979";
+// Número al que conversan los CTAs de esta landing (mismo que CONTACT.whatsapp).
+const WHATSAPP_DIGITS = "56990123002";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_DIGITS}?text=${encodeURIComponent("Hola, quiero información sobre la ortodoncia invisible")}`;
 
 const benefits = [
@@ -158,7 +157,7 @@ export default function LandingOrtodonciaInvisiblePage() {
                   ))}
                 </div>
                 <p className="text-sm font-medium text-white/70">
-                  +5,000 tratamientos finalizados
+                  +5.000 tratamientos finalizados
                 </p>
               </div>
             </FadeIn>

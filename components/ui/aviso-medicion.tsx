@@ -124,7 +124,7 @@ export function AvisoMedicion() {
         <button
           type="button"
           onClick={rechazar}
-          className="rounded-full border border-text-light/20 px-5 py-2 font-semibold text-text-light transition-colors hover:border-text-light/40"
+          className="rounded-full bg-background-dark px-5 py-2 font-semibold text-white transition-colors hover:bg-black"
         >
           Rechazar
         </button>

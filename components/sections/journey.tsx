@@ -95,7 +95,7 @@ export const Journey = () => {
             href={URLS.agenda}
             className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
           >
-            Agenda tu evaluación inicial
+            Agenda tu evaluación
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

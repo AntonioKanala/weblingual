@@ -7,14 +7,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Nuestro Equipo | Clínica Lingual Santiago",
+  title: "Equipo de Ortodoncistas Linguales | Clínica Lingual Santiago",
   description:
-    "Conoce al equipo de ortodoncistas especialistas en ortodoncia lingual de Clínica Lingual. Miembros de la ESLO, Las Condes, Santiago.",
+    "Conoce a los ortodoncistas especialistas en ortodoncia lingual de Clínica Lingual, miembros de la ESLO (European Society of Lingual Orthodontics), en Las Condes.",
   alternates: {
     canonical: "/nuestro-equipo",
   },
   openGraph: {
-    title: "Nuestro Equipo | Clínica Lingual Santiago",
+    title: "Equipo de Ortodoncistas Linguales | Clínica Lingual Santiago",
     description:
       "Ortodoncistas especialistas en ortodoncia lingual, miembros de la ESLO. Las Condes, Santiago.",
     url: "/nuestro-equipo",
@@ -144,7 +144,7 @@ export default function EquipoPage() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="mt-6 max-w-xl text-lg text-white/60">
-              Más de 5,000 tratamientos finalizados. Miembros de la ESLO.
+              Más de 5.000 tratamientos finalizados. Miembros de la ESLO.
               Formación exclusiva en las mejores universidades y en la técnica lingual.
             </p>
           </FadeIn>
@@ -301,7 +301,7 @@ export default function EquipoPage() {
               href={URLS.agenda}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all hover:scale-[1.02] hover:shadow-lg"
             >
-              Agenda tu evaluación inicial
+              Agenda tu evaluación
               <ArrowRight className="h-4 w-4" />
             </Link>
           </FadeIn>

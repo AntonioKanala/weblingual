@@ -22,6 +22,9 @@ const config: Config = {
           gold: {
             DEFAULT: "#C9A96E",
             light: "#D4B87A",
+            // Para texto e íconos sobre fondos claros: el dorado base da ~2:1
+            // sobre el crema; este da 4,7:1 (AA) sin salirse de la marca.
+            dark: "#86682F",
           },
           green: {
             DEFAULT: "#1A6B4F",

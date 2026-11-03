@@ -1,6 +1,10 @@
 import { ComparisonTable } from "@/components/sections/comparison-table";
 import { FadeIn } from "@/components/animations/fade-in";
-import { getBreadcrumbSchema } from "@/lib/schemas";
+import {
+  getBreadcrumbSchema,
+  getFAQPageSchema,
+  getMedicalProcedureSchema,
+} from "@/lib/schemas";
 import { ScienceTabs } from "@/components/sections/science-tabs";
 import { FAQ } from "@/components/sections/faq";
 import { VideoPlayer } from "@/components/ui/video-player";
@@ -132,11 +136,15 @@ export default function TratamientoPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
+          __html: JSON.stringify([
             getBreadcrumbSchema([
               { name: "Ortodoncia Lingual", path: "/ortodoncia-lingual" },
             ]),
-          ),
+            getMedicalProcedureSchema(),
+            // La página muestra el mismo <FAQ /> que la home: el marcado
+            // describe contenido visible acá también.
+            getFAQPageSchema(),
+          ]),
         }}
       />
       {/* Hero */}
@@ -186,7 +194,7 @@ export default function TratamientoPage() {
                 ))}
               </div>
               <span className="text-sm text-white/50">
-                +5,000 Tratamientos Finalizados
+                +5.000 Tratamientos Finalizados
               </span>
             </div>
           </FadeIn>
@@ -197,7 +205,7 @@ export default function TratamientoPage() {
                 href={URLS.agenda}
                 className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all hover:scale-[1.02] hover:shadow-lg"
               >
-                Agenda tu evaluación inicial
+                Agenda tu evaluación
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -362,7 +370,7 @@ export default function TratamientoPage() {
                 href={URLS.agenda}
                 className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all hover:scale-[1.02] hover:shadow-lg"
               >
-                Agenda tu evaluación inicial gratuita
+                Agenda tu evaluación gratis
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a

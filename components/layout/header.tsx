@@ -23,6 +23,7 @@ export const Header = () => {
   }, []);
 
   return (
+    <>
     <header
       className={cn(
         "fixed left-0 right-0 top-0 z-50 transition-all duration-500",
@@ -78,16 +79,17 @@ export const Header = () => {
                   >
                     Nuestras Instalaciones
                   </Link>
-                  <Link
-                    href={URLS.precios}
-                    className="block rounded-lg px-4 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
-                  >
-                    Precios
-                  </Link>
                 </div>
               </div>
             )}
           </div>
+
+          <Link
+            href={URLS.precios}
+            className="text-[13px] font-medium uppercase tracking-[0.1em] text-white/70 transition-colors hover:text-white"
+          >
+            Precios
+          </Link>
 
           <Link
             href={URLS.testimonios}
@@ -110,23 +112,24 @@ export const Header = () => {
             Blog
           </Link>
 
+        </div>
+
+        {/* CTA Button — AG1 style: pill shape. El pago es para pacientes en
+            tratamiento: va como enlace secundario, no compite con la agenda. */}
+        <div className="hidden items-center gap-5 lg:flex">
           <Link
             href={URLS.pago}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13px] font-medium uppercase tracking-[0.1em] text-white/70 transition-colors hover:text-white"
+            className="text-sm text-white/60 transition-colors hover:text-white"
           >
-            Botón de Pago
+            Botón de pago
           </Link>
-        </div>
-
-        {/* CTA Button — AG1 style: pill shape */}
-        <div className="hidden lg:block">
           <Link
             href={URLS.agenda}
             className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-6 py-2.5 text-sm font-semibold text-background-dark transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
           >
-            Agenda
+            Agenda tu evaluación
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
@@ -140,12 +143,15 @@ export const Header = () => {
           <Menu className="h-6 w-6" />
         </button>
       </nav>
-
-      {/* Mobile Navigation */}
-      <MobileNav
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-      />
     </header>
+
+    {/* Fuera del <header>: el backdrop-blur del header (al hacer scroll) lo
+        vuelve el bloque contenedor de sus hijos `fixed`, y el panel quedaba
+        del alto del header (96 px) con el footer pintado encima. */}
+    <MobileNav
+      isOpen={isMobileMenuOpen}
+      onClose={() => setIsMobileMenuOpen(false)}
+    />
+    </>
   );
 };

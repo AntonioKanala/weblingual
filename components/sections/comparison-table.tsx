@@ -74,7 +74,7 @@ const StatusIcon = ({ status }: { status: "yes" | "partial" | "no" }) => {
   if (status === "yes")
     return (
       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-gold/20 sm:h-9 sm:w-9">
-        <Check className="h-4 w-4 text-accent-gold sm:h-5 sm:w-5" />
+        <Check className="h-4 w-4 text-accent-gold-dark sm:h-5 sm:w-5" />
       </div>
     );
   if (status === "partial")
@@ -119,14 +119,14 @@ export const ComparisonTable = () => {
     <section className="bg-background-light py-20 lg:py-28">
       <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
         <FadeIn>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold-dark">
             Comparativa clínica
           </p>
           <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold text-text-light md:text-4xl lg:text-5xl">
             Ortodoncia Lingual vs. las alternativas
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-text-muted">
-            Datos basados en literatura científica y experiencia clínica de más de 5,000 tratamientos.
+            Datos basados en literatura científica y experiencia clínica de más de 5.000 tratamientos.
           </p>
         </FadeIn>
 
@@ -140,7 +140,7 @@ export const ComparisonTable = () => {
                     Característica
                   </th>
                   <th className="pb-5 text-center">
-                    <span className="rounded-full bg-accent-gold/10 px-4 py-1.5 text-sm font-bold text-accent-gold">
+                    <span className="rounded-full bg-accent-gold/10 px-4 py-1.5 text-sm font-bold text-accent-gold-dark">
                       Lingual
                     </span>
                   </th>
@@ -191,7 +191,7 @@ export const ComparisonTable = () => {
             <div className="sticky top-[72px] z-10 -mx-6 border-b border-text-light/10 bg-background-light/95 px-6 py-3 backdrop-blur-md">
               <div className="grid grid-cols-[1fr_1fr_1fr] gap-1">
                 <div className="flex flex-col items-center">
-                  <span className="rounded-full bg-accent-gold/10 px-3 py-1 text-[11px] font-bold text-accent-gold">
+                  <span className="rounded-full bg-accent-gold/10 px-3 py-1 text-[11px] font-bold text-accent-gold-dark">
                     Lingual
                   </span>
                 </div>
@@ -229,7 +229,7 @@ export const ComparisonTable = () => {
         {/* Bottom note */}
         <FadeIn delay={0.3}>
           <p className="mt-8 text-xs text-text-muted/60">
-            Fuente: Datos basados en literatura científica publicada y experiencia clínica de más de 5,000 tratamientos.
+            Fuente: Datos basados en literatura científica publicada y experiencia clínica de más de 5.000 tratamientos.
           </p>
         </FadeIn>
       </div>

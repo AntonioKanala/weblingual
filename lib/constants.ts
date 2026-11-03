@@ -3,7 +3,7 @@ export const SITE_TAGLINE = "La Verdadera Ortodoncia Invisible";
 export const SITE_SUBTITLE =
   "Cambia tu sonrisa sin que nadie se entere con nuestros brackets y alineadores invisibles";
 export const HASHTAG = "#ViveClínicaLingual";
-export const STAT_BADGE = "★★★★★ +5,000 Tratamientos Finalizados";
+export const STAT_BADGE = "★★★★★ +5.000 Tratamientos Finalizados";
 
 export const URLS = {
   home: "/",
@@ -28,9 +28,12 @@ export const ASSETS = {
 } as const;
 
 export const CONTACT = {
-  phone: "+56 9 5412 7979",
-  phoneHref: "tel:+56954127979",
-  whatsapp: "https://wa.me/56954127979",
+  phone: "+56 9 9012 3002",
+  phoneHref: "tel:+56990123002",
+  whatsapp: "https://wa.me/56990123002",
+  // Buzón real (MX de Google Workspace). También es el canal para ejercer
+  // los derechos sobre datos personales (Ley 21.719): alguien debe leerlo.
+  email: "info@clinicalingual.cl",
   address: "Cam. El Alba 8760, oficina 701, Las Condes, Región Metropolitana",
   addressShort: "Cam. El Alba 8760, of. 701, Las Condes",
   mapsEmbedSrc:

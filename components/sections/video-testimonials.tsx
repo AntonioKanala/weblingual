@@ -24,11 +24,11 @@ export const VideoTestimonials = () => {
                 ))}
               </div>
               <p className="text-sm text-text-muted">
-                +5,000 tratamientos finalizados con éxito
+                +5.000 tratamientos finalizados con éxito
               </p>
 
               <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-text-light md:text-4xl lg:text-[2.75rem]">
-                Más de 5,000 pacientes satisfechos
+                Más de 5.000 pacientes satisfechos
               </h2>
 
               <Link

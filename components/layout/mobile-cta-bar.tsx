@@ -37,7 +37,7 @@ export const MobileCtaBar = () => {
     >
       <Link href={URLS.agenda}>
         <Button variant="cta" className="w-full" showArrow>
-          Agenda tu Evaluación
+          Agenda tu evaluación
         </Button>
       </Link>
     </motion.div>

@@ -1,175 +1,157 @@
 "use client";
 
 import { FadeIn } from "@/components/animations/fade-in";
-import { ArrowRight, MessageCircle, Sparkles, Gift } from "lucide-react";
+import { AgendaEmbed } from "@/components/ui/agenda-embed";
+import { CONTACT } from "@/lib/constants";
+import { ArrowDown, Gift, MessageCircle, Sparkles } from "lucide-react";
 import Link from "next/link";
-import Script from "next/script";
 import { useEffect } from "react";
 import { trackEvent } from "@/lib/analytics";
 
+const DENTALINK_AGENDA =
+  "https://f925e25a786881c8ce0d386b933134a116578770.agenda.softwaredentalink.com/agenda/especialidad";
+
+const WHATSAPP_CONTROL = `${CONTACT.whatsapp}?text=${encodeURIComponent(
+  "Hola, necesito agendar mi control de ortodoncia, por favor 😀",
+)}`;
+
 export default function AgendaPage() {
   // El agendamiento ocurre dentro del iframe de GoHighLevel, así que este
-  // es el último paso del embudo que el sitio puede medir por sí mismo.
+  // es el último paso del embudo que el sitio puede medir por sí mismo
+  // (después viene `agenda_open`, al pulsar «Ver horarios disponibles»).
   useEffect(() => {
     trackEvent("agenda_view");
   }, []);
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-background-dark pb-20 pt-36 lg:pb-28 lg:pt-44">
+      {/* Hero: corto, para que la agenda quede cerca del primer pantallazo */}
+      <section className="bg-background-dark pb-14 pt-32 lg:pb-20 lg:pt-40">
         <div className="mx-auto max-w-4xl px-6 sm:px-10">
           <FadeIn>
             <div className="text-center">
               <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Agenda tu Evaluación de Ortodoncia Invisible
               </h1>
-              <p className="mt-4 text-xl font-medium text-white/80 sm:text-2xl">
-                Cambia tu sonrisa sin que nadie se entere
+              <p className="mt-4 text-lg font-medium text-white/80 sm:text-xl">
+                Evaluación inicial gratuita con un especialista en ortodoncia
+                lingual, en Las Condes.
               </p>
-              <p className="mt-2 text-sm font-semibold uppercase tracking-widest text-accent-gold">
-                Expertos en Ortodoncia Invisible en Las Condes
-              </p>
+              <a
+                href="#ya-eres-paciente"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm text-white/70 underline-offset-4 hover:text-white hover:underline"
+              >
+                ¿Ya eres paciente? Agenda tu control aquí
+                <ArrowDown className="h-3.5 w-3.5" />
+              </a>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="bg-background-light py-12 lg:py-24">
+      <section className="bg-background-light py-12 lg:py-20">
         <div className="mx-auto max-w-4xl px-6 sm:px-10">
-
-        <FadeIn delay={0.1}>
-          <div className="mx-auto mt-8 max-w-lg text-center">
-            <a
-              href="https://f925e25a786881c8ce0d386b933134a116578770.agenda.softwaredentalink.com/agenda/especialidad"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-accent-gold bg-transparent px-8 py-3.5 text-sm font-semibold text-accent-gold transition-all hover:bg-accent-gold hover:text-white sm:w-auto"
-            >
-              Si ya eres paciente de la clínica, Agenda aquí
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.2}>
-          <div className="mx-auto mt-12 max-w-2xl text-center">
-            <h2 className="font-display text-2xl font-bold text-text-light sm:text-3xl">
-              Descubre un Tratamiento 100% Invisible
+          {/* La herramienta primero; la explicación, de refuerzo debajo */}
+          <FadeIn>
+            <h2 className="mb-6 text-center font-display text-2xl font-bold text-text-light sm:text-3xl">
+              Agenda nuevos pacientes
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-text-muted sm:text-base">
-              En tu evaluación inicial revisamos tu caso, resolvemos tus dudas
-              y te damos un plan de tratamiento con plazos y presupuesto
-              claros. Si quieres conocer el proceso completo antes de agendar,
-              puedes leer sobre{" "}
-              <Link
-                href="/ortodoncia-lingual"
-                className="text-accent-gold underline underline-offset-2"
-              >
-                cómo funciona la ortodoncia lingual
-              </Link>
-              .
-            </p>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent-gold/10 px-6 py-4 text-left">
-              <Gift className="h-6 w-6 shrink-0 text-accent-gold" />
-              <p className="text-sm font-medium text-text-light sm:text-base">
-                Agenda tu Evaluación Inicial y obtén un{" "}
-                <strong className="text-accent-gold">Blanqueamiento Gratis</strong> este mes si
-                inicias tratamiento de Brackets Invisibles.
+            <AgendaEmbed />
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <div className="mx-auto mt-14 max-w-2xl text-center">
+              <h2 className="font-display text-2xl font-bold text-text-light sm:text-3xl">
+                Qué pasa en tu evaluación
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-text-muted sm:text-base">
+                Revisamos tu caso, resolvemos tus dudas y te damos un plan de
+                tratamiento con plazos y presupuesto claros. Si quieres conocer
+                el proceso completo antes de venir, puedes leer sobre{" "}
+                <Link
+                  href="/ortodoncia-lingual"
+                  className="text-accent-gold-dark underline underline-offset-2"
+                >
+                  cómo funciona la ortodoncia lingual
+                </Link>{" "}
+                o revisar{" "}
+                <Link
+                  href="/precios-ortodoncia-lingual"
+                  className="text-accent-gold-dark underline underline-offset-2"
+                >
+                  cómo se arma el presupuesto
+                </Link>
+                .
               </p>
+              <div className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent-gold/10 px-6 py-4 text-left">
+                <Gift className="h-6 w-6 shrink-0 text-accent-gold-dark" />
+                <p className="text-sm font-medium text-text-light sm:text-base">
+                  Agenda tu evaluación inicial y obtén un{" "}
+                  <strong className="text-accent-gold-dark">Blanqueamiento Gratis</strong> este mes si
+                  inicias tratamiento de Brackets Invisibles.
+                </p>
+              </div>
             </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
 
-        {/* Canala Widget for New Patients */}
-        <FadeIn delay={0.3}>
-          <div className="mt-16">
-            <h3 className="mb-6 text-center font-display text-2xl font-bold text-text-light sm:text-3xl">
-              Agenda Nuevos Pacientes
-            </h3>
-            <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-text-muted">
-              La agenda funciona con nuestro sistema de reservas, de un proveedor
-              externo. Los datos que ingreses se usan solo para coordinar tu
-              evaluación, según nuestra{" "}
-              <a href="/privacidad" className="underline hover:text-accent-gold">
-                política de privacidad
-              </a>
-              .
-            </p>
-            <div className="overflow-hidden rounded-2xl border border-text-light/10 bg-white shadow-xl min-h-[750px]">
-              <iframe
-                src="https://link.canala-studio.com/widget/booking/5m1hsxhm7R3E5aEH5C97"
-                style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "750px" }}
-                scrolling="no"
-                id="OCEdH6prfEDBCI7unTk7_1784592578264"
-                title="Agenda tu evaluación inicial"
-              />
-              <Script 
-                src="https://link.canala-studio.com/js/form_embed.js" 
-                strategy="lazyOnload"
-              />
+          {/* Pacientes en tratamiento: un solo lugar, sin competir con la agenda */}
+          <FadeIn delay={0.2}>
+            <div
+              id="ya-eres-paciente"
+              className="mt-20 scroll-mt-28 rounded-3xl bg-[#f5f3f0] p-8 sm:p-12"
+            >
+              <div className="text-center">
+                <h2 className="font-display text-2xl font-bold text-text-light sm:text-3xl">
+                  ¿Ya eres paciente?
+                </h2>
+                <p className="mt-2 text-sm uppercase tracking-wider text-text-muted">
+                  Elige una de estas 2 opciones
+                </p>
+              </div>
+
+              <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
+                <a
+                  href={WHATSAPP_CONTROL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col items-center gap-4 rounded-2xl border border-text-light/10 bg-white p-8 text-center shadow-sm transition-all hover:-translate-y-1 hover:border-green-500/30 hover:shadow-md"
+                >
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50 transition-colors group-hover:bg-green-100">
+                    <MessageCircle className="h-8 w-8 text-green-700" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-text-light">
+                      Control de ortodoncia
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-green-700">
+                      WhatsApp de secretaría
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href={DENTALINK_AGENDA}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col items-center gap-4 rounded-2xl border border-text-light/10 bg-white p-8 text-center shadow-sm transition-all hover:-translate-y-1 hover:border-accent-gold/30 hover:shadow-md"
+                >
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-gold/10 transition-colors group-hover:bg-accent-gold/20">
+                    <Sparkles className="h-8 w-8 text-accent-gold-dark" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-text-light">
+                      Controles y urgencias
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-text-muted">
+                      Agenda online
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
-          </div>
-        </FadeIn>
-
-        {/* Existing Patients Options */}
-        <FadeIn delay={0.4}>
-          <div className="mt-20 rounded-3xl bg-[#f5f3f0] p-8 sm:p-12">
-            <div className="text-center">
-              <h3 className="font-display text-2xl font-bold text-text-light sm:text-3xl">
-                ¿Eres paciente?
-              </h3>
-              <p className="mt-2 text-sm uppercase tracking-wider text-text-muted">
-                Selecciona una de estas 2 opciones
-              </p>
-            </div>
-
-            <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
-              {/* WhatsApp */}
-              <a
-                href="https://wa.link/8lqyfh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center gap-4 rounded-2xl border border-text-light/10 bg-white p-8 text-center shadow-sm transition-all hover:-translate-y-1 hover:border-green-500/30 hover:shadow-md"
-              >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50 transition-colors group-hover:bg-green-100">
-                  <MessageCircle className="h-8 w-8 text-green-600" />
-                </div>
-                <div>
-                  <h4 className="font-display text-lg font-bold text-text-light">
-                    Control Ortodoncia
-                  </h4>
-                  <p className="mt-1 text-sm font-medium text-green-600">
-                    WhatsApp Secretaria
-                  </p>
-                </div>
-              </a>
-
-              {/* Dentalink Online */}
-              <a
-                href="https://f925e25a786881c8ce0d386b933134a116578770.agenda.softwaredentalink.com/agenda/especialidad"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center gap-4 rounded-2xl border border-text-light/10 bg-white p-8 text-center shadow-sm transition-all hover:-translate-y-1 hover:border-accent-gold/30 hover:shadow-md"
-              >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-gold/10 transition-colors group-hover:bg-accent-gold/20">
-                  <Sparkles className="h-8 w-8 text-accent-gold" />
-                </div>
-                <div>
-                  <h4 className="font-display text-lg font-bold text-text-light">
-                    Urgencias Pacientes
-                  </h4>
-                  <p className="mt-1 text-sm font-medium text-accent-gold">
-                    Agenda Online
-                  </p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
+          </FadeIn>
+        </div>
+      </section>
     </>
   );
 }
