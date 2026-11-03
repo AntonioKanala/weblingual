@@ -11,8 +11,10 @@ import { trackEvent } from "@/lib/analytics";
 const DENTALINK_AGENDA =
   "https://f925e25a786881c8ce0d386b933134a116578770.agenda.softwaredentalink.com/agenda/especialidad";
 
+// Sin emoji a propósito: wa.me los cambia por "�" al redirigir a
+// api.whatsapp.com (las tildes sí pasan bien).
 const WHATSAPP_CONTROL = `${CONTACT.whatsapp}?text=${encodeURIComponent(
-  "Hola, necesito agendar mi control de ortodoncia, por favor 😀",
+  "Hola, necesito agendar mi control de ortodoncia, por favor",
 )}`;
 
 export default function AgendaPage() {
