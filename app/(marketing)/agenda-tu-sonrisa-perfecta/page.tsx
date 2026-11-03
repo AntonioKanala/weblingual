@@ -85,10 +85,12 @@ export default function AgendaPage() {
               </p>
               <div className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent-gold/10 px-6 py-4 text-left">
                 <Gift className="h-6 w-6 shrink-0 text-accent-gold-dark" />
+                {/* Vigente para pacientes nuevos que agendan por la web (confirmado
+                    por la clínica el 3-nov-2026). Sin "este mes": no tiene plazo. */}
                 <p className="text-sm font-medium text-text-light sm:text-base">
-                  Agenda tu evaluación inicial y obtén un{" "}
-                  <strong className="text-accent-gold-dark">Blanqueamiento Gratis</strong> este mes si
-                  inicias tratamiento de Brackets Invisibles.
+                  ¿Primera vez en Clínica Lingual? Agenda tu evaluación por la web
+                  y, si inicias tratamiento de Brackets Invisibles, te regalamos un{" "}
+                  <strong className="text-accent-gold-dark">Blanqueamiento</strong>.
                 </p>
               </div>
             </div>
