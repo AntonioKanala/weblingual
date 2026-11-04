@@ -194,6 +194,14 @@ const nextConfig: NextConfig = {
         destination: "/post/bruxismo-ortodoncia-invisible-impacto-soluciones",
         permanent: true,
       },
+      // nov-2026: el de ventajas/desventajas nunca pasó de la posición 85 y
+      // le quitaba señal al de alineadores (12,4 en "alineadores invisibles").
+      // Sus desventajas se integraron al canónico.
+      {
+        source: "/post/alineadores-invisibles-ventajas-y-desventajas",
+        destination: "/post/alineadores-invisibles-chile-sonrisa-perfecta",
+        permanent: true,
+      },
 
       // Restos sueltos del sitio viejo.
       {

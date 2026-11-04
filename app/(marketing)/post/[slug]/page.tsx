@@ -162,7 +162,7 @@ export default async function BlogPostPage({
                 href="/agenda-tu-sonrisa-perfecta"
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent-gold px-7 py-3.5 text-sm font-semibold text-background-dark transition-all hover:scale-[1.02] hover:shadow-lg"
               >
-                Agenda tu evaluación inicial
+                Agenda tu evaluación
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

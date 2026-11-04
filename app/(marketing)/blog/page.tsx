@@ -13,7 +13,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Blog | Ortodoncia Lingual y Salud Bucal | Clínica Lingual",
   description:
-    "Guías, cuidados y respuestas a tus dudas sobre ortodoncia lingual, brackets invisibles, alineadores y seguros dentales en Chile.",
+    "Guías, cuidados y respuestas a tus dudas sobre ortodoncia lingual, brackets invisibles, alineadores, precios y seguros dentales en Chile, de Clínica Lingual.",
   alternates: {
     canonical: "/blog",
   },
@@ -157,7 +157,7 @@ export default function BlogPage() {
               href="/agenda-tu-sonrisa-perfecta"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all hover:scale-[1.02] hover:shadow-lg"
             >
-              Agenda tu evaluación inicial
+              Agenda tu evaluación
               <ArrowRight className="h-4 w-4" />
             </Link>
           </FadeIn>

@@ -38,13 +38,42 @@ export const getFAQPageSchema = () => ({
   })),
 });
 
+/**
+ * El tratamiento como entidad médica: le dice a Google y a los asistentes de
+ * IA de qué se trata /ortodoncia-lingual sin depender de leer toda la página.
+ * Solo afirma lo que la página ya dice.
+ */
+export const getMedicalProcedureSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "@id": "https://clinicalingual.cl/ortodoncia-lingual#procedimiento",
+  name: "Ortodoncia lingual",
+  alternateName: [
+    "Brackets linguales",
+    "Brackets invisibles",
+    "Frenillos linguales",
+    "Ortodoncia invisible",
+  ],
+  description:
+    "Tratamiento de ortodoncia con brackets personalizados que se cementan en la cara interna de los dientes, por lo que no se ven al sonreír. Se diseñan a medida con tecnología 3D y permiten tratar casos complejos que los alineadores transparentes no resuelven.",
+  procedureType: "https://schema.org/NoninvasiveProcedure",
+  bodyLocation: "Dientes (cara interna)",
+  relevantSpecialty: "https://schema.org/Dentistry",
+  howPerformed:
+    "Tras un diagnóstico y planificación 3D, se fabrican brackets a medida que se cementan por dentro de los dientes y se ajustan en controles periódicos.",
+  preparation: "Evaluación inicial con diagnóstico y plan de tratamiento.",
+  followup:
+    "Controles periódicos de ortodoncia y contención al terminar el tratamiento.",
+  url: "https://clinicalingual.cl/ortodoncia-lingual",
+});
+
 export const getLocalBusinessSchema = () => ({
   "@context": "https://schema.org",
   "@type": "Dentist",
   "@id": CLINICA_ID,
   name: "Clínica Lingual",
   description:
-    "Especialistas en ortodoncia lingual en Las Condes, Santiago. +5,000 tratamientos. Brackets invisibles personalizados con tecnología 3D.",
+    "Especialistas en ortodoncia lingual en Las Condes, Santiago. +5.000 tratamientos. Brackets invisibles personalizados con tecnología 3D.",
   url: "https://clinicalingual.cl",
   logo: "https://clinicalingual.cl/images/migrated/668eb72f8edd42a40ba448f2.webp",
   image:

@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
 type WhatsAppFormProps = {
-  /** Número en formato internacional sin "+", ej: "56954127979" */
+  /** Número en formato internacional sin "+", ej: "56990123002" */
   phone: string;
   /** Etiqueta de origen que se incluye en el mensaje, ej: "Landing Ortodoncia Invisible" */
   source?: string;

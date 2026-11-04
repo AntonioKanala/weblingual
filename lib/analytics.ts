@@ -37,7 +37,9 @@ export type EventoConversion =
   /** Clic en un teléfono (tel:). */
   | "phone_click"
   /** Llegada a la página de agendamiento. */
-  | "agenda_view";
+  | "agenda_view"
+  /** Pulsó «Ver horarios disponibles»: se cargó el widget de agenda. */
+  | "agenda_open";
 
 /**
  * Eventos clave YA registrados en la propiedad (Administrar → Eventos clave):

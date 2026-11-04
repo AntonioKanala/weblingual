@@ -1,6 +1,6 @@
 import { LocationMap } from "@/components/ui/location-map";
 import { ASSETS, CONTACT, HASHTAG, URLS } from "@/lib/constants";
-import { MapPin, Phone } from "lucide-react";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,9 +22,9 @@ export const Footer = () => {
                 className="object-contain"
               />
             </div>
-            <p className="text-sm leading-relaxed text-white/40">
+            <p className="text-sm leading-relaxed text-white/60">
               Especialistas en ortodoncia lingual en Las Condes, Santiago.
-              +5,000 tratamientos finalizados.
+              +5.000 tratamientos finalizados.
             </p>
             <p className="text-sm font-medium text-accent-gold">
               {HASHTAG}
@@ -40,7 +40,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href={URLS.tratamiento}
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
                   El Tratamiento
                 </Link>
@@ -48,7 +48,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href={URLS.equipo}
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
                   Nuestro Equipo
                 </Link>
@@ -56,7 +56,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href={URLS.instalaciones}
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
                   Nuestras Instalaciones
                 </Link>
@@ -64,7 +64,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href={URLS.casosClinicos}
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
                   Casos Clínicos
                 </Link>
@@ -72,7 +72,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href={URLS.blog}
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
                   Blog
                 </Link>
@@ -89,7 +89,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href={URLS.testimonios}
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
                   Testimonios
                 </Link>
@@ -97,7 +97,7 @@ export const Footer = () => {
               <li>
                 <Link
                   href={URLS.precios}
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
                   Precios y Financiamiento
                 </Link>
@@ -105,9 +105,9 @@ export const Footer = () => {
               <li>
                 <Link
                   href={URLS.agenda}
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
-                  Agenda tu Evaluación
+                  Agenda tu evaluación
                 </Link>
               </li>
               <li>
@@ -115,9 +115,9 @@ export const Footer = () => {
                   href={URLS.pago}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-white/40 transition-colors hover:text-white"
+                  className="text-sm text-white/60 transition-colors hover:text-white"
                 >
-                  Botón de Pago
+                  Botón de pago
                 </Link>
               </li>
             </ul>
@@ -128,15 +128,23 @@ export const Footer = () => {
             <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
               Contacto
             </h3>
+            {/* La dirección y el teléfono van una sola vez, en «Visítanos». */}
             <ul className="space-y-3">
-              <li className="flex items-start gap-2 text-sm text-white/40">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold/60" />
-                <span>{CONTACT.addressShort}</span>
+              <li className="flex items-start gap-2 text-sm text-white/60">
+                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold/70" />
+                <a
+                  href={CONTACT.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  Escríbenos por WhatsApp
+                </a>
               </li>
-              <li className="flex items-start gap-2 text-sm text-white/40">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold/60" />
-                <a href={CONTACT.phoneHref} className="transition-colors hover:text-white">
-                  {CONTACT.phone}
+              <li className="flex items-start gap-2 text-sm text-white/60">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent-gold/70" />
+                <a href={`mailto:${CONTACT.email}`} className="transition-colors hover:text-white">
+                  {CONTACT.email}
                 </a>
               </li>
             </ul>
@@ -153,7 +161,7 @@ export const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-xs font-medium text-white/40 transition-all hover:border-accent-gold/40 hover:text-accent-gold"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-xs font-medium text-white/60 transition-all hover:border-accent-gold/40 hover:text-accent-gold"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -186,14 +194,14 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-16 border-t border-white/10 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 text-center lg:flex-row lg:text-left">
-            <p className="text-xs text-white/30">
+            <p className="text-xs text-white/50">
               © {currentYear} Clínica Lingual. Todos los derechos reservados.
               {" · "}Sitio creado por{" "}
               <a
                 href="https://canala-studio.com"
                 target="_blank"
                 rel="noopener"
-                className="transition-colors hover:text-white/60"
+                className="transition-colors hover:text-white"
               >
                 Canala Studio
               </a>
@@ -201,13 +209,13 @@ export const Footer = () => {
             <div className="flex gap-6">
               <Link
                 href="/privacidad"
-                className="text-xs text-white/30 transition-colors hover:text-white/60"
+                className="text-xs text-white/50 transition-colors hover:text-white"
               >
                 Privacidad
               </Link>
               <Link
                 href="/terminos"
-                className="text-xs text-white/30 transition-colors hover:text-white/60"
+                className="text-xs text-white/50 transition-colors hover:text-white"
               >
                 Términos
               </Link>

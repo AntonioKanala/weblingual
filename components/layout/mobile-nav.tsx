@@ -26,7 +26,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-background-dark/95 backdrop-blur-md lg:hidden"
+            className="fixed inset-0 z-[70] bg-background-dark/95 backdrop-blur-md lg:hidden"
           />
 
           {/* Slide-in Panel */}
@@ -35,7 +35,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 z-50 h-full w-[85%] max-w-sm bg-background-dark shadow-2xl lg:hidden"
+            className="fixed right-0 top-0 z-[70] h-dvh w-[85%] max-w-sm bg-background-dark shadow-2xl lg:hidden"
           >
             <div className="flex h-full flex-col">
               {/* Header */}
@@ -104,13 +104,6 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                             >
                               Nuestras Instalaciones
                             </Link>
-                            <Link
-                              href={URLS.precios}
-                              onClick={onClose}
-                              className="block rounded-lg p-3 text-sm text-text-dark/80 transition-colors hover:bg-accent-gold/10 hover:text-accent-gold"
-                            >
-                              Precios
-                            </Link>
                           </div>
                         </motion.div>
                       )}
@@ -118,6 +111,14 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                   </div>
 
                   {/* Other Links */}
+                  <Link
+                    href={URLS.precios}
+                    onClick={onClose}
+                    className="block rounded-lg p-3 font-body text-base font-medium text-text-dark transition-colors hover:bg-text-dark/5"
+                  >
+                    Precios
+                  </Link>
+
                   <Link
                     href={URLS.testimonios}
                     onClick={onClose}
@@ -147,9 +148,9 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={onClose}
-                    className="block rounded-lg p-3 font-body text-base font-medium text-text-dark transition-colors hover:bg-text-dark/5"
+                    className="mt-4 block rounded-lg p-3 font-body text-sm text-text-dark/60 transition-colors hover:bg-text-dark/5"
                   >
-                    Botón de Pago
+                    Botón de pago (pacientes)
                   </Link>
                 </div>
               </nav>
@@ -158,7 +159,7 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
               <div className="border-t border-text-dark/10 p-6">
                 <Link href={URLS.agenda} onClick={onClose}>
                   <Button variant="cta" className="w-full" showArrow>
-                    Agenda tu Evaluación
+                    Agenda tu evaluación
                   </Button>
                 </Link>
               </div>

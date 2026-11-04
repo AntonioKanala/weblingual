@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { MedicionContactos } from "@/components/layout/medicion-contactos";
 import { MobileCtaBar } from "@/components/layout/mobile-cta-bar";
 import { WhatsAppFloat } from "@/components/layout/whatsapp-float";
 
@@ -15,6 +16,7 @@ export default function MarketingLayout({
       <Footer />
       <MobileCtaBar />
       <WhatsAppFloat />
+      <MedicionContactos />
     </>
   );
 }

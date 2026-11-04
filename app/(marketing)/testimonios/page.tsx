@@ -12,16 +12,16 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Testimonios | Clínica Lingual Santiago",
+  title: "Testimonios de Ortodoncia Lingual | Clínica Lingual Santiago",
   description:
-    "Conoce las historias reales de nuestros pacientes. +5,000 tratamientos de ortodoncia lingual finalizados con éxito en Santiago, Chile.",
+    "Historias reales, en video, de pacientes que cambiaron su sonrisa con ortodoncia lingual en Clínica Lingual, Las Condes. Más de 5.000 tratamientos finalizados.",
   alternates: {
     canonical: "/testimonios",
   },
   openGraph: {
-    title: "Testimonios | Clínica Lingual Santiago",
+    title: "Testimonios de Ortodoncia Lingual | Clínica Lingual Santiago",
     description:
-      "Historias reales de pacientes de ortodoncia lingual. +5,000 tratamientos finalizados en Santiago.",
+      "Historias reales de pacientes de ortodoncia lingual. +5.000 tratamientos finalizados en Santiago.",
     url: "/testimonios",
   },
 };
@@ -60,13 +60,13 @@ export default function TestimoniosPage() {
               ))}
             </div>
             <p className="text-sm text-white/50">
-              +5,000 tratamientos finalizados con éxito
+              +5.000 tratamientos finalizados con éxito
             </p>
           </FadeIn>
 
           <FadeIn>
             <h1 className="mt-6 max-w-3xl font-display text-[clamp(2.5rem,5vw,5rem)] font-bold leading-[1.05] text-white">
-              Más de 5,000 pacientes satisfechos
+              Más de 5.000 pacientes satisfechos
             </h1>
           </FadeIn>
 
@@ -146,7 +146,7 @@ export default function TestimoniosPage() {
               Sé el próximo caso de éxito
             </h2>
             <p className="mt-4 max-w-xl text-lg text-white/50">
-              Más de 5,000 personas ya transformaron su sonrisa. Tú puedes ser
+              Más de 5.000 personas ya transformaron su sonrisa. Tú puedes ser
               la siguiente.
             </p>
           </FadeIn>
@@ -155,7 +155,7 @@ export default function TestimoniosPage() {
               href={URLS.agenda}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all hover:scale-[1.02] hover:shadow-lg"
             >
-              Agenda tu evaluación inicial
+              Agenda tu evaluación
               <ArrowRight className="h-4 w-4" />
             </Link>
           </FadeIn>

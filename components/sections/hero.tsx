@@ -43,7 +43,7 @@ export const Hero = () => {
               ))}
             </div>
             <span className="text-xs font-semibold tracking-wide text-accent-gold">
-              +5,000 Tratamientos Finalizados
+              +5.000 Tratamientos Finalizados
             </span>
           </motion.div>
 
@@ -78,7 +78,7 @@ export const Hero = () => {
               href={URLS.agenda}
               className="group inline-flex items-center justify-center gap-3 rounded-lg bg-accent-gold px-8 py-4 font-body text-base font-semibold text-background-dark transition-all duration-300 hover:bg-accent-gold-light hover:shadow-lg hover:shadow-accent-gold/20"
             >
-              Empieza tu nueva sonrisa
+              Agenda tu evaluación
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
 

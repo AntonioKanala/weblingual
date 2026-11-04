@@ -155,7 +155,7 @@ export default function LandingBracketsInvisiblesPage() {
                     <Star key={i} className="h-4 w-4 fill-accent-gold text-accent-gold" />
                   ))}
                 </div>
-                <p className="text-sm text-white/60">+5,000 tratamientos finalizados · Miembros ESLO</p>
+                <p className="text-sm text-white/60">+5.000 tratamientos finalizados · Miembros ESLO</p>
               </div>
             </FadeIn>
           </div>
@@ -215,7 +215,7 @@ export default function LandingBracketsInvisiblesPage() {
                 href={URLS.agenda}
                 className="inline-flex shrink-0 items-center gap-2 rounded-full bg-background-dark px-7 py-3.5 text-sm font-semibold text-white shadow-xl transition-all hover:scale-[1.02] hover:bg-black"
               >
-                Agenda tu hora dental
+                Agenda tu evaluación gratis
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -335,7 +335,7 @@ export default function LandingBracketsInvisiblesPage() {
               <ul className="space-y-4">
                 {[
                   {
-                    title: "+5,000 tratamientos finalizados",
+                    title: "+5.000 tratamientos finalizados",
                     sub: "Experiencia clínica comprobada en Chile.",
                   },
                   {
@@ -496,7 +496,7 @@ export default function LandingBracketsInvisiblesPage() {
                 href={URLS.agenda}
                 className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-4 text-sm font-semibold text-background-dark shadow-2xl transition-all hover:scale-[1.02] hover:shadow-accent-gold/30"
               >
-                Quiero agendar mi evaluación
+                Agenda tu evaluación gratis
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -575,7 +575,7 @@ export default function LandingBracketsInvisiblesPage() {
                 href={URLS.agenda}
                 className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-4 text-sm font-semibold text-background-dark shadow-2xl transition-all hover:scale-[1.02] hover:shadow-accent-gold/30"
               >
-                Reserva tu evaluación gratis
+                Agenda tu evaluación gratis
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
@@ -630,7 +630,7 @@ export default function LandingBracketsInvisiblesPage() {
                 href={URLS.agenda}
                 className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all hover:scale-[1.02] hover:shadow-lg"
               >
-                Reserva una hora
+                Agenda tu evaluación gratis
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

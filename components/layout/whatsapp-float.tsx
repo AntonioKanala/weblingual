@@ -39,6 +39,7 @@ export const WhatsAppFloat = () => {
   return (
     <a
       href={href}
+      data-track-propio
       onClick={() => trackEvent("whatsapp_click", { source: "boton-flotante" })}
       target="_blank"
       rel="noopener noreferrer"

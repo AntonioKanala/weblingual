@@ -36,7 +36,7 @@ const researchTabs = [
       "Los alineadores requieren más férulas de las que calcula el software, mientras que en lingual basta con ajustar algunos brackets.",
     description:
       "EN LA PRÁCTICA CLÍNICA, LOS TRATAMIENTOS CON ALINEADORES SUELEN NECESITAR MÁS FÉRULAS DE LAS PLANIFICADAS INICIALMENTE POR EL SOFTWARE. CON ORTODONCIA LINGUAL, LOS AJUSTES SE REALIZAN CAMBIANDO BRACKETS ESPECÍFICOS, SIN NECESIDAD DE REINICIAR LA PLANIFICACIÓN COMPLETA.",
-    cta: { label: "Agendar evaluación", href: "/agenda-tu-sonrisa-perfecta" },
+    cta: { label: "Agenda tu evaluación", href: "/agenda-tu-sonrisa-perfecta" },
     image: "/images/predictibilidad.png",
   },
   {
@@ -56,7 +56,7 @@ const researchTabs = [
       "Con brackets linguales se puede controlar la inclinación de las raíces en todos los sentidos del espacio.",
     description:
       "EL CONTROL TRIDIMENSIONAL DE LAS RAÍCES ES UNA DE LAS MAYORES VENTAJAS DE LA ORTODONCIA LINGUAL. MIENTRAS LOS ALINEADORES TIENEN UN CONTROL PARCIAL Y LOS BRACKETS VESTIBULARES UN ALCANCE LIMITADO, LOS BRACKETS LINGUALES PERMITEN MÁXIMO CONTROL DE TORQUE EN TODAS LAS DIRECCIONES.",
-    cta: { label: "Agendar evaluación", href: "/agenda-tu-sonrisa-perfecta" },
+    cta: { label: "Agenda tu evaluación", href: "/agenda-tu-sonrisa-perfecta" },
     image: "/images/control-radicular.png",
   },
   {
@@ -66,7 +66,7 @@ const researchTabs = [
       "La ortodoncia lingual trabaja las 24 horas sin depender de la disciplina del paciente.",
     description:
       "A DIFERENCIA DE LOS ALINEADORES, QUE EXIGEN 22 HORAS DIARIAS DE USO Y DEPENDEN DE LA MEMORIA DEL USUARIO, LOS BRACKETS LINGUALES TRABAJAN CONTINUAMENTE. SIN INTERRUPCIONES, SIN EXCUSAS, SIN PÉRDIDA DE EFICACIA.",
-    cta: { label: "Agendar evaluación", href: "/agenda-tu-sonrisa-perfecta" },
+    cta: { label: "Agenda tu evaluación", href: "/agenda-tu-sonrisa-perfecta" },
     image: "/images/reloj-24h.png",
   },
 ];

@@ -35,6 +35,52 @@ const includesList = [
   "Atención por nuestro equipo especialista miembro ESLO",
 ];
 
+const factoresPrecio = [
+  {
+    titulo: "La complejidad de tu caso",
+    texto:
+      "No es lo mismo alinear un apiñamiento leve que cerrar espacios de extracciones o corregir una mordida. A más movimientos, más tiempo de especialista.",
+  },
+  {
+    titulo: "Una o ambas arcadas",
+    texto:
+      "Hay casos que se resuelven tratando solo los dientes superiores o solo los inferiores, y otros que necesitan las dos arcadas.",
+  },
+  {
+    titulo: "La duración estimada",
+    texto:
+      "El número de controles y el tiempo total del tratamiento dependen de cuánto hay que mover y de cómo responde cada paciente.",
+  },
+  {
+    titulo: "Apoyos adicionales",
+    texto:
+      "Algunos casos necesitan aparatología complementaria, como microimplantes, para lograr movimientos que los brackets solos no logran.",
+  },
+];
+
+const pasosPresupuesto = [
+  {
+    titulo: "Evaluación inicial gratuita",
+    texto:
+      "Un especialista revisa tu caso con estudio radiográfico y te explica qué tratamiento te conviene.",
+  },
+  {
+    titulo: "Presupuesto con tu plan",
+    texto:
+      "Recibes el valor exacto, qué incluye y la duración estimada, antes de decidir nada.",
+  },
+  {
+    titulo: "Eliges cómo pagar",
+    texto:
+      "Cuota inicial más cuotas sin interés con tarjeta de crédito de todos los bancos, o pago al contado.",
+  },
+  {
+    titulo: "Usas tu seguro",
+    texto:
+      "Con tu presupuesto y boletas puedes pedir el reembolso a tu seguro complementario según tu plan.",
+  },
+];
+
 // La comparativa de precios por tipo de tratamiento quedó fuera a la espera de
 // que la clínica valide los rangos de mercado. Está en el commit 6261711 para
 // recuperarla cuando se confirmen.
@@ -54,7 +100,7 @@ const priceFaqs = [
   },
   {
     q: "¿La evaluación inicial tiene costo?",
-    a: "Agenda tu evaluación inicial para conocer el valor exacto de tu caso, con diagnóstico 3D y plan de tratamiento detallado.",
+    a: "No. La evaluación inicial es gratuita y sin compromiso: un especialista revisa tu caso, te explica qué tratamiento te conviene y te entrega el presupuesto exacto con sus formas de pago.",
   },
   {
     q: "¿Conviene más un alineador invisible o la ortodoncia lingual?",
@@ -121,7 +167,7 @@ export default function PreciosPage() {
       <section className="bg-background-dark pb-16 lg:pb-24">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
           <FadeIn>
-            <p className="max-w-2xl text-sm text-white/50">
+            <p className="max-w-2xl text-sm text-white/60">
               Valores de referencia de un plan reciente, sujetos a evaluación
               inicial y factibilidad clínica de cada caso. No representan una
               promoción vigente ni un precio fijo — tu presupuesto real se
@@ -154,7 +200,7 @@ export default function PreciosPage() {
                     /mes
                   </span>
                 </p>
-                <p className="mt-4 text-sm text-white/50">
+                <p className="mt-4 text-sm text-white/60">
                   TC todos los bancos · Sin interés
                 </p>
               </div>
@@ -203,13 +249,89 @@ export default function PreciosPage() {
         </div>
       </section>
 
+      {/* Qué hace variar el valor */}
+      <section className="bg-background-light py-16 lg:py-24">
+        <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
+          <FadeIn>
+            <h2 className="max-w-3xl font-display text-3xl font-bold text-text-light md:text-4xl">
+              Qué hace variar el valor de la ortodoncia lingual
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+              Los brackets linguales se fabrican a la medida de tus dientes, así
+              que no hay un precio único: el presupuesto refleja lo que tu caso
+              necesita. Estos son los cuatro factores que más lo mueven.{" "}
+              <Link
+                href={URLS.tratamiento}
+                className="text-accent-gold-dark underline underline-offset-2"
+              >
+                Cómo funciona el tratamiento
+              </Link>
+              .
+            </p>
+          </FadeIn>
+          <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+            {factoresPrecio.map((f, i) => (
+              <FadeIn key={f.titulo} delay={i * 0.05}>
+                <div className="border-t border-text-light/15 pt-5">
+                  <h3 className="font-display text-xl font-bold text-text-light">
+                    {f.titulo}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-muted md:text-base">
+                    {f.texto}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Cómo se arma el presupuesto */}
+      <section className="bg-background-dark py-16 lg:py-24">
+        <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
+          <FadeIn>
+            <h2 className="max-w-3xl font-display text-3xl font-bold text-white md:text-4xl">
+              Cómo se arma tu presupuesto
+            </h2>
+          </FadeIn>
+          <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {pasosPresupuesto.map((paso, i) => (
+              <FadeIn key={paso.titulo} delay={i * 0.05}>
+                <li className="list-none">
+                  <span className="font-display text-4xl font-bold text-accent-gold">
+                    {i + 1}
+                  </span>
+                  <h3 className="mt-3 font-display text-lg font-bold text-white">
+                    {paso.titulo}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">
+                    {paso.texto}
+                  </p>
+                </li>
+              </FadeIn>
+            ))}
+          </ol>
+          <FadeIn delay={0.25}>
+            <div className="mt-12">
+              <Link
+                href={URLS.agenda}
+                className="inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-4 text-sm font-semibold text-background-dark shadow-2xl transition-all hover:scale-[1.02] hover:shadow-accent-gold/30"
+              >
+                Agenda tu evaluación gratis
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* Seguros */}
       <section className="bg-background-light py-16 lg:py-24">
         <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
             <FadeIn>
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-gold/10">
-                <HeartPulse className="h-6 w-6 text-accent-gold" />
+                <HeartPulse className="h-6 w-6 text-accent-gold-dark" />
               </div>
               <h2 className="mt-5 font-display text-3xl font-bold text-text-light md:text-4xl">
                 Tu seguro complementario puede cubrir parte del tratamiento
@@ -221,7 +343,7 @@ export default function PreciosPage() {
               </p>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-gold-dark">
                 Sigue leyendo
               </p>
               <ul className="mt-4 space-y-3">
@@ -287,7 +409,7 @@ export default function PreciosPage() {
                     <span className="font-display text-base font-bold text-text-light md:text-lg">
                       {f.q}
                     </span>
-                    <span className="mt-1 text-accent-gold transition-transform group-open:rotate-45">
+                    <span className="mt-1 text-accent-gold-dark transition-transform group-open:rotate-45">
                       <svg
                         className="h-5 w-5"
                         viewBox="0 0 20 20"

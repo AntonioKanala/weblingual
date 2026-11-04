@@ -3,19 +3,19 @@ import { getBreadcrumbSchema } from "@/lib/schemas";
 import { ImageWithFallback } from "@/components/ui/image-with-fallback";
 import { LocationMap } from "@/components/ui/location-map";
 import { CONTACT, URLS } from "@/lib/constants";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Car } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Nuestras Instalaciones | Clínica Lingual Santiago",
+  title: "Instalaciones de la Clínica en Las Condes | Clínica Lingual",
   description:
     "Conoce nuestras instalaciones en Las Condes: recepción, sala de espera, box clínico, sala de presupuestos, sala de análisis de casos y estacionamiento.",
   alternates: {
     canonical: "/instalaciones",
   },
   openGraph: {
-    title: "Nuestras Instalaciones | Clínica Lingual Santiago",
+    title: "Instalaciones de la Clínica en Las Condes | Clínica Lingual",
     description:
       "Conoce nuestras instalaciones en Las Condes: box clínico, salas de análisis y más.",
     url: "/instalaciones",
@@ -25,18 +25,12 @@ export const metadata: Metadata = {
 type Space = {
   title: string;
   description: string;
-  image: string;
+  image?: string;
 };
 
 const FALLBACK = "/images/team/placeholder.png";
 
 const spaces: Space[] = [
-  {
-    title: "Estacionamiento",
-    description:
-      "Estacionamientos disponibles en el edificio con acceso directo a la clínica para que tu llegada sea cómoda.",
-    image: "/images/instalaciones/estacionamiento.webp",
-  },
   {
     title: "Espacio co-work",
     description:
@@ -66,6 +60,12 @@ const spaces: Space[] = [
     description:
       "Donde nuestro equipo planifica cada caso en detalle, revisando radiografías, escáneres 3D y diseñando tu tratamiento.",
     image: "/images/instalaciones/analisis-casos.webp",
+  },
+  {
+    // Sin foto: no hay ninguna del estacionamiento y el placeholder se veía roto.
+    title: "Estacionamiento",
+    description:
+      "Estacionamientos disponibles en el edificio con acceso directo a la clínica para que tu llegada sea cómoda.",
   },
 ];
 
@@ -113,14 +113,20 @@ export default function InstalacionesPage() {
               <FadeIn key={space.title} delay={(i % 3) * 0.1}>
                 <div className="group h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#f5f3f0]">
-                    <ImageWithFallback
-                      src={space.image}
-                      fallbackSrc={FALLBACK}
-                      alt={space.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+                    {space.image ? (
+                      <ImageWithFallback
+                        src={space.image}
+                        fallbackSrc={FALLBACK}
+                        alt={space.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center">
+                        <Car className="h-14 w-14 text-accent-gold/70" aria-hidden />
+                      </div>
+                    )}
                   </div>
                   <div className="p-6">
                     <h2 className="font-display text-xl font-bold text-text-light">
@@ -181,7 +187,7 @@ export default function InstalacionesPage() {
               href={URLS.agenda}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent-gold px-8 py-3.5 text-sm font-semibold text-background-dark transition-all hover:scale-[1.02] hover:shadow-lg"
             >
-              Agenda tu evaluación inicial
+              Agenda tu evaluación
               <ArrowRight className="h-4 w-4" />
             </Link>
           </FadeIn>
